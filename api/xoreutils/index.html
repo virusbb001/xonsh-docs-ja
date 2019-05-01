@@ -1,0 +1,174 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Core Utilities API &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="../../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="Cat Command -- xonsh.xoreutils.cat" href="cat.html" />
+    <link rel="prev" title="History Diff&#39;er (xonsh.diff_history)" href="../diff_history.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/api/xoreutils/index.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cat.html" title="Cat Command -- xonsh.xoreutils.cat"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../diff_history.html" title="History Diff&#39;er (xonsh.diff_history)"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">Xonsh API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="core-utilities-api">
+<span id="api-xoreutils"></span><h1>Core Utilities API<a class="headerlink" href="#core-utilities-api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><strong>Command Modules:</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cat.html">Cat Command -- <code class="xref py py-mod docutils literal notranslate"><span class="pre">xonsh.xoreutils.cat</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="echo.html">Echo Command -- <code class="xref py py-mod docutils literal notranslate"><span class="pre">xonsh.xoreutils.echo</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="pwd.html">Pwd Command -- <code class="xref py py-mod docutils literal notranslate"><span class="pre">xonsh.xoreutils.pwd</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tee.html">Tee Command -- <code class="xref py py-mod docutils literal notranslate"><span class="pre">xonsh.xoreutils.tee</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tty.html">TTY Command -- <code class="xref py py-mod docutils literal notranslate"><span class="pre">xonsh.xoreutils.tty</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="which.html">Which Command -- <code class="xref py py-mod docutils literal notranslate"><span class="pre">xonsh.xoreutils.which</span></code></a></li>
+</ul>
+</div>
+<p><strong>Helper Modules:</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="uptime.html">System Uptime -- <code class="xref py py-mod docutils literal notranslate"><span class="pre">xonsh.xoreutils.uptime</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Core Utilites Utilities -- <code class="xref py py-mod docutils literal notranslate"><span class="pre">xonsh.xoreutils.util</span></code></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../sidebar.html" title="sidebar">
+          <img class="logo" src="../../_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="../diff_history.html"
+                          title="Previous page">&larr; History Diff'er (<code class="docutils literal notranslate"><span class="pre">xonsh.diff_history</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="cat.html"
+                          title="Next page">&rarr; Cat Command -- <code class="xref py py-mod docutils literal notranslate"><span class="pre">xonsh.xoreutils.cat</span></code></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/api/xoreutils/index.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="cat.html" title="Cat Command -- xonsh.xoreutils.cat"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../diff_history.html" title="History Diff&#39;er (xonsh.diff_history)"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,603 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Environment (xonsh.environ) &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Aliases (xonsh.aliases)" href="aliases.html" />
+    <link rel="prev" title="Built-Ins (xonsh.built_ins)" href="built_ins.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/api/environ.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="aliases.html" title="Aliases (xonsh.aliases)"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="built_ins.html" title="Built-Ins (xonsh.built_ins)"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Xonsh API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.environ">
+<span id="environment-xonsh-environ"></span><span id="xonsh-environ"></span><h1>Environment (<code class="docutils literal notranslate"><span class="pre">xonsh.environ</span></code>)<a class="headerlink" href="#module-xonsh.environ" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Environment for the xonsh shell.</p>
+<dl class="class">
+<dt id="xonsh.environ.Ensurer">
+<em class="property">class </em><code class="descclassname">xonsh.environ.</code><code class="descname">Ensurer</code><a class="headerlink" href="#xonsh.environ.Ensurer" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Named tuples whose elements are functions that
+represent environment variable validation, conversion, detyping.</p>
+<p>Create new instance of Ensurer(validate, convert, detype)</p>
+<dl class="method">
+<dt id="xonsh.environ.Ensurer.count">
+<code class="descname">count</code><span class="sig-paren">(</span><em>self</em>, <em>value</em>, <em>/</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.Ensurer.count" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return number of occurrences of value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Ensurer.index">
+<code class="descname">index</code><span class="sig-paren">(</span><em>self</em>, <em>value</em>, <em>start=0</em>, <em>stop=9223372036854775807</em>, <em>/</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.Ensurer.index" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return first index of value.</p>
+<p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.Ensurer.convert">
+<code class="descname">convert</code><a class="headerlink" href="#xonsh.environ.Ensurer.convert" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.Ensurer.detype">
+<code class="descname">detype</code><a class="headerlink" href="#xonsh.environ.Ensurer.detype" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.Ensurer.validate">
+<code class="descname">validate</code><a class="headerlink" href="#xonsh.environ.Ensurer.validate" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.environ.Env">
+<em class="property">class </em><code class="descclassname">xonsh.environ.</code><code class="descname">Env</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#Env"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.Env" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>A xonsh environment, whose variables have limited typing
+(unlike BASH). Most variables are, by default, strings (like BASH).
+However, the following rules also apply based on variable-name:</p>
+<ul class="simple">
+<li><p>PATH: any variable whose name ends in PATH is a list of strings.</p></li>
+<li><p>XONSH_HISTORY_SIZE: this variable is an (int | float, str) tuple.</p></li>
+<li><p>LC_* (locale categories): locale category names get/set the Python
+locale via locale.getlocale() and locale.setlocale() functions.</p></li>
+</ul>
+<p>An Env instance may be converted to an untyped version suitable for
+use in a subprocess.</p>
+<p>If no initial environment is given, os_environ is used.</p>
+<dl class="method">
+<dt id="xonsh.environ.Env.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.Env.clear" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.detype">
+<code class="descname">detype</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.detype"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.Env.detype" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>self</em>, <em>key</em>, <em>default=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.get"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.Env.get" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The environment will look up default values from its own defaults if a
+default is not given here.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.get_docs">
+<code class="descname">get_docs</code><span class="sig-paren">(</span><em>self</em>, <em>key</em>, <em>default=VarDocs(docstr='&lt;no documentation&gt;'</em>, <em>configurable=True</em>, <em>default=&lt;xonsh.tools.DefaultNotGivenType object at 0x7f7129e9cac8&gt;</em>, <em>store_as_str=False)</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.get_docs"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.Env.get_docs" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets the documentation for the environment variable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.get_ensurer">
+<code class="descname">get_ensurer</code><span class="sig-paren">(</span><em>self</em>, <em>key</em>, <em>default=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.get_ensurer"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.Env.get_ensurer" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets an ensurer for the given key.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.help">
+<code class="descname">help</code><span class="sig-paren">(</span><em>self</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.help"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.Env.help" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get information about a specific environment variable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.is_manually_set">
+<code class="descname">is_manually_set</code><span class="sig-paren">(</span><em>self</em>, <em>varname</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.is_manually_set"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.Env.is_manually_set" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Checks if an environment variable has been manually set.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.items">
+<code class="descname">items</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.Env.items" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.keys">
+<code class="descname">keys</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.Env.keys" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><em>self</em>, <em>key</em>, <em>default=&lt;object object at 0x7f712bc1a070&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.Env.pop" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>If key is not found, d is returned if given, otherwise KeyError is raised.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.popitem">
+<code class="descname">popitem</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.Env.popitem" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>as a 2-tuple; but raise KeyError if D is empty.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.replace_env">
+<code class="descname">replace_env</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.replace_env"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.Env.replace_env" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Replaces the contents of os_environ with a detyped version
+of the xonsh environment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.set_ensurer">
+<code class="descname">set_ensurer</code><span class="sig-paren">(</span><em>self</em>, <em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.set_ensurer"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.Env.set_ensurer" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets an ensurer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.setdefault">
+<code class="descname">setdefault</code><span class="sig-paren">(</span><em>self</em>, <em>key</em>, <em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.Env.setdefault" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.swap">
+<code class="descname">swap</code><span class="sig-paren">(</span><em>self</em>, <em>other=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.swap"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.Env.swap" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Provides a context manager for temporarily swapping out certain
+environment variables with other values. On exit from the context
+manager, the original values are restored.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.undo_replace_env">
+<code class="descname">undo_replace_env</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#Env.undo_replace_env"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.Env.undo_replace_env" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Replaces the contents of os_environ with a detyped version
+of the xonsh environment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.Env.update" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>If E present and has a .keys() method, does:     for k in E: D[k] = E[k]
+If E present and lacks .keys() method, does:     for (k, v) in E: D[k] = v
+In either case, this is followed by: for k, v in F.items(): D[k] = v</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.Env.values">
+<code class="descname">values</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.Env.values" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.environ.LsColors">
+<em class="property">class </em><code class="descclassname">xonsh.environ.</code><code class="descname">LsColors</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#LsColors"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.LsColors" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Helps convert to/from $LS_COLORS format, respecting the xonsh color style.
+This accepts the same inputs as dict().</p>
+<dl class="method">
+<dt id="xonsh.environ.LsColors.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.LsColors.clear" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="xonsh.environ.LsColors.convert">
+<em class="property">classmethod </em><code class="descname">convert</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#LsColors.convert"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.LsColors.convert" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Converts an object to LsColors, if needed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.LsColors.detype">
+<code class="descname">detype</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#LsColors.detype"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.LsColors.detype" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>De-types the instance, allowing it to be exported to the environment.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="xonsh.environ.LsColors.fromdircolors">
+<em class="property">classmethod </em><code class="descname">fromdircolors</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#LsColors.fromdircolors"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.LsColors.fromdircolors" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Constructs an LsColors instance by running dircolors.
+If a filename is provided, it is passed down to the dircolors command.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="xonsh.environ.LsColors.fromstring">
+<em class="property">classmethod </em><code class="descname">fromstring</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#LsColors.fromstring"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.LsColors.fromstring" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates a new instance of the LsColors class from a colon-separated
+string of dircolor-valid keys to ANSI color escape sequences.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.LsColors.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>self</em>, <em>key</em>, <em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.LsColors.get" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.LsColors.items">
+<code class="descname">items</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.LsColors.items" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.LsColors.keys">
+<code class="descname">keys</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.LsColors.keys" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.LsColors.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><em>self</em>, <em>key</em>, <em>default=&lt;object object at 0x7f712bc1a070&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.LsColors.pop" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>If key is not found, d is returned if given, otherwise KeyError is raised.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.LsColors.popitem">
+<code class="descname">popitem</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.LsColors.popitem" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>as a 2-tuple; but raise KeyError if D is empty.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.LsColors.setdefault">
+<code class="descname">setdefault</code><span class="sig-paren">(</span><em>self</em>, <em>key</em>, <em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.LsColors.setdefault" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.LsColors.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.LsColors.update" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>If E present and has a .keys() method, does:     for k in E: D[k] = E[k]
+If E present and lacks .keys() method, does:     for (k, v) in E: D[k] = v
+In either case, this is followed by: for k, v in F.items(): D[k] = v</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.LsColors.values">
+<code class="descname">values</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.LsColors.values" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.LsColors.default_settings">
+<code class="descname">default_settings</code><em class="property"> = {'*.7z': ('BOLD_RED',), '*.Z': ('BOLD_RED',), '*.aac': ('CYAN',), '*.ace': ('BOLD_RED',), '*.alz': ('BOLD_RED',), '*.arc': ('BOLD_RED',), '*.arj': ('BOLD_RED',), '*.asf': ('BOLD_PURPLE',), '*.au': ('CYAN',), '*.avi': ('BOLD_PURPLE',), '*.bmp': ('BOLD_PURPLE',), '*.bz': ('BOLD_RED',), '*.bz2': ('BOLD_RED',), '*.cab': ('BOLD_RED',), '*.cgm': ('BOLD_PURPLE',), '*.cpio': ('BOLD_RED',), '*.deb': ('BOLD_RED',), '*.dl': ('BOLD_PURPLE',), '*.dwm': ('BOLD_RED',), '*.dz': ('BOLD_RED',), '*.ear': ('BOLD_RED',), '*.emf': ('BOLD_PURPLE',), '*.esd': ('BOLD_RED',), '*.flac': ('CYAN',), '*.flc': ('BOLD_PURPLE',), '*.fli': ('BOLD_PURPLE',), '*.flv': ('BOLD_PURPLE',), '*.gif': ('BOLD_PURPLE',), '*.gl': ('BOLD_PURPLE',), '*.gz': ('BOLD_RED',), '*.jar': ('BOLD_RED',), '*.jpeg': ('BOLD_PURPLE',), '*.jpg': ('BOLD_PURPLE',), '*.lha': ('BOLD_RED',), '*.lrz': ('BOLD_RED',), '*.lz': ('BOLD_RED',), '*.lz4': ('BOLD_RED',), '*.lzh': ('BOLD_RED',), '*.lzma': ('BOLD_RED',), '*.lzo': ('BOLD_RED',), '*.m2v': ('BOLD_PURPLE',), '*.m4a': ('CYAN',), '*.m4v': ('BOLD_PURPLE',), '*.mid': ('CYAN',), '*.midi': ('CYAN',), '*.mjpeg': ('BOLD_PURPLE',), '*.mjpg': ('BOLD_PURPLE',), '*.mka': ('CYAN',), '*.mkv': ('BOLD_PURPLE',), '*.mng': ('BOLD_PURPLE',), '*.mov': ('BOLD_PURPLE',), '*.mp3': ('CYAN',), '*.mp4': ('BOLD_PURPLE',), '*.mp4v': ('BOLD_PURPLE',), '*.mpc': ('CYAN',), '*.mpeg': ('BOLD_PURPLE',), '*.mpg': ('BOLD_PURPLE',), '*.nuv': ('BOLD_PURPLE',), '*.oga': ('CYAN',), '*.ogg': ('CYAN',), '*.ogm': ('BOLD_PURPLE',), '*.ogv': ('BOLD_PURPLE',), '*.ogx': ('BOLD_PURPLE',), '*.opus': ('CYAN',), '*.pbm': ('BOLD_PURPLE',), '*.pcx': ('BOLD_PURPLE',), '*.pgm': ('BOLD_PURPLE',), '*.png': ('BOLD_PURPLE',), '*.ppm': ('BOLD_PURPLE',), '*.qt': ('BOLD_PURPLE',), '*.ra': ('CYAN',), '*.rar': ('BOLD_RED',), '*.rm': ('BOLD_PURPLE',), '*.rmvb': ('BOLD_PURPLE',), '*.rpm': ('BOLD_RED',), '*.rz': ('BOLD_RED',), '*.sar': ('BOLD_RED',), '*.spx': ('CYAN',), '*.svg': ('BOLD_PURPLE',), '*.svgz': ('BOLD_PURPLE',), '*.swm': ('BOLD_RED',), '*.t7z': ('BOLD_RED',), '*.tar': ('BOLD_RED',), '*.taz': ('BOLD_RED',), '*.tbz': ('BOLD_RED',), '*.tbz2': ('BOLD_RED',), '*.tga': ('BOLD_PURPLE',), '*.tgz': ('BOLD_RED',), '*.tif': ('BOLD_PURPLE',), '*.tiff': ('BOLD_PURPLE',), '*.tlz': ('BOLD_RED',), '*.txz': ('BOLD_RED',), '*.tz': ('BOLD_RED',), '*.tzo': ('BOLD_RED',), '*.tzst': ('BOLD_RED',), '*.vob': ('BOLD_PURPLE',), '*.war': ('BOLD_RED',), '*.wav': ('CYAN',), '*.webm': ('BOLD_PURPLE',), '*.wim': ('BOLD_RED',), '*.wmv': ('BOLD_PURPLE',), '*.xbm': ('BOLD_PURPLE',), '*.xcf': ('BOLD_PURPLE',), '*.xpm': ('BOLD_PURPLE',), '*.xspf': ('CYAN',), '*.xwd': ('BOLD_PURPLE',), '*.xz': ('BOLD_RED',), '*.yuv': ('BOLD_PURPLE',), '*.z': ('BOLD_RED',), '*.zip': ('BOLD_RED',), '*.zoo': ('BOLD_RED',), '*.zst': ('BOLD_RED',), 'bd': ('BACKGROUND_BLACK', 'YELLOW'), 'ca': ('BLACK', 'BACKGROUND_RED'), 'cd': ('BACKGROUND_BLACK', 'YELLOW'), 'di': ('BOLD_BLUE',), 'do': ('BOLD_PURPLE',), 'ex': ('BOLD_GREEN',), 'ln': ('BOLD_CYAN',), 'mh': ('NO_COLOR',), 'mi': ('NO_COLOR',), 'or': ('BACKGROUND_BLACK', 'RED'), 'ow': ('BLUE', 'BACKGROUND_GREEN'), 'pi': ('BACKGROUND_BLACK', 'YELLOW'), 'rs': ('NO_COLOR',), 'sg': ('BLACK', 'BACKGROUND_YELLOW'), 'so': ('BOLD_PURPLE',), 'st': ('WHITE', 'BACKGROUND_BLUE'), 'su': ('WHITE', 'BACKGROUND_RED'), 'tw': ('BLACK', 'BACKGROUND_GREEN')}</em><a class="headerlink" href="#xonsh.environ.LsColors.default_settings" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.LsColors.style">
+<code class="descname">style</code><a class="headerlink" href="#xonsh.environ.LsColors.style" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The ANSI color style for the current XONSH_COLOR_STYLE</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.LsColors.style_name">
+<code class="descname">style_name</code><a class="headerlink" href="#xonsh.environ.LsColors.style_name" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Current XONSH_COLOR_STYLE value</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.environ.VarDocs">
+<em class="property">class </em><code class="descclassname">xonsh.environ.</code><code class="descname">VarDocs</code><a class="headerlink" href="#xonsh.environ.VarDocs" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Named tuple for environment variable documentation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>docstr</strong><span class="classifier">str</span></dt><dd><p>The environment variable docstring.</p>
+</dd>
+<dt><strong>configurable</strong><span class="classifier">bool, optional</span></dt><dd><p>Flag for whether the environment variable is configurable or not.</p>
+</dd>
+<dt><strong>default</strong><span class="classifier">str, optional</span></dt><dd><p>Custom docstring for the default value for complex defaults.
+Is this is DefaultNotGiven, then the default will be looked up
+from DEFAULT_VALUES and converted to a str.</p>
+</dd>
+<dt><strong>store_as_str</strong><span class="classifier">bool, optional</span></dt><dd><p>Flag for whether the environment variable should be stored as a
+string. This is used when persisting a variable that is not JSON
+serializable to the config file. For example, sets, frozensets, and
+potentially other non-trivial data types. default, False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Create new instance of VarDocs(docstr, configurable, default, store_as_str)</p>
+<dl class="method">
+<dt id="xonsh.environ.VarDocs.count">
+<code class="descname">count</code><span class="sig-paren">(</span><em>self</em>, <em>value</em>, <em>/</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.VarDocs.count" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return number of occurrences of value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.environ.VarDocs.index">
+<code class="descname">index</code><span class="sig-paren">(</span><em>self</em>, <em>value</em>, <em>start=0</em>, <em>stop=9223372036854775807</em>, <em>/</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.environ.VarDocs.index" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return first index of value.</p>
+<p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.VarDocs.configurable">
+<code class="descname">configurable</code><a class="headerlink" href="#xonsh.environ.VarDocs.configurable" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.VarDocs.default">
+<code class="descname">default</code><a class="headerlink" href="#xonsh.environ.VarDocs.default" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.VarDocs.docstr">
+<code class="descname">docstr</code><a class="headerlink" href="#xonsh.environ.VarDocs.docstr" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.environ.VarDocs.store_as_str">
+<code class="descname">store_as_str</code><a class="headerlink" href="#xonsh.environ.VarDocs.store_as_str" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.default_env">
+<code class="descclassname">xonsh.environ.</code><code class="descname">default_env</code><span class="sig-paren">(</span><em>env=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#default_env"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.default_env" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Constructs a default xonsh environment.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.default_lscolors">
+<code class="descclassname">xonsh.environ.</code><code class="descname">default_lscolors</code><span class="sig-paren">(</span><em>env</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#default_lscolors"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.default_lscolors" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets a default instanse of LsColors</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.default_value">
+<code class="descclassname">xonsh.environ.</code><code class="descname">default_value</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#default_value"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.default_value" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Decorator for making callable default values.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.default_xonshrc">
+<code class="descclassname">xonsh.environ.</code><code class="descname">default_xonshrc</code><span class="sig-paren">(</span><em>env</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#default_xonshrc"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.default_xonshrc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates a new instance of the default xonshrc tuple.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.ensure_ls_colors_in_env">
+<code class="descclassname">xonsh.environ.</code><code class="descname">ensure_ls_colors_in_env</code><span class="sig-paren">(</span><em>spec=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#ensure_ls_colors_in_env"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.ensure_ls_colors_in_env" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>This ensures that the $LS_COLORS environment variable is in the
+environment. This fires exactly once upon the first time the
+ls command is called.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.foreign_env_fixes">
+<code class="descclassname">xonsh.environ.</code><code class="descname">foreign_env_fixes</code><span class="sig-paren">(</span><em>ctx</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#foreign_env_fixes"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.foreign_env_fixes" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Environment fixes for all operating systems</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.is_callable_default">
+<code class="descclassname">xonsh.environ.</code><code class="descname">is_callable_default</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#is_callable_default"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.is_callable_default" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Checks if a value is a callable default.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.is_lscolors">
+<code class="descclassname">xonsh.environ.</code><code class="descname">is_lscolors</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#is_lscolors"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.is_lscolors" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Checks if an object is an instance of LsColors</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.locale_convert">
+<code class="descclassname">xonsh.environ.</code><code class="descname">locale_convert</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#locale_convert"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.locale_convert" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates a converter for a locale key.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.locate_binary">
+<code class="descclassname">xonsh.environ.</code><code class="descname">locate_binary</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#locate_binary"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.locate_binary" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Locates an executable on the file system.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.make_args_env">
+<code class="descclassname">xonsh.environ.</code><code class="descname">make_args_env</code><span class="sig-paren">(</span><em>args=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#make_args_env"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.make_args_env" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Makes a dictionary containing the $ARGS and $ARG&lt;N&gt; environment
+variables. If the supplied ARGS is None, then sys.argv is used.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.to_debug">
+<code class="descclassname">xonsh.environ.</code><code class="descname">to_debug</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#to_debug"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.to_debug" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Converts value using to_bool_or_int() and sets this value on as the
+execer's debug level.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.windows_foreign_env_fixes">
+<code class="descclassname">xonsh.environ.</code><code class="descname">windows_foreign_env_fixes</code><span class="sig-paren">(</span><em>ctx</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#windows_foreign_env_fixes"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.windows_foreign_env_fixes" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Environment fixes for Windows. Operates in-place.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.xonsh_append_newline">
+<code class="descclassname">xonsh.environ.</code><code class="descname">xonsh_append_newline</code><span class="sig-paren">(</span><em>env</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#xonsh_append_newline"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.xonsh_append_newline" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Appends a newline if we are in interactive mode</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.xonsh_config_dir">
+<code class="descclassname">xonsh.environ.</code><code class="descname">xonsh_config_dir</code><span class="sig-paren">(</span><em>env</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#xonsh_config_dir"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.xonsh_config_dir" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Ensures and returns the $XONSH_CONFIG_DIR</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.xonsh_data_dir">
+<code class="descclassname">xonsh.environ.</code><code class="descname">xonsh_data_dir</code><span class="sig-paren">(</span><em>env</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#xonsh_data_dir"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.xonsh_data_dir" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Ensures and returns the $XONSH_DATA_DIR</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.xonsh_script_run_control">
+<code class="descclassname">xonsh.environ.</code><code class="descname">xonsh_script_run_control</code><span class="sig-paren">(</span><em>filename</em>, <em>ctx</em>, <em>env</em>, <em>execer=None</em>, <em>login=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#xonsh_script_run_control"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.xonsh_script_run_control" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Loads a xonsh file and applies it as a run control.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.xonshconfig">
+<code class="descclassname">xonsh.environ.</code><code class="descname">xonshconfig</code><span class="sig-paren">(</span><em>env</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#xonshconfig"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.xonshconfig" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Ensures and returns the $XONSHCONFIG</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.environ.xonshrc_context">
+<code class="descclassname">xonsh.environ.</code><code class="descname">xonshrc_context</code><span class="sig-paren">(</span><em>rcfiles=None</em>, <em>execer=None</em>, <em>ctx=None</em>, <em>env=None</em>, <em>login=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/environ.html#xonshrc_context"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.environ.xonshrc_context" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Attempts to read in all xonshrc files and return the context.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../sidebar.html" title="sidebar">
+          <img class="logo" src="../_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="built_ins.html"
+                          title="Previous page">&larr; Built-Ins (<code class="docutils literal notranslate"><span class="pre">xonsh.built_ins</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="aliases.html"
+                          title="Next page">&rarr; Aliases (<code class="docutils literal notranslate"><span class="pre">xonsh.aliases</span></code>)</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/environ.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="aliases.html" title="Aliases (xonsh.aliases)"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="built_ins.html" title="Built-Ins (xonsh.built_ins)"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Xonsh API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,574 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Xonsh シェル &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Linux Guide" href="linux.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="sidebar.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/index.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="linux.html" title="Linux Guide"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="sidebar.html" title="&lt;no title&gt;"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-xonsh-shell">
+<h1>Xonsh シェル<a class="headerlink" href="#the-xonsh-shell" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p style="text-align:center;">
+<span style="font-family:Times;font-size:28px;font-style:normal;font-weight:normal;text-decoration:none;text-transform:none;font-variant:small-caps;color:000000;">
+~
+<script>
+var taglines = [
+    "Exofrills in the shell",
+    "No frills in the shell",
+    "Become the Lord of the Files",
+    "Break out of your shell",
+    "The only shell that is also a shell",
+    "All that is and all that shell be",
+    "It cannot be that hard",
+    "Pass the xonsh, Piggy",
+    "Piggy glanced nervously into hell and cradled the xonsh",
+    "The xonsh is a symbol",
+    "It is pronounced <i>conch</i>",
+    "It is pronounced <i>🐚</i>",
+    "It is pronounced <i>kɒntʃ</i>",
+    "The shell, bourne again",
+    "Snailed it",
+    "Starfish loves you",
+    "Come snail away",
+    "This is Major Tom to Ground Xonshtrol",
+    "Sally sells csh and keeps xonsh to herself",
+    "Nice indeed. Everything's accounted for, except your old shell.",
+    "I wanna thank you for putting me back in my snail shell",
+    "Crustaceanly Yours",
+    "With great shell comes great reproducibility",
+    "None shell pass",
+    "You shell not pass!",
+    "The x-on shell",
+    "Ever wonder why there isn't a Taco Shell? Because it is a corny idea.",
+    "It is pronounced <i>コンシュ</i>",
+    "The carcolh will catch you!",
+    "People xonshtantly mispronounce these things",
+    "WHAT...is your favorite shell?",
+    "Conches for the xonsh god!",
+    "Python-powered, cross-platform, Unix-gazing shell",
+    "Tab completion in Alderaan places",
+    "This fix was trickier than expected",
+    "The unholy cross of Bash/Python",
+    "Exploiting the workers and hanging on to outdated imperialist dogma since 2015."
+    ];
+document.write(taglines[Math.floor(Math.random() * taglines.length)]);
+</script>
+~
+<br />
+<br />
+</span>
+</p><p>XonshはPythonで動く、クロスプラットフォームのUnix-gazingなシェル言語とコマンドプロンプトです。この言語は、BashとIPythonから慣れ親しんだ追加のシェルプリミティブを持つPython 3.4+のスーパーセットです。これは、Linux、Mac OSX、およびWindowsを含むすべての主要なシステムで動作します。Xonshは専門家と初心者の毎日の使用のために作られています</p>
+</div>
+<div class="section" id="try-it-now">
+<h1>今すぐ試す!<a class="headerlink" href="#try-it-now" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ブラウザーでxonshを試してみてください。下の <a class="reference external" href="https://repl.it">Repl.it</a> フレームの右下にある三角再生ボタンを押すだけです。 注意： repl.itの制限により、完全に機能するxonshインスタンスではありません。</p>
+<iframe height="400px" width="100%" src="https://repl.it/@scopatz/xonsh?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe></div>
+<div class="section" id="comparison">
+<h1>比較<a class="headerlink" href="#comparison" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Xonshは、他のほとんどのシェルやシェルツールと大きく異なります。次の表に、さまざまなツールが共有する機能と不可能な機能の一覧を示します。</p>
+<table class="colwidths-given docutils align-center">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head stub"></th>
+<th class="head"><p>Bash</p></th>
+<th class="head"><p>zsh</p></th>
+<th class="head"><p>plumbum</p></th>
+<th class="head"><p>fish</p></th>
+<th class="head"><p>IPython</p></th>
+<th class="head"><p>xonsh</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p>真っ当な言語</p></th>
+<td></td>
+<td></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>記述が簡単</p></th>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>標準のクロスプラットフォームサポート</p></th>
+<td></td>
+<td></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>シェルのつもりであった</p></th>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td></td>
+<td><p>✓</p></td>
+<td></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Tab保管</p></th>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Manページ保管</p></th>
+<td></td>
+<td></td>
+<td></td>
+<td><p>✓</p></td>
+<td></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>巨大な標準ライブラリ</p></th>
+<td></td>
+<td><p>✓</p></td>
+<td></td>
+<td></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>型付きの変数</p></th>
+<td></td>
+<td></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>シンタックスハイライト</p></th>
+<td></td>
+<td></td>
+<td></td>
+<td><p>✓</p></td>
+<td><p>Notebook内で</p></td>
+<td><p>prompt-toolkit付きで</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>名前の洒落</p></th>
+<td><p>✓</p></td>
+<td></td>
+<td><p>✓</p></td>
+<td></td>
+<td></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>豊富な保管</p></th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>✓</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="dependencies">
+<h2>依存関係<a class="headerlink" href="#dependencies" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Xonshは現在、以下の外部依存関係を持っています。</p>
+<p><em>実行環境:</em></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Python v3.4+</p></li>
+</ol>
+</div></blockquote>
+<p>Pipは <code class="docutils literal notranslate"><span class="pre">xonsh[ptk,linux]</span></code> のような&quot;追加の&quot;依存関係をサポートしており、括弧内のリストでオプション機能が識別されます。</p>
+<p>Xonshは現在以下の追加依存関係を持っています</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ptk</span></code>: prompt-toolkit: <em>高度な readline ライブラリ, 行変数</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pygments&gt;=2.2</span></code>: <em>シンタックスハイライト</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">proctitle</span></code>: setproctitle: <em>ターミナルのタイトルを現在のサブプロセスを反映するために変更</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux</span></code>: distro: <em>Linux固有のプラットフォーム情報</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac</span></code>: gnureadline: <em>readlineのGNUの機能方法なバージョン</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: win_unicode_console: <em>Windowsコンソール内でUnicodeを有効化</em></p></li>
+</ol>
+</div></blockquote>
+<p>さらに、Xonshはブラウザー内のREPLであるJupyterと統合され、Jupyter NotebookでXonshを使用できるようにします</p>
+</div>
+<div class="section" id="development-dependencies">
+<h2>開発用依存関係<a class="headerlink" href="#development-dependencies" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>xonshを開発したい場合は、<a class="reference external" href="https://github.com/xonsh/xonsh/blob/master/requirements-docs.txt">requires-docs.txt</a> （ドキュメンテーションを生成するため）および`requirements-tests.txt &lt;<a class="reference external" href="https://github.com/xonsh/xonsh/blob/master/requirements-tests.txt">https://github.com/xonsh/xonsh/blob/master/requirements-tests.txt</a>&gt;`_ （テストスイートを実行するため）にリストされている依存関係をインストールすることを強くお勧めします。</p>
+</div>
+<div class="section" id="installation">
+<h2>インストール<a class="headerlink" href="#installation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linux.html">Linux Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="osx.html">OSX Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Windows Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Updating and customizing xonsh</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="news-media">
+<h1>ニュース &amp; メディア<a class="headerlink" href="#news-media" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="talks_and_articles.html">Talks &amp; Articles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quotes.html">Quotes</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="guides">
+<h1>ガイド<a class="headerlink" href="#guides" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_hist.html">Tutorial: History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_macros.html">Tutorial: Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_xontrib.html">Tutorial: Extensions (Xontribs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_events.html">Tutorial: Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_completers.html">Tutorial: Programmable Tab-Completion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_history_backend.html">Tutorial: Write Your Own History Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_subproc_strings.html">Tutorial: Subprocess Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_ptk.html">Tutorial: <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> custom keybindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bash_to_xsh.html">Bash to Xonsh Translation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subproc_types.html">Subprocess Types Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_virtual_environments.html">Python Virtual Environments</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="config-files-and-settings">
+<h1>設定ファイルと設定<a class="headerlink" href="#config-files-and-settings" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="xonshrc.html">Run Control File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xonshrc.html#snippets-for-xonshrc">Snippets for xonshrc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="envvars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aliases.html">Built-in Aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xontribs.html">Xontribs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Core Events</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="contributing">
+<h1>貢献<a class="headerlink" href="#contributing" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>xonshへの貢献を強くお勧めします！あなたが貢献したいのであれば、GitHubでリポジトリをフォークし、変更を加え、プルリクエストを発行するのと同じくらい簡単です。このプロセスについてご質問がある場合はお気軽に メーリングリスト (<a class="reference external" href="mailto:xonsh&#37;&#52;&#48;googlegroups&#46;com">xonsh<span>&#64;</span>googlegroups<span>&#46;</span>com</a>)もしくは <a class="reference external" href="https://gitter.im/xonsh/xonsh">Gitter</a> チャンネルへお問い合わせください。(訳注: この問い合わせ先はおそらく英語のみの受付です。)</p>
+<p>貢献についてのより多くの情報は <a class="reference external" href="devguide.html">開発者ガイド</a> をご覧ください。</p>
+</div>
+<div class="section" id="contact-us">
+<h1>Contact Us<a class="headerlink" href="#contact-us" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ご質問やご意見がありましたら、<a class="reference external" href="mailto:xonsh&#37;&#52;&#48;googlegroups&#46;com">xonsh<span>&#64;</span>googlegroups<span>&#46;</span>com</a> メーリングリストに送信したり、IRCで私達を呼び出したり、直接著者に連絡したり、GitHubでissueを開いてください。 <a class="reference external" href="https://groups.google.com/forum/#!forum/xonsh">ここからメーリングリストに参加してください！</a> (訳注: おそらく英語のみの受付です。)</p>
+</div>
+<div class="section" id="helpful-links">
+<h1>役立つリンク集<a class="headerlink" href="#helpful-links" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="http://xon.sh">ドキュメント</a></p></li>
+<li><p><a class="reference external" href="https://gitter.im/xonsh/xonsh">Gitter</a></p></li>
+<li><p><a class="reference external" href="https://groups.google.com/forum/#!forum/xonsh">メーリングリスト</a></p></li>
+<li><p><a class="reference external" href="http://www.oftc.net/">IRC: OFTC 内 #xonsh チャンネル</a></p></li>
+<li><p><a class="reference external" href="https://github.com/xonsh/xonsh">GitHub リポジトリ</a></p></li>
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">索引</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">モジュール索引</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">検索ページ</span></a></p></li>
+</ul>
+<a href="https://github.com/xonsh/xonsh" class='github-fork-ribbon' title='Fork me on GitHub'>Fork me on GitHub</a>
+
+<style>
+/*!
+ * Adapted from
+ * "Fork me on GitHub" CSS ribbon v0.2.0 | MIT License
+ * https://github.com/simonwhitaker/github-fork-ribbon-css
+ */
+
+.github-fork-ribbon, .github-fork-ribbon:hover, .github-fork-ribbon:hover:active {
+  background:none;
+  left: inherit;
+  width: 12.1em;
+  height: 12.1em;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  pointer-events: none;
+  text-decoration: none;
+  text-indent: -999999px;
+}
+
+.github-fork-ribbon:before, .github-fork-ribbon:after {
+  /* The right and left classes determine the side we attach our banner to */
+  position: absolute;
+  display: block;
+  width: 15.38em;
+  height: 1.54em;
+  top: 3.23em;
+  right: -3.23em;
+  box-sizing: content-box;
+  transform: rotate(45deg);
+}
+
+.github-fork-ribbon:before {
+  content: "";
+  padding: .38em 0;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
+  box-shadow: 0 0.07em 0.4em 0 rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+}
+
+.github-fork-ribbon:after {
+  content: attr(title);
+  color: #000;
+  font: 700 1em "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.54em;
+  text-decoration: none;
+  text-align: center;
+  text-indent: 0;
+  padding: .15em 0;
+  margin: .15em 0;
+  border-width: .08em 0;
+  border-style: dotted;
+  border-color: #777;
+}
+
+</style></div>
+<div class="section" id="development-spiral">
+<h1>開発の螺旋<a class="headerlink" href="#development-spiral" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">Xonsh API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/lib/index.html">Xonsh Standard Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/lexer.html">Lexer (<code class="docutils literal notranslate"><span class="pre">xonsh.lexer</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/parser.html">Parser (<code class="docutils literal notranslate"><span class="pre">xonsh.parser</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ast.html">Abstract Syntax Tree (<code class="docutils literal notranslate"><span class="pre">xonsh.ast</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/execer.html">Compilation, Evaluation, &amp; Execution  (<code class="docutils literal notranslate"><span class="pre">xonsh.execer</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/imphooks.html">Import Hooks (<code class="docutils literal notranslate"><span class="pre">xonsh.imphooks</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/built_ins.html">Built-Ins (<code class="docutils literal notranslate"><span class="pre">xonsh.built_ins</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/environ.html">Environment (<code class="docutils literal notranslate"><span class="pre">xonsh.environ</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/aliases.html">Aliases (<code class="docutils literal notranslate"><span class="pre">xonsh.aliases</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/dirstack.html">Directory Stack (<code class="docutils literal notranslate"><span class="pre">xonsh.dirstack</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/jobs.html">Job Control (<code class="docutils literal notranslate"><span class="pre">xonsh.jobs</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/proc.html">Python Procedures as Subprocess Commands (<code class="docutils literal notranslate"><span class="pre">xonsh.proc</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/inspectors.html">Object Inspectors (<code class="docutils literal notranslate"><span class="pre">xonsh.inspectors</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/history/index.html">Xonsh History API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/completer.html">Tab Completer (<code class="docutils literal notranslate"><span class="pre">xonsh.completer</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/completers/index.html">Completers API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/prompt/index.html">Prompt formatter API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/shell.html">Main Shell Command Prompt (<code class="docutils literal notranslate"><span class="pre">xonsh.shell</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/base_shell.html">Base Shell Class (<code class="docutils literal notranslate"><span class="pre">xonsh.base_shell</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/readline_shell.html">Readline Shell (<code class="docutils literal notranslate"><span class="pre">xonsh.readline_shell</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ptk2/shell.html">Prompt Toolkit 2 Shell (<code class="docutils literal notranslate"><span class="pre">xonsh.ptk2.shell</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ptk2/history.html">Prompt Toolkit 2 History Object (<code class="docutils literal notranslate"><span class="pre">xonsh.ptk2.history</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ptk2/completer.html">Prompt Toolkit 2 Completer (<code class="docutils literal notranslate"><span class="pre">xonsh.ptk2.completer</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ptk2/key_bindings.html">Prompt Toolkit 2 Key Bindings (<code class="docutils literal notranslate"><span class="pre">xonsh.ptk2.key_bindings</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pretty.html">Pretty printing (<code class="docutils literal notranslate"><span class="pre">xonsh.pretty</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/replay.html">Replay History (<code class="docutils literal notranslate"><span class="pre">xonsh.replay</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/diff_history.html">History Diff'er (<code class="docutils literal notranslate"><span class="pre">xonsh.diff_history</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/xoreutils/index.html">Core Utilities API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/events.html">Events (<code class="docutils literal notranslate"><span class="pre">xonsh.events</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/tools.html">Tools (<code class="docutils literal notranslate"><span class="pre">xonsh.tools</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/platform.html">Platform-specific constants and implementations (<code class="docutils literal notranslate"><span class="pre">xonsh.platform</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/jsonutils.html">JSON Utilities (<code class="docutils literal notranslate"><span class="pre">xonsh.jsonutils</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/lazyjson.html">Lazy JSON Files (<code class="docutils literal notranslate"><span class="pre">xonsh.lazyjson</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/lazyasd.html">Lazy &amp; Self-destructive Objects (<code class="docutils literal notranslate"><span class="pre">xonsh.lazyasd</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/openpy.html">Open Python Files (<code class="docutils literal notranslate"><span class="pre">xonsh.openpy</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/foreign_shells.html">Foreign Shell Tools (<code class="docutils literal notranslate"><span class="pre">xonsh.foreign_shells</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/commands_cache.html">Commands Cache (<code class="docutils literal notranslate"><span class="pre">xonsh.commands_cache</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/tracer.html">Tracer (<code class="docutils literal notranslate"><span class="pre">xonsh.tracer</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/main.html">Command Line Interface (<code class="docutils literal notranslate"><span class="pre">xonsh.main</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/color_tools.html">Color Tools (<code class="docutils literal notranslate"><span class="pre">xonsh.color_tools</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pyghooks.html">Pygments Hooks (<code class="docutils literal notranslate"><span class="pre">xonsh.pyghooks</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/jupyter_kernel.html">Jupyter Kernel (<code class="docutils literal notranslate"><span class="pre">xonsh.jupyter_kernel</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/jupyter_shell.html">Jupyter Shell (<code class="docutils literal notranslate"><span class="pre">xonsh.jupyter_shell</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/dumb_shell.html">Dumb Shell (<code class="docutils literal notranslate"><span class="pre">xonsh.dumb_shell</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/wizard.html">Wizard Making Tools (<code class="docutils literal notranslate"><span class="pre">xonsh.wizard</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/xonfig.html">Xonsh Configuration Utility (<code class="docutils literal notranslate"><span class="pre">xonsh.xonfig</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/codecache.html">Compiling and Caching of Xonsh Code (<code class="docutils literal notranslate"><span class="pre">xonsh.codecache</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/contexts.html">Context Managers for Xonsh (<code class="docutils literal notranslate"><span class="pre">xonsh.contexts</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/mplhooks.html">Matplotlib Hooks (<code class="docutils literal notranslate"><span class="pre">xontrib.mplhooks</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/vox.html">Vox (<code class="docutils literal notranslate"><span class="pre">xontrib.voxapi</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ptk/shell.html">Prompt Toolkit Shell (<code class="docutils literal notranslate"><span class="pre">xonsh.ptk.shell</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ptk/history.html">Prompt Toolkit History Object (<code class="docutils literal notranslate"><span class="pre">xonsh.ptk.history</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ptk/completer.html">Prompt Toolkit Completer (<code class="docutils literal notranslate"><span class="pre">xonsh.ptk.completer</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ptk/key_bindings.html">Prompt Toolkit Key Bindings (<code class="docutils literal notranslate"><span class="pre">xonsh.ptk.key_bindings</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_events.html">Advanced Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devguide.html">Developer's Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Xonsh Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">Wishlist &amp; To-Dos</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="sidebar">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Xonsh シェル</a></li>
+<li><a class="reference internal" href="#try-it-now">今すぐ試す!</a></li>
+<li><a class="reference internal" href="#comparison">比較</a></li>
+<li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li><a class="reference internal" href="#dependencies">依存関係</a></li>
+<li><a class="reference internal" href="#development-dependencies">開発用依存関係</a></li>
+<li><a class="reference internal" href="#installation">インストール</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#news-media">ニュース &amp; メディア</a></li>
+<li><a class="reference internal" href="#guides">ガイド</a></li>
+<li><a class="reference internal" href="#config-files-and-settings">設定ファイルと設定</a></li>
+<li><a class="reference internal" href="#contributing">貢献</a></li>
+<li><a class="reference internal" href="#contact-us">Contact Us</a></li>
+<li><a class="reference internal" href="#helpful-links">役立つリンク集</a></li>
+<li><a class="reference internal" href="#development-spiral">開発の螺旋</a></li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="sidebar.html"
+                          title="Previous page">&larr; &lt;no title&gt;</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="linux.html"
+                          title="Next page">&rarr; Linux Guide</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="linux.html" title="Linux Guide"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="sidebar.html" title="&lt;no title&gt;"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

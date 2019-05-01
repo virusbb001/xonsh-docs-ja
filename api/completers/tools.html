@@ -1,0 +1,174 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Completion Tools (xonsh.completers.tools) &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="../../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="Completion Xompletions (xonsh.completers.xompletions)" href="xompletions.html" />
+    <link rel="prev" title="Python Completer (xonsh.completers.python)" href="python.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/api/completers/tools.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="xompletions.html" title="Completion Xompletions (xonsh.completers.xompletions)"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="python.html" title="Python Completer (xonsh.completers.python)"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Completers API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.completers.tools">
+<span id="completion-tools-xonsh-completers-tools"></span><span id="xonsh-completers-tools"></span><h1>Completion Tools (<code class="docutils literal notranslate"><span class="pre">xonsh.completers.tools</span></code>)<a class="headerlink" href="#module-xonsh.completers.tools" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Xonsh completer tools.</p>
+<dl class="function">
+<dt id="xonsh.completers.tools.get_filter_function">
+<code class="descclassname">xonsh.completers.tools.</code><code class="descname">get_filter_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/tools.html#get_filter_function"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.tools.get_filter_function" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return an appropriate filtering function for completions, given the valid
+of $CASE_SENSITIVE_COMPLETIONS</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.completers.tools.justify">
+<code class="descclassname">xonsh.completers.tools.</code><code class="descname">justify</code><span class="sig-paren">(</span><em>s</em>, <em>max_length</em>, <em>left_pad=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/tools.html#justify"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.tools.justify" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Re-wrap the string s so that each line is no more than max_length
+characters long, padding all lines but the first on the left with the
+string left_pad.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../sidebar.html" title="sidebar">
+          <img class="logo" src="../../_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="python.html"
+                          title="Previous page">&larr; Python Completer (<code class="docutils literal notranslate"><span class="pre">xonsh.completers.python</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="xompletions.html"
+                          title="Next page">&rarr; Completion Xompletions (<code class="docutils literal notranslate"><span class="pre">xonsh.completers.xompletions</span></code>)</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/api/completers/tools.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="xompletions.html" title="Completion Xompletions (xonsh.completers.xompletions)"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="python.html" title="Python Completer (xonsh.completers.python)"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >Completers API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,222 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lazy JSON Files (xonsh.lazyjson) &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Lazy &amp; Self-destructive Objects (xonsh.lazyasd)" href="lazyasd.html" />
+    <link rel="prev" title="JSON Utilities (xonsh.jsonutils)" href="jsonutils.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/api/lazyjson.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lazyasd.html" title="Lazy &amp; Self-destructive Objects (xonsh.lazyasd)"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="jsonutils.html" title="JSON Utilities (xonsh.jsonutils)"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Xonsh API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.lazyjson">
+<span id="lazy-json-files-xonsh-lazyjson"></span><span id="xonsh-lazyjson"></span><h1>Lazy JSON Files (<code class="docutils literal notranslate"><span class="pre">xonsh.lazyjson</span></code>)<a class="headerlink" href="#module-xonsh.lazyjson" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Implements a lazy JSON file class that wraps around json data.</p>
+<dl class="class">
+<dt id="xonsh.lazyjson.LJNode">
+<em class="property">class </em><code class="descclassname">xonsh.lazyjson.</code><code class="descname">LJNode</code><span class="sig-paren">(</span><em>offsets</em>, <em>sizes</em>, <em>root</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/lazyjson.html#LJNode"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.lazyjson.LJNode" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>A proxy node for JSON nodes. Acts as both sequence and mapping.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>offsets</strong><span class="classifier">dict, list, or int</span></dt><dd><p>offsets of corresponding data structure, in bytes</p>
+</dd>
+<dt><strong>sizes</strong><span class="classifier">dict, list, or int</span></dt><dd><p>sizes of corresponding data structure, in bytes</p>
+</dd>
+<dt><strong>root</strong><span class="classifier">weakref.proxy of LazyJSON</span></dt><dd><p>weakref back to root node, which should be a LazyJSON object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="xonsh.lazyjson.LJNode.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/lazyjson.html#LJNode.load"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.lazyjson.LJNode.load" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the Python data structure represented by the node.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.lazyjson.LazyJSON">
+<em class="property">class </em><code class="descclassname">xonsh.lazyjson.</code><code class="descname">LazyJSON</code><span class="sig-paren">(</span><em>f</em>, <em>reopen=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/lazyjson.html#LazyJSON"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.lazyjson.LazyJSON" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Represents a lazy json file. Can be used like a normal Python
+dict or list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>f</strong><span class="classifier">file handle or str</span></dt><dd><p>JSON file to open.</p>
+</dd>
+<dt><strong>reopen</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether new file handle should be opened for each load.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="xonsh.lazyjson.LazyJSON.close">
+<code class="descname">close</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/lazyjson.html#LazyJSON.close"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.lazyjson.LazyJSON.close" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Close the file handle, if appropriate.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.lazyjson.dumps">
+<code class="descclassname">xonsh.lazyjson.</code><code class="descname">dumps</code><span class="sig-paren">(</span><em>obj</em>, <em>sort_keys=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/lazyjson.html#dumps"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.lazyjson.dumps" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Dumps an object to JSON with an index.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.lazyjson.index">
+<code class="descclassname">xonsh.lazyjson.</code><code class="descname">index</code><span class="sig-paren">(</span><em>obj</em>, <em>sort_keys=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/lazyjson.html#index"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.lazyjson.index" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates an index for a JSON file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.lazyjson.ljdump">
+<code class="descclassname">xonsh.lazyjson.</code><code class="descname">ljdump</code><span class="sig-paren">(</span><em>obj</em>, <em>fp</em>, <em>sort_keys=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/lazyjson.html#ljdump"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.lazyjson.ljdump" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Dumps an object to JSON file.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../sidebar.html" title="sidebar">
+          <img class="logo" src="../_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="jsonutils.html"
+                          title="Previous page">&larr; JSON Utilities (<code class="docutils literal notranslate"><span class="pre">xonsh.jsonutils</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="lazyasd.html"
+                          title="Next page">&rarr; Lazy &amp; Self-destructive Objects (<code class="docutils literal notranslate"><span class="pre">xonsh.lazyasd</span></code>)</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/lazyjson.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="lazyasd.html" title="Lazy &amp; Self-destructive Objects (xonsh.lazyasd)"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="jsonutils.html" title="JSON Utilities (xonsh.jsonutils)"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Xonsh API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

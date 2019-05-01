@@ -1,0 +1,253 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Python Virtual Environments &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Run Control File" href="xonshrc.html" />
+    <link rel="prev" title="Subprocess Types Table" href="subproc_types.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/python_virtual_environments.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="xonshrc.html" title="Run Control File"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="subproc_types.html" title="Subprocess Types Table"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Xonsh シェル</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="python-virtual-environments">
+<span id="id1"></span><h1>Python Virtual Environments<a class="headerlink" href="#python-virtual-environments" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>The usual tools for creating Python virtual environments—<code class="docutils literal notranslate"><span class="pre">venv</span></code>, <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code>, <code class="docutils literal notranslate"><span class="pre">pew</span></code>—don't play well with xonsh. We won't dig deeper into why it is so, but the general gist is that these tools are hacky and hard-coded for bash, zsh, and other mainstream shells.</p>
+<p>Luckily, xonsh ships with its own virtual environments manager called <strong>Vox</strong>.</p>
+<div class="section" id="vox">
+<h2>Vox<a class="headerlink" href="#vox" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>First, load the vox xontrib:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ xontrib load vox
+</pre></div>
+</div>
+<p>To create a new environment with vox, run <code class="docutils literal notranslate"><span class="pre">vox</span> <span class="pre">new</span> <span class="pre">&lt;envname&gt;</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vox new myenv
+Creating environment...
+Environment <span class="s2">&quot;myenv&quot;</span> created. Activate it with <span class="s2">&quot;vox activate myenv&quot;</span>.
+</pre></div>
+</div>
+<p>The interpreter <code class="docutils literal notranslate"><span class="pre">vox</span></code> uses to create a virtualenv is configured via the <code class="docutils literal notranslate"><span class="pre">$VOX_DEFAULT_INTERPRETER</span></code> environment variable.</p>
+<p>You may also set the interpreter used to create the virtual environment by passing it explicitly to <code class="docutils literal notranslate"><span class="pre">vox</span> <span class="pre">new</span></code> i.e.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vox new python2-env -p /usr/local/bin/python2
+</pre></div>
+</div>
+<p>Under the hood, vox uses Python 3's <code class="docutils literal notranslate"><span class="pre">venv</span></code> module to create Python 3 virtualenvs. [this is the default]</p>
+<p>If a Python 2 intrepreter is chosen, it will use the Python 2 interpreter's <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> module.</p>
+<p>By default, environments are stored in <code class="docutils literal notranslate"><span class="pre">~/.virtualenvs</span></code>, but you can override it by setting the <code class="docutils literal notranslate"><span class="pre">$VIRTUALENV_HOME</span></code> environment variable.</p>
+<p>To see all existing environments, run <code class="docutils literal notranslate"><span class="pre">vox</span> <span class="pre">list</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vox list
+Available environments:
+    eggs
+    myenv
+    spam
+</pre></div>
+</div>
+<p>To activate an environment, run <code class="docutils literal notranslate"><span class="pre">vox</span> <span class="pre">activate</span> <span class="pre">&lt;envname&gt;</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vox activate myenv
+Activated <span class="s2">&quot;myenv&quot;</span>.
+</pre></div>
+</div>
+<p>Instead of <code class="docutils literal notranslate"><span class="pre">activate</span></code>, you can call <code class="docutils literal notranslate"><span class="pre">workon</span></code> or <code class="docutils literal notranslate"><span class="pre">enter</span></code>.</p>
+<p>If you want to activate an environment which is stored somewhere else (maybe because it was created by another tool) you can pass to <code class="docutils literal notranslate"><span class="pre">vox</span> <span class="pre">activate</span></code> a path to a virtual environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vox activate /home/user/myenv
+Activated <span class="s2">&quot;/home/user/myenv&quot;</span>.
+</pre></div>
+</div>
+<p>To exit the currently active environment, run <code class="docutils literal notranslate"><span class="pre">vox</span> <span class="pre">deactivate</span></code> or <code class="docutils literal notranslate"><span class="pre">vox</span> <span class="pre">exit</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vox deactivate
+Deactivated <span class="s2">&quot;myenv&quot;</span>.
+</pre></div>
+</div>
+<p>To remove an environment, run <code class="docutils literal notranslate"><span class="pre">vox</span> <span class="pre">remove</span> <span class="pre">&lt;envname&gt;</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vox remove myenv
+Environment <span class="s2">&quot;myenv&quot;</span> removed.
+</pre></div>
+</div>
+<p>Instead of <code class="docutils literal notranslate"><span class="pre">remove</span></code>, you can call <code class="docutils literal notranslate"><span class="pre">rm</span></code>, <code class="docutils literal notranslate"><span class="pre">delete</span></code>, or <code class="docutils literal notranslate"><span class="pre">del</span></code>.</p>
+<p>To see all available commands, run <code class="docutils literal notranslate"><span class="pre">vox</span> <span class="pre">help</span></code>, <code class="docutils literal notranslate"><span class="pre">vox</span> <span class="pre">--help</span></code>, or <code class="docutils literal notranslate"><span class="pre">vox</span> <span class="pre">-h</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Vox is a virtual environment manager <span class="k">for</span> xonsh.
+
+Available commands:
+    vox new &lt;env&gt;
+        Create new virtual environment in <span class="nv">$VIRTUALENV_HOME</span>
+
+    vox activate <span class="o">(</span>workon, enter<span class="o">)</span> &lt;env&gt;
+        Activate virtual environment
+
+    vox deactivate <span class="o">(</span><span class="nb">exit</span><span class="o">)</span>
+        Deactivate current virtual environment
+
+    vox list <span class="o">(</span>ls<span class="o">)</span>
+        List environments available in <span class="nv">$VIRTUALENV_HOME</span>
+
+    vox remove <span class="o">(</span>rm, delete, del<span class="o">)</span> &lt;env&gt; &lt;env2&gt; ...
+        Remove virtual environments
+
+    vox <span class="nb">help</span> <span class="o">(</span>-h, --help<span class="o">)</span>
+        Show <span class="nb">help</span>
+</pre></div>
+</div>
+<div class="section" id="virtualenv-like-prompt">
+<h3><code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> like prompt<a class="headerlink" href="#virtualenv-like-prompt" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Although it's included in the default prompt, you can customize your prompt
+to automatically update in the same way as <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code>.</p>
+<p>Simply add the <code class="docutils literal notranslate"><span class="pre">'{env_name}'</span></code> variable to your <code class="docutils literal notranslate"><span class="pre">$PROMPT</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$PROMPT</span> <span class="o">=</span> <span class="s1">&#39;{env_name: {}}&#39;</span> + restofmyprompt
+</pre></div>
+</div>
+<p>Note that you do <strong>not</strong> need to load the <code class="docutils literal notranslate"><span class="pre">vox</span></code> xontrib for this to work.
+For more details see <a class="reference internal" href="tutorial.html#customprompt"><span class="std std-ref">Customizing the Prompt</span></a>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="sidebar">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Python Virtual Environments</a><ul>
+<li><a class="reference internal" href="#vox">Vox</a><ul>
+<li><a class="reference internal" href="#virtualenv-like-prompt"><code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> like prompt</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="subproc_types.html"
+                          title="Previous page">&larr; Subprocess Types Table</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="xonshrc.html"
+                          title="Next page">&rarr; Run Control File</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/python_virtual_environments.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="xonshrc.html" title="Run Control File"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="subproc_types.html" title="Subprocess Types Table"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Xonsh シェル</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

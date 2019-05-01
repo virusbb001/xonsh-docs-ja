@@ -1,0 +1,440 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Core Events &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Xonsh API" href="api/index.html" />
+    <link rel="prev" title="Xontribs" href="xontribs.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/events.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="api/index.html" title="Xonsh API"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="xontribs.html" title="Xontribs"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Xonsh シェル</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="core-events">
+<h1>Core Events<a class="headerlink" href="#core-events" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>The following events are defined by xonsh itself. For more information about events,
+see <a class="reference external" href="tutorial_events.html">the events tutorial</a>.</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#on-chdir"><span class="std std-ref">on_chdir</span></a></p></td>
+<td><p><a class="reference internal" href="#on-envvar-change"><span class="std std-ref">on_envvar_change</span></a></p></td>
+<td><p><a class="reference internal" href="#on-envvar-new"><span class="std std-ref">on_envvar_new</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#on-exit"><span class="std std-ref">on_exit</span></a></p></td>
+<td><p><a class="reference internal" href="#on-import-post-create-module"><span class="std std-ref">on_import_post_create_module</span></a></p></td>
+<td><p><a class="reference internal" href="#on-import-post-exec-module"><span class="std std-ref">on_import_post_exec_module</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#on-import-post-find-spec"><span class="std std-ref">on_import_post_find_spec</span></a></p></td>
+<td><p><a class="reference internal" href="#on-import-pre-create-module"><span class="std std-ref">on_import_pre_create_module</span></a></p></td>
+<td><p><a class="reference internal" href="#on-import-pre-exec-module"><span class="std std-ref">on_import_pre_exec_module</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#on-import-pre-find-spec"><span class="std std-ref">on_import_pre_find_spec</span></a></p></td>
+<td><p><a class="reference internal" href="#on-post-cmdloop"><span class="std std-ref">on_post_cmdloop</span></a></p></td>
+<td><p><a class="reference internal" href="#on-post-init"><span class="std std-ref">on_post_init</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#on-post-prompt"><span class="std std-ref">on_post_prompt</span></a></p></td>
+<td><p><a class="reference internal" href="#on-post-rc"><span class="std std-ref">on_post_rc</span></a></p></td>
+<td><p><a class="reference internal" href="#on-postcommand"><span class="std std-ref">on_postcommand</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#on-pre-cmdloop"><span class="std std-ref">on_pre_cmdloop</span></a></p></td>
+<td><p><a class="reference internal" href="#on-pre-prompt"><span class="std std-ref">on_pre_prompt</span></a></p></td>
+<td><p><a class="reference internal" href="#on-pre-rc"><span class="std std-ref">on_pre_rc</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#on-pre-spec-run-ls"><span class="std std-ref">on_pre_spec_run_ls</span></a></p></td>
+<td><p><a class="reference internal" href="#on-precommand"><span class="std std-ref">on_precommand</span></a></p></td>
+<td><p><a class="reference internal" href="#on-ptk-create"><span class="std std-ref">on_ptk_create</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#on-transform-command"><span class="std std-ref">on_transform_command</span></a></p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="listing">
+<h2>Listing<a class="headerlink" href="#listing" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="on-chdir-olddir-str-newdir-str-none">
+<span id="on-chdir"></span><h3><code class="docutils literal notranslate"><span class="pre">on_chdir(olddir:</span> <span class="pre">str,</span> <span class="pre">newdir:</span> <span class="pre">str)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-chdir-olddir-str-newdir-str-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires when the current directory is changed for any reason.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-envvar-change-name-str-oldvalue-any-newvalue-any-none">
+<span id="on-envvar-change"></span><h3><code class="docutils literal notranslate"><span class="pre">on_envvar_change(name:</span> <span class="pre">str,</span> <span class="pre">oldvalue:</span> <span class="pre">Any,</span> <span class="pre">newvalue:</span> <span class="pre">Any)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-envvar-change-name-str-oldvalue-any-newvalue-any-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires after an environment variable is changed.
+Note: Setting envvars inside the handler might
+cause a recursion until the limit.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-envvar-new-name-str-value-any-none">
+<span id="on-envvar-new"></span><h3><code class="docutils literal notranslate"><span class="pre">on_envvar_new(name:</span> <span class="pre">str,</span> <span class="pre">value:</span> <span class="pre">Any)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-envvar-new-name-str-value-any-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires after a new environment variable is created.
+Note: Setting envvars inside the handler might
+cause a recursion until the limit.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-exit-none">
+<span id="on-exit"></span><h3><code class="docutils literal notranslate"><span class="pre">on_exit()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-exit-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fired after all commands have been executed, before tear-down occurs.</p>
+<p>NOTE: All the caveats of the <code class="docutils literal notranslate"><span class="pre">atexit</span></code> module also apply to this event.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-import-post-create-module-module-module-spec-modulespec-none">
+<span id="on-import-post-create-module"></span><h3><code class="docutils literal notranslate"><span class="pre">on_import_post_create_module(module:</span> <span class="pre">Module,</span> <span class="pre">spec:</span> <span class="pre">ModuleSpec)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-import-post-create-module-module-module-spec-modulespec-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires after a module is created by its loader but before the loader returns it.
+The parameters here are the module object itself and the spec object.
+See importlib for more details.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-import-post-exec-module">
+<span id="id1"></span><h3><code class="docutils literal notranslate"><span class="pre">on_import_post_exec_module</span></code><a class="headerlink" href="#on-import-post-exec-module" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>on_import_post_create_module(module: Module) -&gt; None</p>
+<p>Fires after a module is executed by its loader but before the loader returns it.
+The only parameter is the module itself. See importlib for more details.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-import-post-find-spec-spec-fullname-path-target-none">
+<span id="on-import-post-find-spec"></span><h3><code class="docutils literal notranslate"><span class="pre">on_import_post_find_spec(spec,</span> <span class="pre">fullname,</span> <span class="pre">path,</span> <span class="pre">target)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-import-post-find-spec-spec-fullname-path-target-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires after all import find_spec() calls have been executed. The parameters
+here the spec and the arguments importlib.abc.MetaPathFinder.find_spec(). Namely,</p>
+<dl class="field-list simple">
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">spec</span></code></dt>
+<dd class="field-odd"><p>A ModuleSpec object if the spec was found, or None if it was not.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">fullname</span></code></dt>
+<dd class="field-even"><p>The full name of the module to import.</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">path</span></code></dt>
+<dd class="field-odd"><p>None if a top-level import, otherwise the <code class="docutils literal notranslate"><span class="pre">__path__</span></code> of the parent
+package.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">target</span></code></dt>
+<dd class="field-even"><p>Target module used to make a better guess about the package spec.</p>
+</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-import-pre-create-module-spec-modulespec-none">
+<span id="on-import-pre-create-module"></span><h3><code class="docutils literal notranslate"><span class="pre">on_import_pre_create_module(spec:</span> <span class="pre">ModuleSpec)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-import-pre-create-module-spec-modulespec-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires right before a module is created by its loader. The only parameter
+is the spec object. See importlib for more details.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-import-pre-exec-module-module-module-none">
+<span id="on-import-pre-exec-module"></span><h3><code class="docutils literal notranslate"><span class="pre">on_import_pre_exec_module(module:</span> <span class="pre">Module)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-import-pre-exec-module-module-module-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires right before a module is executed by its loader. The only parameter
+is the module itself. See importlib for more details.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-import-pre-find-spec-fullname-str-path-str-target-module-or-none-none">
+<span id="on-import-pre-find-spec"></span><h3><code class="docutils literal notranslate"><span class="pre">on_import_pre_find_spec(fullname:</span> <span class="pre">str,</span> <span class="pre">path:</span> <span class="pre">str,</span> <span class="pre">target:</span> <span class="pre">module</span> <span class="pre">or</span> <span class="pre">None)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-import-pre-find-spec-fullname-str-path-str-target-module-or-none-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires before any import find_spec() calls have been executed. The parameters
+here are the same as importlib.abc.MetaPathFinder.find_spec(). Namely,</p>
+<dl class="field-list simple">
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">fullname</span></code></dt>
+<dd class="field-odd"><p>The full name of the module to import.</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">path</span></code></dt>
+<dd class="field-even"><p>None if a top-level import, otherwise the <code class="docutils literal notranslate"><span class="pre">__path__</span></code> of the parent
+package.</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">target</span></code></dt>
+<dd class="field-odd"><p>Target module used to make a better guess about the package spec.</p>
+</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-post-cmdloop-none">
+<span id="on-post-cmdloop"></span><h3><code class="docutils literal notranslate"><span class="pre">on_post_cmdloop()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-post-cmdloop-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fired just after the command loop finishes, if it is.</p>
+<p>NOTE: All the caveats of the <code class="docutils literal notranslate"><span class="pre">atexit</span></code> module also apply to this event.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-post-init-none">
+<span id="on-post-init"></span><h3><code class="docutils literal notranslate"><span class="pre">on_post_init()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-post-init-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fired after all initialization is finished and we're ready to do work.</p>
+<p>NOTE: This is fired before the wizard is automatically started.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-post-prompt-none">
+<span id="on-post-prompt"></span><h3><code class="docutils literal notranslate"><span class="pre">on_post_prompt()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-post-prompt-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires just after the prompt returns</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-post-rc-none">
+<span id="on-post-rc"></span><h3><code class="docutils literal notranslate"><span class="pre">on_post_rc()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-post-rc-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fired just after rc files are loaded, if they are.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-postcommand-cmd-str-rtn-int-out-str-or-none-ts-list-none">
+<span id="on-postcommand"></span><h3><code class="docutils literal notranslate"><span class="pre">on_postcommand(cmd:</span> <span class="pre">str,</span> <span class="pre">rtn:</span> <span class="pre">int,</span> <span class="pre">out:</span> <span class="pre">str</span> <span class="pre">or</span> <span class="pre">None,</span> <span class="pre">ts:</span> <span class="pre">list)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-postcommand-cmd-str-rtn-int-out-str-or-none-ts-list-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires just after a command is executed. The arguments are the same as history.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cmd</span></code>: The command that was executed (after transformation)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rtn</span></code>: The result of the command executed (<code class="docutils literal notranslate"><span class="pre">0</span></code> for success)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out</span></code>: If xonsh stores command output, this is the output</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ts</span></code>: Timestamps, in the order of <code class="docutils literal notranslate"><span class="pre">[starting,</span> <span class="pre">ending]</span></code></p></li>
+</ul>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-pre-cmdloop-none">
+<span id="on-pre-cmdloop"></span><h3><code class="docutils literal notranslate"><span class="pre">on_pre_cmdloop()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-pre-cmdloop-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fired just before the command loop is started, if it is.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-pre-prompt-none">
+<span id="on-pre-prompt"></span><h3><code class="docutils literal notranslate"><span class="pre">on_pre_prompt()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-pre-prompt-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires just before the prompt is shown</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-pre-rc-none">
+<span id="on-pre-rc"></span><h3><code class="docutils literal notranslate"><span class="pre">on_pre_rc()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-pre-rc-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fired just before rc files are loaded, if they are.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-pre-spec-run-ls-spec-xonsh-built-ins-subprocspec-none">
+<span id="on-pre-spec-run-ls"></span><h3><code class="docutils literal notranslate"><span class="pre">on_pre_spec_run_ls(spec:</span> <span class="pre">xonsh.built_ins.SubprocSpec)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-pre-spec-run-ls-spec-xonsh-built-ins-subprocspec-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires right before a SubprocSpec.run() is called for the ls
+command.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-precommand-cmd-str-none">
+<span id="on-precommand"></span><h3><code class="docutils literal notranslate"><span class="pre">on_precommand(cmd:</span> <span class="pre">str)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-precommand-cmd-str-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fires just before a command is executed.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-ptk-create-prompter-promptsession-history-prompttoolkithistory-completer-prompttoolkitcompleter-bindings-keybindings">
+<span id="on-ptk-create"></span><h3><code class="docutils literal notranslate"><span class="pre">on_ptk_create(prompter:</span> <span class="pre">PromptSession,</span> <span class="pre">history:</span> <span class="pre">PromptToolkitHistory,</span> <span class="pre">completer:</span> <span class="pre">PromptToolkitCompleter,</span> <span class="pre">bindings:</span> <span class="pre">KeyBindings)</span> <span class="pre">-&gt;</span></code><a class="headerlink" href="#on-ptk-create-prompter-promptsession-history-prompttoolkithistory-completer-prompttoolkitcompleter-bindings-keybindings" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fired after prompt toolkit has been initialized</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="on-transform-command-cmd-str-str">
+<span id="on-transform-command"></span><h3><code class="docutils literal notranslate"><span class="pre">on_transform_command(cmd:</span> <span class="pre">str)</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code><a class="headerlink" href="#on-transform-command-cmd-str-str" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Fired to request xontribs to transform a command line. Return the transformed
+command, or the same command if no transformation occurs. Only done for
+interactive sessions.</p>
+<p>This may be fired multiple times per command, with other transformers input or
+output, so design any handlers for this carefully.</p>
+</div>
+</div>
+<div class="section" id="event-categories">
+<h2>Event Categories<a class="headerlink" href="#event-categories" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Additionally, there are a few categories of events whose names are part of
+the specification of the event. These events are fired if they exist, and
+are ignored otherwise. Here are their specifications.</p>
+<hr class="docutils" />
+<div class="section" id="on-pre-spec-run-cmd-name-spec-subprocspec-none">
+<h3><code class="docutils literal notranslate"><span class="pre">on_pre_spec_run_&lt;cmd-name&gt;(spec:</span> <span class="pre">SubprocSpec)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-pre-spec-run-cmd-name-spec-subprocspec-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This event fires whenever a command with a give name (<code class="docutils literal notranslate"><span class="pre">&lt;cmd-name&gt;</span></code>)
+has its <code class="docutils literal notranslate"><span class="pre">SubprocSpec.run()</span></code> method called.  This is fired
+prior to the run call executing anything at all. This recieves the
+<code class="docutils literal notranslate"><span class="pre">SubprocSpec</span></code> object as <code class="docutils literal notranslate"><span class="pre">spec</span></code> that triggered the event, allowing
+the handler to modify the spec if needed.  For example, if we wanted to
+intercept an <code class="docutils literal notranslate"><span class="pre">ls</span></code> spec, we could write:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@events.on_pre_spec_run_ls</span>
+<span class="k">def</span> <span class="nf">print_when_ls</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Look at me list stuff!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="on-post-spec-run-cmd-name-spec-subprocspec-none">
+<h3><code class="docutils literal notranslate"><span class="pre">on_post_spec_run_&lt;cmd-name&gt;(spec:</span> <span class="pre">SubprocSpec)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code><a class="headerlink" href="#on-post-spec-run-cmd-name-spec-subprocspec-none" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This event fires whenever a command with a give name (<code class="docutils literal notranslate"><span class="pre">&lt;cmd-name&gt;</span></code>)
+has its <code class="docutils literal notranslate"><span class="pre">SubprocSpec.run()</span></code> method called.  This is fired
+after to the run call has executed everything except returning. This recieves the
+<code class="docutils literal notranslate"><span class="pre">SubprocSpec</span></code> object as <code class="docutils literal notranslate"><span class="pre">spec</span></code> that triggered the event, allowing
+the handler to modify the spec if needed. Note that because of the
+way process pipelines and specs work in xonsh, the command will have
+started running, but won't necessarily have completed. This is because
+<code class="docutils literal notranslate"><span class="pre">SubprocSpec.run()</span></code> does not block.
+For example, if we wanted to get an <code class="docutils literal notranslate"><span class="pre">ls</span></code> spec after ls has started running,
+we could write:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@events.on_post_spec_run_ls</span>
+<span class="k">def</span> <span class="nf">print_while_ls</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Mom! I&#39;m listing!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="sidebar">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Core Events</a><ul>
+<li><a class="reference internal" href="#listing">Listing</a><ul>
+<li><a class="reference internal" href="#on-chdir-olddir-str-newdir-str-none"><code class="docutils literal notranslate"><span class="pre">on_chdir(olddir:</span> <span class="pre">str,</span> <span class="pre">newdir:</span> <span class="pre">str)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-envvar-change-name-str-oldvalue-any-newvalue-any-none"><code class="docutils literal notranslate"><span class="pre">on_envvar_change(name:</span> <span class="pre">str,</span> <span class="pre">oldvalue:</span> <span class="pre">Any,</span> <span class="pre">newvalue:</span> <span class="pre">Any)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-envvar-new-name-str-value-any-none"><code class="docutils literal notranslate"><span class="pre">on_envvar_new(name:</span> <span class="pre">str,</span> <span class="pre">value:</span> <span class="pre">Any)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-exit-none"><code class="docutils literal notranslate"><span class="pre">on_exit()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-import-post-create-module-module-module-spec-modulespec-none"><code class="docutils literal notranslate"><span class="pre">on_import_post_create_module(module:</span> <span class="pre">Module,</span> <span class="pre">spec:</span> <span class="pre">ModuleSpec)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-import-post-exec-module"><code class="docutils literal notranslate"><span class="pre">on_import_post_exec_module</span></code></a></li>
+<li><a class="reference internal" href="#on-import-post-find-spec-spec-fullname-path-target-none"><code class="docutils literal notranslate"><span class="pre">on_import_post_find_spec(spec,</span> <span class="pre">fullname,</span> <span class="pre">path,</span> <span class="pre">target)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-import-pre-create-module-spec-modulespec-none"><code class="docutils literal notranslate"><span class="pre">on_import_pre_create_module(spec:</span> <span class="pre">ModuleSpec)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-import-pre-exec-module-module-module-none"><code class="docutils literal notranslate"><span class="pre">on_import_pre_exec_module(module:</span> <span class="pre">Module)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-import-pre-find-spec-fullname-str-path-str-target-module-or-none-none"><code class="docutils literal notranslate"><span class="pre">on_import_pre_find_spec(fullname:</span> <span class="pre">str,</span> <span class="pre">path:</span> <span class="pre">str,</span> <span class="pre">target:</span> <span class="pre">module</span> <span class="pre">or</span> <span class="pre">None)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-post-cmdloop-none"><code class="docutils literal notranslate"><span class="pre">on_post_cmdloop()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-post-init-none"><code class="docutils literal notranslate"><span class="pre">on_post_init()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-post-prompt-none"><code class="docutils literal notranslate"><span class="pre">on_post_prompt()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-post-rc-none"><code class="docutils literal notranslate"><span class="pre">on_post_rc()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-postcommand-cmd-str-rtn-int-out-str-or-none-ts-list-none"><code class="docutils literal notranslate"><span class="pre">on_postcommand(cmd:</span> <span class="pre">str,</span> <span class="pre">rtn:</span> <span class="pre">int,</span> <span class="pre">out:</span> <span class="pre">str</span> <span class="pre">or</span> <span class="pre">None,</span> <span class="pre">ts:</span> <span class="pre">list)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-pre-cmdloop-none"><code class="docutils literal notranslate"><span class="pre">on_pre_cmdloop()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-pre-prompt-none"><code class="docutils literal notranslate"><span class="pre">on_pre_prompt()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-pre-rc-none"><code class="docutils literal notranslate"><span class="pre">on_pre_rc()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-pre-spec-run-ls-spec-xonsh-built-ins-subprocspec-none"><code class="docutils literal notranslate"><span class="pre">on_pre_spec_run_ls(spec:</span> <span class="pre">xonsh.built_ins.SubprocSpec)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-precommand-cmd-str-none"><code class="docutils literal notranslate"><span class="pre">on_precommand(cmd:</span> <span class="pre">str)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-ptk-create-prompter-promptsession-history-prompttoolkithistory-completer-prompttoolkitcompleter-bindings-keybindings"><code class="docutils literal notranslate"><span class="pre">on_ptk_create(prompter:</span> <span class="pre">PromptSession,</span> <span class="pre">history:</span> <span class="pre">PromptToolkitHistory,</span> <span class="pre">completer:</span> <span class="pre">PromptToolkitCompleter,</span> <span class="pre">bindings:</span> <span class="pre">KeyBindings)</span> <span class="pre">-&gt;</span></code></a></li>
+<li><a class="reference internal" href="#on-transform-command-cmd-str-str"><code class="docutils literal notranslate"><span class="pre">on_transform_command(cmd:</span> <span class="pre">str)</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#event-categories">Event Categories</a><ul>
+<li><a class="reference internal" href="#on-pre-spec-run-cmd-name-spec-subprocspec-none"><code class="docutils literal notranslate"><span class="pre">on_pre_spec_run_&lt;cmd-name&gt;(spec:</span> <span class="pre">SubprocSpec)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+<li><a class="reference internal" href="#on-post-spec-run-cmd-name-spec-subprocspec-none"><code class="docutils literal notranslate"><span class="pre">on_post_spec_run_&lt;cmd-name&gt;(spec:</span> <span class="pre">SubprocSpec)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="xontribs.html"
+                          title="Previous page">&larr; Xontribs</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="api/index.html"
+                          title="Next page">&rarr; Xonsh API</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/events.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="api/index.html" title="Xonsh API"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="xontribs.html" title="Xontribs"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Xonsh シェル</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

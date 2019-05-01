@@ -1,0 +1,583 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Readline Shell (xonsh.readline_shell) &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Prompt Toolkit 2 Shell (xonsh.ptk2.shell)" href="ptk2/shell.html" />
+    <link rel="prev" title="Base Shell Class (xonsh.base_shell)" href="base_shell.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/api/readline_shell.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="ptk2/shell.html" title="Prompt Toolkit 2 Shell (xonsh.ptk2.shell)"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="base_shell.html" title="Base Shell Class (xonsh.base_shell)"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Xonsh API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.readline_shell">
+<span id="readline-shell-xonsh-readline-shell"></span><span id="xonsh-readline-shell"></span><h1>Readline Shell (<code class="docutils literal notranslate"><span class="pre">xonsh.readline_shell</span></code>)<a class="headerlink" href="#module-xonsh.readline_shell" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>The readline based xonsh shell.</p>
+<p>Portions of this code related to initializing the readline library
+are included from the IPython project.  The IPython project is:</p>
+<ul class="simple">
+<li><p>Copyright (c) 2008-2014, IPython Development Team</p></li>
+<li><p>Copyright (c) 2001-2007, Fernando Perez &lt;<a class="reference external" href="mailto:fernando&#46;perez&#37;&#52;&#48;colorado&#46;edu">fernando<span>&#46;</span>perez<span>&#64;</span>colorado<span>&#46;</span>edu</a>&gt;</p></li>
+<li><p>Copyright (c) 2001, Janko Hauser &lt;<a class="reference external" href="mailto:jhauser&#37;&#52;&#48;zscout&#46;de">jhauser<span>&#64;</span>zscout<span>&#46;</span>de</a>&gt;</p></li>
+<li><p>Copyright (c) 2001, Nathaniel Gray &lt;<a class="reference external" href="mailto:n8gray&#37;&#52;&#48;caltech&#46;edu">n8gray<span>&#64;</span>caltech<span>&#46;</span>edu</a>&gt;</p></li>
+</ul>
+<dl class="class">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder">
+<em class="property">class </em><code class="descclassname">xonsh.readline_shell.</code><code class="descname">ReadlineHistoryAdder</code><span class="sig-paren">(</span><em>wait_for_gc=True</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineHistoryAdder"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Thread responsible for adding inputs from history to the
+current readline instance. May wait for the history garbage
+collector to finish.</p>
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder.getName">
+<code class="descname">getName</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder.getName" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder.isAlive">
+<code class="descname">isAlive</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder.isAlive" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return whether the thread is alive.</p>
+<p>This method is deprecated, use is_alive() instead.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder.isDaemon">
+<code class="descname">isDaemon</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder.isDaemon" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder.is_alive">
+<code class="descname">is_alive</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder.is_alive" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return whether the thread is alive.</p>
+<p>This method returns True just before the run() method starts until just
+after the run() method terminates. The module function enumerate()
+returns a list of all alive threads.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder.join">
+<code class="descname">join</code><span class="sig-paren">(</span><em>self</em>, <em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder.join" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Wait until the thread terminates.</p>
+<p>This blocks the calling thread until the thread whose join() method is
+called terminates -- either normally or through an unhandled exception
+or until the optional timeout occurs.</p>
+<p>When the timeout argument is present and not None, it should be a
+floating point number specifying a timeout for the operation in seconds
+(or fractions thereof). As join() always returns None, you must call
+is_alive() after join() to decide whether a timeout happened -- if the
+thread is still alive, the join() call timed out.</p>
+<p>When the timeout argument is not present or None, the operation will
+block until the thread terminates.</p>
+<p>A thread can be join()ed many times.</p>
+<p>join() raises a RuntimeError if an attempt is made to join the current
+thread as that would cause a deadlock. It is also an error to join() a
+thread before it has been started and attempts to do so raises the same
+exception.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineHistoryAdder.run"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder.run" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Method representing the thread's activity.</p>
+<p>You may override this method in a subclass. The standard run() method
+invokes the callable object passed to the object's constructor as the
+target argument, if any, with sequential and keyword arguments taken
+from the args and kwargs arguments, respectively.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder.setDaemon">
+<code class="descname">setDaemon</code><span class="sig-paren">(</span><em>self</em>, <em>daemonic</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder.setDaemon" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder.setName">
+<code class="descname">setName</code><span class="sig-paren">(</span><em>self</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder.setName" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder.start">
+<code class="descname">start</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder.start" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Start the thread's activity.</p>
+<p>It must be called at most once per thread object. It arranges for the
+object's run() method to be invoked in a separate thread of control.</p>
+<p>This method will raise a RuntimeError if called more than once on the
+same thread object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder.daemon">
+<code class="descname">daemon</code><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder.daemon" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>A boolean value indicating whether this thread is a daemon thread.</p>
+<p>This must be set before start() is called, otherwise RuntimeError is
+raised. Its initial value is inherited from the creating thread; the
+main thread is not a daemon thread and therefore all threads created in
+the main thread default to daemon = False.</p>
+<p>The entire Python program exits when no alive non-daemon threads are
+left.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder.ident">
+<code class="descname">ident</code><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder.ident" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Thread identifier of this thread or None if it has not been started.</p>
+<p>This is a nonzero integer. See the get_ident() function. Thread
+identifiers may be recycled when a thread exits and another thread is
+created. The identifier is available even after the thread has exited.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineHistoryAdder.name">
+<code class="descname">name</code><a class="headerlink" href="#xonsh.readline_shell.ReadlineHistoryAdder.name" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>A string used for identification purposes only.</p>
+<p>It has no semantics. Multiple threads may be given the same name. The
+initial name is set by the constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.readline_shell.ReadlineShell">
+<em class="property">class </em><code class="descclassname">xonsh.readline_shell.</code><code class="descname">ReadlineShell</code><span class="sig-paren">(</span><em>completekey='tab'</em>, <em>stdin=None</em>, <em>stdout=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineShell"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>The readline based xonsh shell.</p>
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.cmdloop">
+<code class="descname">cmdloop</code><span class="sig-paren">(</span><em>self</em>, <em>intro=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineShell.cmdloop"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.cmdloop" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Repeatedly issue a prompt, accept input, parse an initial prefix
+off the received input, and dispatch to action methods, passing them
+the remainder of the line as argument.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.color_style">
+<code class="descname">color_style</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineShell.color_style"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.color_style" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the current color map.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.color_style_names">
+<code class="descname">color_style_names</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineShell.color_style_names"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.color_style_names" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns an iterable of all available style names.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.columnize">
+<code class="descname">columnize</code><span class="sig-paren">(</span><em>self</em>, <em>list</em>, <em>displaywidth=80</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.columnize" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Display a list of strings as a compact set of columns.</p>
+<p>Each column is only as wide as necessary.
+Columns are separated by two spaces (one was not legible enough).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.compile">
+<code class="descname">compile</code><span class="sig-paren">(</span><em>self</em>, <em>src</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.compile" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Compiles source code and returns the (possibly modified) source and
+a valid code object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.complete">
+<code class="descname">complete</code><span class="sig-paren">(</span><em>self</em>, <em>text</em>, <em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.complete" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Return the next possible completion for 'text'.</p>
+<p>If a command has not been entered, then complete against command list.
+Otherwise try to call complete_&lt;command&gt; to get list of completions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.complete_help">
+<code class="descname">complete_help</code><span class="sig-paren">(</span><em>self</em>, <em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.complete_help" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.completedefault">
+<code class="descname">completedefault</code><span class="sig-paren">(</span><em>self</em>, <em>prefix</em>, <em>line</em>, <em>begidx</em>, <em>endidx</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineShell.completedefault"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.completedefault" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Implements tab-completion for text.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.completenames">
+<code class="descname">completenames</code><span class="sig-paren">(</span><em>self</em>, <em>prefix</em>, <em>line</em>, <em>begidx</em>, <em>endidx</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.completenames" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Implements tab-completion for text.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.default">
+<code class="descname">default</code><span class="sig-paren">(</span><em>self</em>, <em>line</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.default" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Implements code execution.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.do_help">
+<code class="descname">do_help</code><span class="sig-paren">(</span><em>self</em>, <em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.do_help" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>List available commands with &quot;help&quot; or detailed help with &quot;help cmd&quot;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.emptyline">
+<code class="descname">emptyline</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.emptyline" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Called when an empty line has been entered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.format_color">
+<code class="descname">format_color</code><span class="sig-paren">(</span><em>self</em>, <em>string</em>, <em>hide=False</em>, <em>force_string=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineShell.format_color"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.format_color" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Readline implementation of color formatting. This uses ANSI color
+codes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.get_names">
+<code class="descname">get_names</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.get_names" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.onecmd">
+<code class="descname">onecmd</code><span class="sig-paren">(</span><em>self</em>, <em>line</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.onecmd" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Interpret the argument as though it had been typed in response
+to the prompt.</p>
+<p>This may be overridden, but should not normally need to be;
+see the precmd() and postcmd() methods for useful execution hooks.
+The return value is a flag indicating whether interpretation of
+commands by the interpreter should stop.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.parseline">
+<code class="descname">parseline</code><span class="sig-paren">(</span><em>self</em>, <em>line</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineShell.parseline"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.parseline" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Overridden to no-op.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.postcmd">
+<code class="descname">postcmd</code><span class="sig-paren">(</span><em>self</em>, <em>stop</em>, <em>line</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineShell.postcmd"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.postcmd" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Called just before execution of line. For readline, this handles the
+automatic indentation of code blocks.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.postloop">
+<code class="descname">postloop</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.postloop" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Hook method executed once when the cmdloop() method is about to
+return.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.precmd">
+<code class="descname">precmd</code><span class="sig-paren">(</span><em>self</em>, <em>line</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.precmd" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Called just before execution of line.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.preloop">
+<code class="descname">preloop</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.preloop" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Hook method executed once when the cmdloop() method is called.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.print_color">
+<code class="descname">print_color</code><span class="sig-paren">(</span><em>self</em>, <em>string</em>, <em>hide=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineShell.print_color"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.print_color" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Prints a string in color. This base implementation's colors are based
+on ANSI color codes if a string was given as input. If a list of token
+pairs is given, it will color based on pygments, if available. If
+pygments is not available, it will print a colorless string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.print_topics">
+<code class="descname">print_topics</code><span class="sig-paren">(</span><em>self</em>, <em>header</em>, <em>cmds</em>, <em>cmdlen</em>, <em>maxcol</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.print_topics" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.push">
+<code class="descname">push</code><span class="sig-paren">(</span><em>self</em>, <em>line</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.push" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Pushes a line onto the buffer and compiles the code in a way that
+enables multiline input.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.reset_buffer">
+<code class="descname">reset_buffer</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.reset_buffer" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Resets the line buffer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.restore_tty_sanity">
+<code class="descname">restore_tty_sanity</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineShell.restore_tty_sanity"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.restore_tty_sanity" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>An interface for resetting the TTY stdin mode. This is highly
+dependent on the shell backend. Also it is mostly optional since
+it only affects ^Z backgrounding behaviour.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.settitle">
+<code class="descname">settitle</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.settitle" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets terminal title.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.readline_shell.ReadlineShell.singleline">
+<code class="descname">singleline</code><span class="sig-paren">(</span><em>self</em>, <em>store_in_history=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#ReadlineShell.singleline"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.singleline" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Reads a single line of input. The store_in_history kwarg
+flags whether the input should be stored in readline's in-memory
+history.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineShell.doc_header">
+<code class="descname">doc_header</code><em class="property"> = 'Documented commands (type help &lt;topic&gt;):'</em><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.doc_header" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineShell.doc_leader">
+<code class="descname">doc_leader</code><em class="property"> = ''</em><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.doc_leader" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineShell.identchars">
+<code class="descname">identchars</code><em class="property"> = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'</em><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.identchars" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineShell.intro">
+<code class="descname">intro</code><em class="property"> = None</em><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.intro" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineShell.lastcmd">
+<code class="descname">lastcmd</code><em class="property"> = ''</em><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.lastcmd" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineShell.misc_header">
+<code class="descname">misc_header</code><em class="property"> = 'Miscellaneous help topics:'</em><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.misc_header" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineShell.nohelp">
+<code class="descname">nohelp</code><em class="property"> = '*** No help on %s'</em><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.nohelp" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineShell.prompt">
+<code class="descname">prompt</code><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.prompt" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Obtains the current prompt string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineShell.ruler">
+<code class="descname">ruler</code><em class="property"> = '='</em><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.ruler" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineShell.styler">
+<code class="descname">styler</code><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.styler" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineShell.undoc_header">
+<code class="descname">undoc_header</code><em class="property"> = 'Undocumented commands:'</em><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.undoc_header" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.readline_shell.ReadlineShell.use_rawinput">
+<code class="descname">use_rawinput</code><em class="property"> = 1</em><a class="headerlink" href="#xonsh.readline_shell.ReadlineShell.use_rawinput" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.readline_shell.fix_readline_state_after_ctrl_c">
+<code class="descclassname">xonsh.readline_shell.</code><code class="descname">fix_readline_state_after_ctrl_c</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#fix_readline_state_after_ctrl_c"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.fix_readline_state_after_ctrl_c" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Fix to allow Ctrl-C to exit reverse-i-search.</p>
+<dl class="simple">
+<dt>Based on code from:</dt><dd><p><a class="reference external" href="http://bugs.python.org/file39467/raw_input__workaround_demo.py">http://bugs.python.org/file39467/raw_input__workaround_demo.py</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.readline_shell.rl_completion_query_items">
+<code class="descclassname">xonsh.readline_shell.</code><code class="descname">rl_completion_query_items</code><span class="sig-paren">(</span><em>val=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#rl_completion_query_items"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.rl_completion_query_items" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets the rl_completion_query_items variable, if possible.
+A None value will set this to $COMPLETION_QUERY_LIMIT, otherwise any integer
+is accepted.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.readline_shell.rl_completion_suppress_append">
+<code class="descclassname">xonsh.readline_shell.</code><code class="descname">rl_completion_suppress_append</code><span class="sig-paren">(</span><em>val=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#rl_completion_suppress_append"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.rl_completion_suppress_append" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets the rl_completion_suppress_append variable, if possible.
+A value of 1 (default) means to suppress, a value of 0 means to enable.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.readline_shell.rl_on_new_line">
+<code class="descclassname">xonsh.readline_shell.</code><code class="descname">rl_on_new_line</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#rl_on_new_line"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.rl_on_new_line" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="xonsh.readline_shell.rl_variable_dumper">
+<code class="descclassname">xonsh.readline_shell.</code><code class="descname">rl_variable_dumper</code><span class="sig-paren">(</span><em>readable=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#rl_variable_dumper"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.rl_variable_dumper" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Dumps the currently set readline variables. If readable is True, then this
+output may be used in an inputrc file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.readline_shell.rl_variable_value">
+<code class="descclassname">xonsh.readline_shell.</code><code class="descname">rl_variable_value</code><span class="sig-paren">(</span><em>variable</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#rl_variable_value"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.rl_variable_value" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the currently set value for a readline configuration variable.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.readline_shell.setup_readline">
+<code class="descclassname">xonsh.readline_shell.</code><code class="descname">setup_readline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#setup_readline"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.setup_readline" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Sets up the readline module and completion suppression, if available.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.readline_shell.teardown_readline">
+<code class="descclassname">xonsh.readline_shell.</code><code class="descname">teardown_readline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/readline_shell.html#teardown_readline"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.readline_shell.teardown_readline" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Tears down up the readline module, if available.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../sidebar.html" title="sidebar">
+          <img class="logo" src="../_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="base_shell.html"
+                          title="Previous page">&larr; Base Shell Class (<code class="docutils literal notranslate"><span class="pre">xonsh.base_shell</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="ptk2/shell.html"
+                          title="Next page">&rarr; Prompt Toolkit 2 Shell (<code class="docutils literal notranslate"><span class="pre">xonsh.ptk2.shell</span></code>)</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/readline_shell.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="ptk2/shell.html" title="Prompt Toolkit 2 Shell (xonsh.ptk2.shell)"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="base_shell.html" title="Base Shell Class (xonsh.base_shell)"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Xonsh API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

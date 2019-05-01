@@ -1,0 +1,194 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Advanced Events &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Developer&#39;s Guide" href="devguide.html" />
+    <link rel="prev" title="Prompt Toolkit Key Bindings (xonsh.ptk.key_bindings)" href="api/ptk/key_bindings.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/advanced_events.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="devguide.html" title="Developer&#39;s Guide"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="api/ptk/key_bindings.html" title="Prompt Toolkit Key Bindings (xonsh.ptk.key_bindings)"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Xonsh シェル</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="advanced-events">
+<span id="events"></span><h1>Advanced Events<a class="headerlink" href="#advanced-events" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>If you haven't, go read the <a class="reference external" href="tutorial_events.html">events tutorial</a> first. This documents the messy
+details of the event system.</p>
+<p>You may also find the <a class="reference external" href="api/events.html">events API reference</a> useful.</p>
+<div class="section" id="why-unordered">
+<h2>Why Unordered?<a class="headerlink" href="#why-unordered" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Yes, handler call order is not guaranteed. Please don't file bugs about this.</p>
+<p>This was chosen because the order of handler registration is dependant on load order, which is
+stable in a release but not something generally reasoned about. In addition, xontribs mean that we
+don't know what handlers could be registered. So even an &quot;ordered&quot; event system would be unable to
+make guarantees about ordering because of the larger system.</p>
+<p>Because of this, the event system is not ordered; this is a form of abstraction. Order-dependant
+semantics are not encouraged by the built-in methods.</p>
+</div>
+<div class="section" id="so-how-do-i-handle-results">
+<h2>So how do I handle results?<a class="headerlink" href="#so-how-do-i-handle-results" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Event.fire()</span></code> returns a list of the returns from the handlers. You should merge this list in an
+appropriate way.</p>
+</div>
+<div class="section" id="what-are-species">
+<h2>What are Species?<a class="headerlink" href="#what-are-species" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In xonsh, events come in species. Each one may look like an event and quack like an event, but they
+behave differently.</p>
+<p>This was done because load hooks look like events and quack like events, but they have different
+semantics. See <a class="reference external" href="api/events.html#xonsh.events.LoadEvent">LoadEvents</a> for details.</p>
+<p>In order to turn an event from the default <code class="docutils literal notranslate"><span class="pre">Event</span></code>, you must transmogrify it, using
+<code class="docutils literal notranslate"><span class="pre">events.transmogrify()</span></code>. The class the event is turned in to must be a subclass of <code class="docutils literal notranslate"><span class="pre">AbstractEvent</span></code>.</p>
+<p>(Under the hood, transmogrify creates a new instance and copies the handlers and docstring from the
+old instance to the new one.)</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="sidebar">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Advanced Events</a><ul>
+<li><a class="reference internal" href="#why-unordered">Why Unordered?</a></li>
+<li><a class="reference internal" href="#so-how-do-i-handle-results">So how do I handle results?</a></li>
+<li><a class="reference internal" href="#what-are-species">What are Species?</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="api/ptk/key_bindings.html"
+                          title="Previous page">&larr; Prompt Toolkit Key Bindings (<code class="docutils literal notranslate"><span class="pre">xonsh.ptk.key_bindings</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="devguide.html"
+                          title="Next page">&rarr; Developer's Guide</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/advanced_events.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="devguide.html" title="Developer&#39;s Guide"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="api/ptk/key_bindings.html" title="Prompt Toolkit Key Bindings (xonsh.ptk.key_bindings)"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Xonsh シェル</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

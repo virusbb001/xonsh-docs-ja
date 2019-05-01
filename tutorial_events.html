@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tutorial: Events &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Tutorial: Programmable Tab-Completion" href="tutorial_completers.html" />
+    <link rel="prev" title="Tutorial: Extensions (Xontribs)" href="tutorial_xontrib.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/tutorial_events.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_completers.html" title="Tutorial: Programmable Tab-Completion"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_xontrib.html" title="Tutorial: Extensions (Xontribs)"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Xonsh シェル</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-events">
+<span id="id1"></span><h1>Tutorial: Events<a class="headerlink" href="#tutorial-events" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>What's the best way to keep informed in xonsh? Subscribe to an event!</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Simply, events are a way for various pieces of xonsh to tell each other what's going on. They're
+fired when something of note happens, eg the current directory changes or just before a command is
+executed.</p>
+<p>While xonsh has its own event system, it is not dissimilar to other event systems. If you do know
+events, this should be easy to understand. If not, then this document is extra for you.</p>
+</div>
+<div class="section" id="show-me-the-code">
+<h2>Show me the code!<a class="headerlink" href="#show-me-the-code" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Fine, fine!</p>
+<p>This will add a line to a file every time the current directory changes (due to <code class="docutils literal notranslate"><span class="pre">cd</span></code>, <code class="docutils literal notranslate"><span class="pre">pushd</span></code>,
+or several other commands):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>@events.on_chdir
+def add_to_file(olddir, newdir, **kw):
+    with open(g`~/.dirhist`[0], &#39;a&#39;) as dh:
+        print(newdir, file=dh)
+</pre></div>
+</div>
+<p>The exact arguments passed and returns expected vary from event to event; see the
+<a class="reference external" href="events.html">event list</a> for the details.</p>
+<p>Note that the event system is keyword only. Event handlers must match argument names and must have a
+<code class="docutils literal notranslate"><span class="pre">**kw</span></code> as protection against future changes.</p>
+</div>
+<div class="section" id="can-i-use-this-too">
+<h2>Can I use this, too?<a class="headerlink" href="#can-i-use-this-too" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Yes! It's even easy! In your xontrib, you just have to do something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">events</span><span class="o">.</span><span class="n">doc</span><span class="p">(</span><span class="s1">&#39;myxontrib_on_spam&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">myxontrib_on_spam(can: Spam) -&gt; bool?</span>
+
+<span class="s2">Fired in case of spam. Return ``True`` if it&#39;s been eaten.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will enable users to call <code class="docutils literal notranslate"><span class="pre">help(events.myxontrib_on_spam)</span></code> and get useful output.</p>
+</div>
+<div class="section" id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>For a complete list of available events, see <a class="reference external" href="events.html">the events reference</a>.</p>
+<p>If you want to know more about the gory details of what makes events tick, see
+<a class="reference external" href="advanced_events.html">Advanced Events</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="sidebar">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Tutorial: Events</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#show-me-the-code">Show me the code!</a></li>
+<li><a class="reference internal" href="#can-i-use-this-too">Can I use this, too?</a></li>
+<li><a class="reference internal" href="#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="tutorial_xontrib.html"
+                          title="Previous page">&larr; Tutorial: Extensions (Xontribs)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="tutorial_completers.html"
+                          title="Next page">&rarr; Tutorial: Programmable Tab-Completion</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tutorial_events.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_completers.html" title="Tutorial: Programmable Tab-Completion"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_xontrib.html" title="Tutorial: Extensions (Xontribs)"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Xonsh シェル</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,313 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tutorial: prompt_toolkit custom keybindings &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Bash to Xonsh Translation Guide" href="bash_to_xsh.html" />
+    <link rel="prev" title="Tutorial: Subprocess Strings" href="tutorial_subproc_strings.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/tutorial_ptk.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="bash_to_xsh.html" title="Bash to Xonsh Translation Guide"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_subproc_strings.html" title="Tutorial: Subprocess Strings"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Xonsh シェル</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-prompt-toolkit-custom-keybindings">
+<span id="tutorial-ptk"></span><h1>Tutorial: <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> custom keybindings<a class="headerlink" href="#tutorial-prompt-toolkit-custom-keybindings" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Are you really jonesing for some special keybindings? We can help you out with
+that. The first time is free and so is every other time!</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This tutorial will let you hook directly into the
+<code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> keybinding manager. It will not stop you from
+rendering your prompt completely unusable, so tread lightly.</p>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> shell has a registry for handling custom keybindings. You
+may not like the default keybindings in xonsh, or you may want to add a new key
+binding.</p>
+<p>We'll walk you though how to do this using <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> tools to define
+keybindings and warn you about potential pitfalls.</p>
+<p>All of the code below can be entered into your <a class="reference external" href="xonshrc.html">xonshrc</a></p>
+</div>
+<div class="section" id="control-characters">
+<h2>Control characters<a class="headerlink" href="#control-characters" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>We can't and won't stop you from doing what you want, but in the interest of a
+functioning shell, you probably shouldn't mess with the following keystrokes.
+Some of them are <a class="reference external" href="https://en.wikipedia.org/wiki/Control_character#In_ASCII">ASCII control characters</a> and _really_
+shouldn't be used. The others are used by xonsh and will result in some loss of
+functionality (in less you take the time to rebind them elsewhere).</p>
+<table class="colwidths-given docutils align-center">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Keystroke</p></th>
+<th class="head"><p>ASCII control representation</p></th>
+<th class="head"><p>Default command</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">J</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;Enter&gt;</span></code></p></td>
+<td><p>Run command</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">I</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;Tab&gt;</span></code></p></td>
+<td><p>Indent, autocomplete</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">R</span></code></p></td>
+<td></td>
+<td><p>Backwards history search</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">Z</span></code></p></td>
+<td></td>
+<td><p>SIGSTOP current job</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">C</span></code></p></td>
+<td></td>
+<td><p>SIGINT current job</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="useful-imports">
+<h2>Useful imports<a class="headerlink" href="#useful-imports" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>There are a few useful <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> tools that will help us create better
+bindings:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">prompt_toolkit.keys</span> <span class="k">import</span> <span class="n">Keys</span>
+<span class="kn">from</span> <span class="nn">prompt_toolkit.filters</span> <span class="k">import</span> <span class="n">Condition</span><span class="p">,</span> <span class="n">EmacsInsertMode</span><span class="p">,</span> <span class="n">ViInsertMode</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-keyload-function">
+<h2>Custom keyload function<a class="headerlink" href="#custom-keyload-function" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>We need our additional keybindings to load after the shell is initialized, so we
+define a function that contains all of the custom keybindings and decorate it
+with the appropriate event, in this case <code class="docutils literal notranslate"><span class="pre">on_ptk_create</span></code>. Please note that
+the method of <code class="docutils literal notranslate"><span class="pre">handler</span></code> differs depending on the version of <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code>.</p>
+<p>We'll start with a toy example that just inserts the text &quot;hi&quot; into the current line of the prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@events</span><span class="o">.</span><span class="n">on_ptk_create</span>
+<span class="k">def</span> <span class="nf">custom_keybindings</span><span class="p">(</span><span class="n">bindings</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="c1"># prompt_toolkit 1.x</span>
+    <span class="c1"># handler = bindings.registry.add_binding</span>
+    <span class="c1"># prompt_toolkit 2.x</span>
+    <span class="n">handler</span> <span class="o">=</span> <span class="n">bindings</span><span class="o">.</span><span class="n">add</span>
+
+    <span class="nd">@handler</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">ControlW</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">say_hi</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">current_buffer</span><span class="o">.</span><span class="n">insert_text</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Put that in your <a class="reference external" href="xonshrc.html">xonshrc</a>, restart xonsh and then see if
+pressing <code class="docutils literal notranslate"><span class="pre">Ctrl-w</span></code> does anything (it should!)</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>From prompt_toolkit 2.x it is also possible to write <code class="docutils literal notranslate"><span class="pre">Keys.ControlW</span></code> like <code class="docutils literal notranslate"><span class="pre">c-w</span></code>.</p>
+</div>
+</div>
+<div class="section" id="what-commands-can-keybindings-run">
+<h2>What commands can keybindings run?<a class="headerlink" href="#what-commands-can-keybindings-run" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Pretty much anything! Since we're defining these commands after xonsh has
+started up, we can create keybinding events that run subprocess commands with
+hardly any effort at all. If we wanted to, say, have a command that runs <code class="docutils literal notranslate"><span class="pre">ls</span>
+<span class="pre">-l</span></code> in the current directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@handler</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">ControlP</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">run_ls</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="n">ls</span> <span class="o">-</span><span class="n">l</span>
+    <span class="n">event</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">erase</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">event.cli.renderer.erase()</span></code> is required to redraw the prompt
+after asking for a separate command to send information to <code class="docutils literal notranslate"><span class="pre">STDOUT</span></code></p>
+</div>
+</div>
+<div class="section" id="restrict-actions-with-filters">
+<h2>Restrict actions with filters<a class="headerlink" href="#restrict-actions-with-filters" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Often we want a key command to only work if certain conditions are met. For
+instance, the <code class="docutils literal notranslate"><span class="pre">&lt;TAB&gt;</span></code> key in xonsh brings up the completions menu, but then it
+also cycles through the available completions. We use filters to create this
+behavior.</p>
+<p>A few helpful filters are included with <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code>, like
+<code class="docutils literal notranslate"><span class="pre">ViInsertMode</span></code> and <code class="docutils literal notranslate"><span class="pre">EmacsInsertMode</span></code>, which return <code class="docutils literal notranslate"><span class="pre">True</span></code> when the
+respective insert mode is active.</p>
+<p>But it's also easy to create our own filters that take advantage of xonsh's
+beautiful strangeness. Suppose we want a filter to restrict a given command to
+run only when there are fewer than ten files in a given directory. We just need a function that returns a Bool that matches that requirement and then we decorate it! And remember, those functions can be in xonsh-language, not just pure Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>@Condition
+def lt_ten_files(cli):
+    return len(g`*`) &lt; 10
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>See <a class="reference external" href="tutorial.html#normal-globbing">the tutorial section on globbing</a> for more globbing options.</p>
+</div>
+<p>Now that the condition is defined, we can pass it as a <code class="docutils literal notranslate"><span class="pre">filter</span></code> keyword to a keybinding definition:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@handler</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">ControlL</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="n">lt_ten_files</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">ls_if_lt_ten</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="n">ls</span> <span class="o">-</span><span class="n">l</span>
+    <span class="n">event</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">erase</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>With both of those in your <code class="docutils literal notranslate"><span class="pre">.xonshrc</span></code>, pressing <code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">L</span></code> will list the
+contents of your current directory if there are fewer than 10 items in it.
+Useful? Debatable. Powerful? Yes.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="sidebar">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="sidebar.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Tutorial: <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> custom keybindings</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#control-characters">Control characters</a></li>
+<li><a class="reference internal" href="#useful-imports">Useful imports</a></li>
+<li><a class="reference internal" href="#custom-keyload-function">Custom keyload function</a></li>
+<li><a class="reference internal" href="#what-commands-can-keybindings-run">What commands can keybindings run?</a></li>
+<li><a class="reference internal" href="#restrict-actions-with-filters">Restrict actions with filters</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="tutorial_subproc_strings.html"
+                          title="Previous page">&larr; Tutorial: Subprocess Strings</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="bash_to_xsh.html"
+                          title="Next page">&rarr; Bash to Xonsh Translation Guide</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tutorial_ptk.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="bash_to_xsh.html" title="Bash to Xonsh Translation Guide"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_subproc_strings.html" title="Tutorial: Subprocess Strings"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Xonsh シェル</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

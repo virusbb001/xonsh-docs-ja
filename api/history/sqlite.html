@@ -1,0 +1,242 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>History Backend Sqlite -- xonsh.history.sqlite &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="../../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../../_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="Tab Completer (xonsh.completer)" href="../completer.html" />
+    <link rel="prev" title="History Backend JSON -- xonsh.history.json" href="json.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/api/history/sqlite.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../completer.html" title="Tab Completer (xonsh.completer)"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="json.html" title="History Backend JSON -- xonsh.history.json"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" accesskey="U">Xonsh History API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.history.sqlite">
+<span id="history-backend-sqlite-xonsh-history-sqlite"></span><span id="xonsh-history-sqlite"></span><h1>History Backend Sqlite -- <a class="reference internal" href="#module-xonsh.history.sqlite" title="xonsh.history.sqlite"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xonsh.history.sqlite</span></code></a><a class="headerlink" href="#module-xonsh.history.sqlite" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Implements the xonsh history backend via sqlite3.</p>
+<dl class="class">
+<dt id="xonsh.history.sqlite.SqliteHistory">
+<em class="property">class </em><code class="descclassname">xonsh.history.sqlite.</code><code class="descname">SqliteHistory</code><span class="sig-paren">(</span><em>gc=True</em>, <em>filename=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/history/sqlite.html#SqliteHistory"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.history.sqlite.SqliteHistory" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Xonsh history backend implemented with sqlite3.</p>
+<dl class="method">
+<dt id="xonsh.history.sqlite.SqliteHistory.all_items">
+<code class="descname">all_items</code><span class="sig-paren">(</span><em>self</em>, <em>newest_first=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/history/sqlite.html#SqliteHistory.all_items"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.history.sqlite.SqliteHistory.all_items" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Display all history items.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.history.sqlite.SqliteHistory.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>self</em>, <em>cmd</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/history/sqlite.html#SqliteHistory.append"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.history.sqlite.SqliteHistory.append" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Append a command item into history.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cmd: dict</strong></dt><dd><p>This dict contains information about the command that is to be
+added to the history list. It should contain the keys <code class="docutils literal notranslate"><span class="pre">inp</span></code>,
+<code class="docutils literal notranslate"><span class="pre">rtn</span></code> and <code class="docutils literal notranslate"><span class="pre">ts</span></code>. These key names mirror the same names defined
+as instance variables in the <code class="docutils literal notranslate"><span class="pre">HistoryEntry</span></code> class.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.history.sqlite.SqliteHistory.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/history/sqlite.html#SqliteHistory.info"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.history.sqlite.SqliteHistory.info" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>A collection of information about the shell history.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>dict or collections.OrderedDict</dt><dd><p>Contains history information as str key pairs.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.history.sqlite.SqliteHistory.items">
+<code class="descname">items</code><span class="sig-paren">(</span><em>self</em>, <em>newest_first=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/history/sqlite.html#SqliteHistory.items"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.history.sqlite.SqliteHistory.items" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Display history items of current session.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.history.sqlite.SqliteHistory.run_gc">
+<code class="descname">run_gc</code><span class="sig-paren">(</span><em>self</em>, <em>size=None</em>, <em>blocking=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/history/sqlite.html#SqliteHistory.run_gc"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.history.sqlite.SqliteHistory.run_gc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Run the garbage collector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>size: None or tuple of a int and a string</strong></dt><dd><p>Determines the size and units of what would be allowed to remain.</p>
+</dd>
+<dt><strong>blocking: bool</strong></dt><dd><p>If set blocking, then wait until gc action finished.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.history.sqlite.SqliteHistoryGC">
+<em class="property">class </em><code class="descclassname">xonsh.history.sqlite.</code><code class="descname">SqliteHistoryGC</code><span class="sig-paren">(</span><em>wait_for_shell=True</em>, <em>size=None</em>, <em>filename=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/history/sqlite.html#SqliteHistoryGC"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.history.sqlite.SqliteHistoryGC" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Shell history garbage collection.</p>
+<p>Thread responsible for garbage collecting old history.</p>
+<p>May wait for shell (and for xonshrc to have been loaded) to start work.</p>
+<dl class="method">
+<dt id="xonsh.history.sqlite.SqliteHistoryGC.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/history/sqlite.html#SqliteHistoryGC.run"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.history.sqlite.SqliteHistoryGC.run" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Method representing the thread's activity.</p>
+<p>You may override this method in a subclass. The standard run() method
+invokes the callable object passed to the object's constructor as the
+target argument, if any, with sequential and keyword arguments taken
+from the args and kwargs arguments, respectively.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../../sidebar.html" title="sidebar">
+          <img class="logo" src="../../_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="json.html"
+                          title="Previous page">&larr; History Backend JSON -- <code class="xref py py-mod docutils literal notranslate"><span class="pre">xonsh.history.json</span></code></a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="../completer.html"
+                          title="Next page">&rarr; Tab Completer (<code class="docutils literal notranslate"><span class="pre">xonsh.completer</span></code>)</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/api/history/sqlite.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../completer.html" title="Tab Completer (xonsh.completer)"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="json.html" title="History Backend JSON -- xonsh.history.json"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="index.html" >Xonsh History API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

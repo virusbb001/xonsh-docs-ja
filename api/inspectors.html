@@ -1,0 +1,392 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Object Inspectors (xonsh.inspectors) &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Xonsh History API" href="history/index.html" />
+    <link rel="prev" title="Python Procedures as Subprocess Commands (xonsh.proc)" href="proc.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/api/inspectors.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="history/index.html" title="Xonsh History API"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="proc.html" title="Python Procedures as Subprocess Commands (xonsh.proc)"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Xonsh API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.inspectors">
+<span id="object-inspectors-xonsh-inspectors"></span><span id="xonsh-inspectors"></span><h1>Object Inspectors (<code class="docutils literal notranslate"><span class="pre">xonsh.inspectors</span></code>)<a class="headerlink" href="#module-xonsh.inspectors" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Tools for inspecting Python objects.</p>
+<p>This file was forked from the IPython project:</p>
+<ul class="simple">
+<li><p>Copyright (c) 2008-2014, IPython Development Team</p></li>
+<li><p>Copyright (C) 2001-2007 Fernando Perez &lt;<a class="reference external" href="mailto:fperez&#37;&#52;&#48;colorado&#46;edu">fperez<span>&#64;</span>colorado<span>&#46;</span>edu</a>&gt;</p></li>
+<li><p>Copyright (c) 2001, Janko Hauser &lt;<a class="reference external" href="mailto:jhauser&#37;&#52;&#48;zscout&#46;de">jhauser<span>&#64;</span>zscout<span>&#46;</span>de</a>&gt;</p></li>
+<li><p>Copyright (c) 2001, Nathaniel Gray &lt;<a class="reference external" href="mailto:n8gray&#37;&#52;&#48;caltech&#46;edu">n8gray<span>&#64;</span>caltech<span>&#46;</span>edu</a>&gt;</p></li>
+</ul>
+<dl class="class">
+<dt id="xonsh.inspectors.Inspector">
+<em class="property">class </em><code class="descclassname">xonsh.inspectors.</code><code class="descname">Inspector</code><span class="sig-paren">(</span><em>str_detail_level=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#Inspector"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.Inspector" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Inspects objects.</p>
+<dl class="method">
+<dt id="xonsh.inspectors.Inspector.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>self</em>, <em>obj</em>, <em>oname=''</em>, <em>info=None</em>, <em>detail_level=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#Inspector.info"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.Inspector.info" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Compute a dict with detailed information about an object.</p>
+<p>Optional arguments:</p>
+<ul class="simple">
+<li><p>oname: name of the variable pointing to the object.</p></li>
+<li><p>info: a structure with some information fields which may have been
+precomputed already.</p></li>
+<li><p>detail_level: if set to 1, more information is given.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.inspectors.Inspector.noinfo">
+<code class="descname">noinfo</code><span class="sig-paren">(</span><em>self</em>, <em>msg</em>, <em>oname</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#Inspector.noinfo"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.Inspector.noinfo" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Generic message when no information is found.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.inspectors.Inspector.pdef">
+<code class="descname">pdef</code><span class="sig-paren">(</span><em>self</em>, <em>obj</em>, <em>oname=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#Inspector.pdef"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.Inspector.pdef" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Print the call signature for any callable object.</p>
+<p>If the object is a class, print the constructor information.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.inspectors.Inspector.pdoc">
+<code class="descname">pdoc</code><span class="sig-paren">(</span><em>self</em>, <em>obj</em>, <em>oname=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#Inspector.pdoc"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.Inspector.pdoc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Print the docstring for any object.</p>
+<p>Optional</p>
+<p>-formatter: a function to run the docstring through for specially
+formatted docstrings.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.inspectors.Inspector.pfile">
+<code class="descname">pfile</code><span class="sig-paren">(</span><em>self</em>, <em>obj</em>, <em>oname=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#Inspector.pfile"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.Inspector.pfile" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Show the whole file where an object was defined.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.inspectors.Inspector.pinfo">
+<code class="descname">pinfo</code><span class="sig-paren">(</span><em>self</em>, <em>obj</em>, <em>oname=''</em>, <em>info=None</em>, <em>detail_level=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#Inspector.pinfo"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.Inspector.pinfo" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Show detailed information about an object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj</strong><span class="classifier">object</span></dt><dd></dd>
+<dt><strong>oname</strong><span class="classifier">str, optional</span></dt><dd><p>name of the variable pointing to the object.</p>
+</dd>
+<dt><strong>info</strong><span class="classifier">dict, optional</span></dt><dd><p>a structure with some information fields which may have been
+precomputed already.</p>
+</dd>
+<dt><strong>detail_level</strong><span class="classifier">int, optional</span></dt><dd><p>if set to 1, more information is given.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.inspectors.Inspector.psource">
+<code class="descname">psource</code><span class="sig-paren">(</span><em>self</em>, <em>obj</em>, <em>oname=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#Inspector.psource"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.Inspector.psource" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Print the source code for an object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.inspectors.Inspector.pinfo_fields1">
+<code class="descname">pinfo_fields1</code><em class="property"> = [('Type', 'type_name')]</em><a class="headerlink" href="#xonsh.inspectors.Inspector.pinfo_fields1" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.inspectors.Inspector.pinfo_fields2">
+<code class="descname">pinfo_fields2</code><em class="property"> = [('String form', 'string_form')]</em><a class="headerlink" href="#xonsh.inspectors.Inspector.pinfo_fields2" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.inspectors.Inspector.pinfo_fields3">
+<code class="descname">pinfo_fields3</code><em class="property"> = [('Length', 'length'), ('File', 'file'), ('Definition', 'definition')]</em><a class="headerlink" href="#xonsh.inspectors.Inspector.pinfo_fields3" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.inspectors.Inspector.pinfo_fields_obj">
+<code class="descname">pinfo_fields_obj</code><em class="property"> = [('Class docstring', 'class_docstring'), ('Init docstring', 'init_docstring'), ('Call def', 'call_def'), ('Call docstring', 'call_docstring')]</em><a class="headerlink" href="#xonsh.inspectors.Inspector.pinfo_fields_obj" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.inspectors.call_tip">
+<code class="descclassname">xonsh.inspectors.</code><code class="descname">call_tip</code><span class="sig-paren">(</span><em>oinfo</em>, <em>format_call=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#call_tip"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.call_tip" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Extract call tip data from an oinfo dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>oinfo</strong><span class="classifier">dict</span></dt><dd></dd>
+<dt><strong>format_call</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the call line is formatted and returned as a string.  If not, a
+tuple of (name, argspec) is returned.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>call_info</strong><span class="classifier">None, str or (str, dict) tuple.</span></dt><dd><p>When format_call is True, the whole call information is formatted as a
+single string.  Otherwise, the object's name and its argspec dict are
+returned.  If no call information is available, None is returned.</p>
+</dd>
+<dt><strong>docstring</strong><span class="classifier">str or None</span></dt><dd><p>The most relevant docstring for calling purposes is returned, if
+available.  The priority is: call docstring for callable instances, then
+constructor docstring for classes, then main object's docstring otherwise
+(regular functions).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.inspectors.find_file">
+<code class="descclassname">xonsh.inspectors.</code><code class="descname">find_file</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#find_file"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.find_file" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Find the absolute path to the file where an object was defined.</p>
+<p>This is essentially a robust wrapper around <cite>inspect.getabsfile</cite>.</p>
+<p>Returns None if no file can be found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj</strong><span class="classifier">any Python object</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>fname</strong><span class="classifier">str</span></dt><dd><p>The absolute path to the file where the object was defined.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.inspectors.find_source_lines">
+<code class="descclassname">xonsh.inspectors.</code><code class="descname">find_source_lines</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#find_source_lines"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.find_source_lines" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Find the line number in a file where an object was defined.</p>
+<p>This is essentially a robust wrapper around <cite>inspect.getsourcelines</cite>.</p>
+<p>Returns None if no file can be found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj</strong><span class="classifier">any Python object</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>lineno</strong><span class="classifier">int</span></dt><dd><p>The line number where the object definition starts.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.inspectors.format_argspec">
+<code class="descclassname">xonsh.inspectors.</code><code class="descname">format_argspec</code><span class="sig-paren">(</span><em>argspec</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#format_argspec"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.format_argspec" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Format argspect, convenience wrapper around inspect's.</p>
+<p>This takes a dict instead of ordered arguments and calls
+inspect.format_argspec with the arguments in the necessary order.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.inspectors.get_encoding">
+<code class="descclassname">xonsh.inspectors.</code><code class="descname">get_encoding</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#get_encoding"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.get_encoding" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Get encoding for python source file defining obj</p>
+<p>Returns None if obj is not defined in a sourcefile.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.inspectors.getargspec">
+<code class="descclassname">xonsh.inspectors.</code><code class="descname">getargspec</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#getargspec"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.getargspec" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Wrapper around <code class="xref py py-func docutils literal notranslate"><span class="pre">inspect.getfullargspec()</span></code> on Python 3, and
+:func:inspect.getargspec` on Python 2.</p>
+<p>In addition to functions and methods, this can also handle objects with a
+<code class="docutils literal notranslate"><span class="pre">__call__</span></code> attribute.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.inspectors.getdoc">
+<code class="descclassname">xonsh.inspectors.</code><code class="descname">getdoc</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#getdoc"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.getdoc" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Stable wrapper around inspect.getdoc.</p>
+<p>This can't crash because of attribute problems.</p>
+<p>It also attempts to call a getdoc() method on the given object.  This
+allows objects which provide their docstrings via non-standard mechanisms
+(like Pyro proxies) to still be inspected by ipython's ? system.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.inspectors.getsource">
+<code class="descclassname">xonsh.inspectors.</code><code class="descname">getsource</code><span class="sig-paren">(</span><em>obj</em>, <em>is_binary=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#getsource"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.getsource" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Wrapper around inspect.getsource.</p>
+<p>This can be modified by other projects to provide customized source
+extraction.</p>
+<p>Inputs:</p>
+<ul class="simple">
+<li><p>obj: an object whose source code we will attempt to extract.</p></li>
+</ul>
+<p>Optional inputs:</p>
+<ul class="simple">
+<li><p>is_binary: whether the object is known to come from a binary source.
+This implementation will skip returning any output for binary objects,
+but custom extractors may know how to meaningfully process them.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.inspectors.is_simple_callable">
+<code class="descclassname">xonsh.inspectors.</code><code class="descname">is_simple_callable</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#is_simple_callable"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.is_simple_callable" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>True if obj is a function ()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.inspectors.object_info">
+<code class="descclassname">xonsh.inspectors.</code><code class="descname">object_info</code><span class="sig-paren">(</span><em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/inspectors.html#object_info"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.inspectors.object_info" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Make an object info dict with all fields present.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../sidebar.html" title="sidebar">
+          <img class="logo" src="../_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="proc.html"
+                          title="Previous page">&larr; Python Procedures as Subprocess Commands (<code class="docutils literal notranslate"><span class="pre">xonsh.proc</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="history/index.html"
+                          title="Next page">&rarr; Xonsh History API</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/inspectors.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="history/index.html" title="Xonsh History API"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="proc.html" title="Python Procedures as Subprocess Commands (xonsh.proc)"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Xonsh API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

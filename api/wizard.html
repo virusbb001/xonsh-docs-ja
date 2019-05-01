@@ -1,0 +1,732 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Wizard Making Tools (xonsh.wizard) &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.base.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="shortcut icon" href="../_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="Xonsh Configuration Utility (xonsh.xonfig)" href="xonfig.html" />
+    <link rel="prev" title="Dumb Shell (xonsh.dumb_shell)" href="dumb_shell.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/api/wizard.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="xonfig.html" title="Xonsh Configuration Utility (xonsh.xonfig)"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="dumb_shell.html" title="Dumb Shell (xonsh.dumb_shell)"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Xonsh API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-xonsh.wizard">
+<span id="wizard-making-tools-xonsh-wizard"></span><span id="xonsh-wizard"></span><h1>Wizard Making Tools (<code class="docutils literal notranslate"><span class="pre">xonsh.wizard</span></code>)<a class="headerlink" href="#module-xonsh.wizard" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Tools for creating command-line and web-based wizards from a tree of nodes.</p>
+<dl class="class">
+<dt id="xonsh.wizard.FileInserter">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">FileInserter</code><span class="sig-paren">(</span><em>prefix</em>, <em>suffix</em>, <em>dump_rules</em>, <em>default_file=None</em>, <em>check=True</em>, <em>ask_filename=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#FileInserter"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.FileInserter" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Node for inserting the state into a file in between a prefix and suffix.
+The state is converted according to some dumper rules.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>prefix</strong><span class="classifier">str</span></dt><dd><p>Starting unique string in file to find and begin the insertion at,
+e.g. '# XONSH WIZARD START</p>
+</dd>
+<dt><strong>'</strong></dt><dd><dl class="simple">
+<dt>suffix<span class="classifier">str</span></dt><dd><p>Ending unique string to find in the file and end the replacement at,
+e.g. '</p>
+</dd>
+</dl>
+</dd>
+<dt><strong># XONSH WIZARD END'</strong></dt><dd><dl>
+<dt>dump_rules<span class="classifier">dict of strs to functions</span></dt><dd><p>This is a dictionary that maps the path-like match strings to functions
+that take the flat path and the value as arguments and convert the state
+value at a path to a string. The keys here may use wildcards (as seen in
+the standard library fnmatch module). For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dump_rules</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;/path/to/exact&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">path</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+    <span class="s1">&#39;/otherpath/*&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">path</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
+    <span class="s1">&#39;*ending&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">path</span> <span class="n">x</span><span class="p">:</span> <span class="nb">repr</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+    <span class="s1">&#39;/&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>If a wildcard is not used in a path, then that rule will be used
+used on an exact match. If wildcards are used, the deepest and longest
+match is used.  If None is given instead of a the function, it means to
+skip generating that key.</p>
+</dd>
+<dt>default_file<span class="classifier">str, optional</span></dt><dd><p>The default filename to save the file as.</p>
+</dd>
+<dt>check<span class="classifier">bool, optional</span></dt><dd><p>Whether to print the current state and ask if it should be
+saved/loaded prior to asking for the file name and saving the
+file, default=True.</p>
+</dd>
+<dt>ask_filename<span class="classifier">bool, optional</span></dt><dd><p>Whether to ask for the filename (if <code class="docutils literal notranslate"><span class="pre">False</span></code>, always use the
+default filename)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="xonsh.wizard.FileInserter.dumps">
+<code class="descname">dumps</code><span class="sig-paren">(</span><em>self</em>, <em>flat</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#FileInserter.dumps"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.FileInserter.dumps" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Dumps a flat mapping of (string path keys, values) pairs and returns
+a formatted string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.FileInserter.find_rule">
+<code class="descname">find_rule</code><span class="sig-paren">(</span><em>self</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#FileInserter.find_rule"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.FileInserter.find_rule" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>For a path, find the key and conversion function that should be used to
+dump a value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.wizard.FileInserter.attrs">
+<code class="descname">attrs</code><em class="property"> = ('prefix', 'suffix', 'dump_rules', 'default_file', 'check', 'ask_filename')</em><a class="headerlink" href="#xonsh.wizard.FileInserter.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.wizard.FileInserter.default_file">
+<code class="descname">default_file</code><a class="headerlink" href="#xonsh.wizard.FileInserter.default_file" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.wizard.FileInserter.dump_rules">
+<code class="descname">dump_rules</code><a class="headerlink" href="#xonsh.wizard.FileInserter.dump_rules" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.Input">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">Input</code><span class="sig-paren">(</span><em>prompt='&gt;&gt;&gt; '</em>, <em>converter=None</em>, <em>show_conversion=False</em>, <em>confirm=False</em>, <em>retry=False</em>, <em>path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#Input"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.Input" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Gets input from the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>prompt</strong><span class="classifier">str, optional</span></dt><dd><p>Prompt string prior to input</p>
+</dd>
+<dt><strong>converter</strong><span class="classifier">callable, optional</span></dt><dd><p>Converts the string the user typed into another object
+prior to storage.</p>
+</dd>
+<dt><strong>show_conversion</strong><span class="classifier">bool, optional</span></dt><dd><p>Flag for whether or not to show the results of the conversion
+function if the conversion function was meaningfully executed.
+Default False.</p>
+</dd>
+<dt><strong>confirm</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether the input should be confirmed until true or broken,
+default False.</p>
+</dd>
+<dt><strong>retry</strong><span class="classifier">bool, optional</span></dt><dd><p>In the event that the conversion operation fails, should
+users be re-prompted until they provide valid input. Default False.</p>
+</dd>
+<dt><strong>path</strong><span class="classifier">str or sequence of str, optional</span></dt><dd><p>A path within the storage object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="xonsh.wizard.Input.attrs">
+<code class="descname">attrs</code><em class="property"> = ('prompt', 'converter', 'show_conversion', 'confirm', 'path')</em><a class="headerlink" href="#xonsh.wizard.Input.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.LoadJSON">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">LoadJSON</code><span class="sig-paren">(</span><em>default_file=None</em>, <em>check=True</em>, <em>ask_filename=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#LoadJSON"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.LoadJSON" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Node for loading the state as a JSON file under a default or user
+given file name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>default_file</strong><span class="classifier">str, optional</span></dt><dd><p>The default filename to save the file as.</p>
+</dd>
+<dt><strong>check</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to print the current state and ask if it should be
+saved/loaded prior to asking for the file name and saving the
+file, default=True.</p>
+</dd>
+<dt><strong>ask_filename</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to ask for the filename (if <code class="docutils literal notranslate"><span class="pre">False</span></code>, always use the
+default filename)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="xonsh.wizard.LoadJSON.attrs">
+<code class="descname">attrs</code><em class="property"> = ('default_file', 'check', 'ask_filename')</em><a class="headerlink" href="#xonsh.wizard.LoadJSON.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.wizard.LoadJSON.default_file">
+<code class="descname">default_file</code><a class="headerlink" href="#xonsh.wizard.LoadJSON.default_file" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.Message">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">Message</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#Message"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.Message" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Contains a simple message to report to the user.</p>
+<dl class="attribute">
+<dt id="xonsh.wizard.Message.attrs">
+<code class="descname">attrs</code><em class="property"> = 'message'</em><a class="headerlink" href="#xonsh.wizard.Message.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.Node">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">Node</code><a class="reference internal" href="../_modules/xonsh/wizard.html#Node"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.Node" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Base type of all nodes.</p>
+<dl class="attribute">
+<dt id="xonsh.wizard.Node.attrs">
+<code class="descname">attrs</code><em class="property"> = ()</em><a class="headerlink" href="#xonsh.wizard.Node.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.Pass">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">Pass</code><a class="reference internal" href="../_modules/xonsh/wizard.html#Pass"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.Pass" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Simple do-nothing node</p>
+<dl class="attribute">
+<dt id="xonsh.wizard.Pass.attrs">
+<code class="descname">attrs</code><em class="property"> = ()</em><a class="headerlink" href="#xonsh.wizard.Pass.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.PrettyFormatter">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">PrettyFormatter</code><span class="sig-paren">(</span><em>tree=None</em>, <em>indent=' '</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PrettyFormatter"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PrettyFormatter" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Formats a tree of nodes into a pretty string</p>
+<dl class="method">
+<dt id="xonsh.wizard.PrettyFormatter.visit">
+<code class="descname">visit</code><span class="sig-paren">(</span><em>self</em>, <em>node=None</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.wizard.PrettyFormatter.visit" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Walks over a node.  If no node is provided, the tree is used.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PrettyFormatter.visit_input">
+<code class="descname">visit_input</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PrettyFormatter.visit_input"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PrettyFormatter.visit_input" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PrettyFormatter.visit_message">
+<code class="descname">visit_message</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PrettyFormatter.visit_message"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PrettyFormatter.visit_message" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PrettyFormatter.visit_node">
+<code class="descname">visit_node</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PrettyFormatter.visit_node"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PrettyFormatter.visit_node" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PrettyFormatter.visit_question">
+<code class="descname">visit_question</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PrettyFormatter.visit_question"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PrettyFormatter.visit_question" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PrettyFormatter.visit_statefile">
+<code class="descname">visit_statefile</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PrettyFormatter.visit_statefile"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PrettyFormatter.visit_statefile" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PrettyFormatter.visit_while">
+<code class="descname">visit_while</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PrettyFormatter.visit_while"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PrettyFormatter.visit_while" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PrettyFormatter.visit_wizard">
+<code class="descname">visit_wizard</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PrettyFormatter.visit_wizard"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PrettyFormatter.visit_wizard" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.PromptVisitor">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">PromptVisitor</code><span class="sig-paren">(</span><em>tree=None</em>, <em>state=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PromptVisitor"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PromptVisitor" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Visits the nodes in the tree via the a command-line prompt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tree</strong><span class="classifier">Node, optional</span></dt><dd><p>Tree of nodes to start visitor with.</p>
+</dd>
+<dt><strong>state</strong><span class="classifier">dict, optional</span></dt><dd><p>Initial state to begin with.</p>
+</dd>
+<dt><strong>kwargs</strong><span class="classifier">optional</span></dt><dd><p>Options that are passed through to the prompt via the shell's
+singleline() method. See BaseShell for mor details.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="xonsh.wizard.PromptVisitor.flatten">
+<code class="descname">flatten</code><span class="sig-paren">(</span><em>self</em>, <em>path='/'</em>, <em>value=None</em>, <em>flat=None</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.wizard.PromptVisitor.flatten" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a dict version of the store whose keys are paths.
+Note that list and dict entries will always end in '/', allowing
+disambiquation in dump_rules.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PromptVisitor.store">
+<code class="descname">store</code><span class="sig-paren">(</span><em>self</em>, <em>path</em>, <em>val</em>, <em>indices=None</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.wizard.PromptVisitor.store" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Stores a value at the path location.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PromptVisitor.visit">
+<code class="descname">visit</code><span class="sig-paren">(</span><em>self</em>, <em>node=None</em><span class="sig-paren">)</span><a class="headerlink" href="#xonsh.wizard.PromptVisitor.visit" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Walks over a node.  If no node is provided, the tree is used.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PromptVisitor.visit_fileinserter">
+<code class="descname">visit_fileinserter</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PromptVisitor.visit_fileinserter"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PromptVisitor.visit_fileinserter" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PromptVisitor.visit_input">
+<code class="descname">visit_input</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PromptVisitor.visit_input"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PromptVisitor.visit_input" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PromptVisitor.visit_loadjson">
+<code class="descname">visit_loadjson</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PromptVisitor.visit_loadjson"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PromptVisitor.visit_loadjson" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PromptVisitor.visit_message">
+<code class="descname">visit_message</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PromptVisitor.visit_message"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PromptVisitor.visit_message" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PromptVisitor.visit_pass">
+<code class="descname">visit_pass</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PromptVisitor.visit_pass"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PromptVisitor.visit_pass" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PromptVisitor.visit_question">
+<code class="descname">visit_question</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PromptVisitor.visit_question"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PromptVisitor.visit_question" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PromptVisitor.visit_savejson">
+<code class="descname">visit_savejson</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PromptVisitor.visit_savejson"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PromptVisitor.visit_savejson" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PromptVisitor.visit_while">
+<code class="descname">visit_while</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PromptVisitor.visit_while"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PromptVisitor.visit_while" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.PromptVisitor.visit_wizard">
+<code class="descname">visit_wizard</code><span class="sig-paren">(</span><em>self</em>, <em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#PromptVisitor.visit_wizard"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.PromptVisitor.visit_wizard" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.Question">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">Question</code><span class="sig-paren">(</span><em>question</em>, <em>responses</em>, <em>converter=None</em>, <em>path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#Question"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.Question" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Asks a question and then chooses the next node based on the response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>question</strong><span class="classifier">str</span></dt><dd><p>The question itself.</p>
+</dd>
+<dt><strong>responses</strong><span class="classifier">dict with str keys and Node values</span></dt><dd><p>Mapping from user-input responses to nodes.</p>
+</dd>
+<dt><strong>converter</strong><span class="classifier">callable, optional</span></dt><dd><p>Converts the string the user typed into another object
+that serves as a key to the responses dict.</p>
+</dd>
+<dt><strong>path</strong><span class="classifier">str or sequence of str, optional</span></dt><dd><p>A path within the storage object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="xonsh.wizard.Question.attrs">
+<code class="descname">attrs</code><em class="property"> = ('question', 'responses', 'converter', 'path')</em><a class="headerlink" href="#xonsh.wizard.Question.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.SaveJSON">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">SaveJSON</code><span class="sig-paren">(</span><em>default_file=None</em>, <em>check=True</em>, <em>ask_filename=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#SaveJSON"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.SaveJSON" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Node for saving the state as a JSON file under a default or user
+given file name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>default_file</strong><span class="classifier">str, optional</span></dt><dd><p>The default filename to save the file as.</p>
+</dd>
+<dt><strong>check</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to print the current state and ask if it should be
+saved/loaded prior to asking for the file name and saving the
+file, default=True.</p>
+</dd>
+<dt><strong>ask_filename</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to ask for the filename (if <code class="docutils literal notranslate"><span class="pre">False</span></code>, always use the
+default filename)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="xonsh.wizard.SaveJSON.attrs">
+<code class="descname">attrs</code><em class="property"> = ('default_file', 'check', 'ask_filename')</em><a class="headerlink" href="#xonsh.wizard.SaveJSON.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.wizard.SaveJSON.default_file">
+<code class="descname">default_file</code><a class="headerlink" href="#xonsh.wizard.SaveJSON.default_file" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.StateFile">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">StateFile</code><span class="sig-paren">(</span><em>default_file=None</em>, <em>check=True</em>, <em>ask_filename=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#StateFile"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.StateFile" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Node for representing the state as a file under a default or user
+given file name. This node type is likely not useful on its own.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>default_file</strong><span class="classifier">str, optional</span></dt><dd><p>The default filename to save the file as.</p>
+</dd>
+<dt><strong>check</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to print the current state and ask if it should be
+saved/loaded prior to asking for the file name and saving the
+file, default=True.</p>
+</dd>
+<dt><strong>ask_filename</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to ask for the filename (if <code class="docutils literal notranslate"><span class="pre">False</span></code>, always use the
+default filename)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="xonsh.wizard.StateFile.attrs">
+<code class="descname">attrs</code><em class="property"> = ('default_file', 'check', 'ask_filename')</em><a class="headerlink" href="#xonsh.wizard.StateFile.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="xonsh.wizard.StateFile.default_file">
+<code class="descname">default_file</code><a class="headerlink" href="#xonsh.wizard.StateFile.default_file" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.StateVisitor">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">StateVisitor</code><span class="sig-paren">(</span><em>tree=None</em>, <em>state=None</em>, <em>indices=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#StateVisitor"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.StateVisitor" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>This class visits the nodes and stores the results in a top-level
+dict of data according to the state path of the node. The the node
+does not have a path or the path does not exist, the storage is skipped.
+This class can be optionally initialized with an existing state.</p>
+<dl class="method">
+<dt id="xonsh.wizard.StateVisitor.flatten">
+<code class="descname">flatten</code><span class="sig-paren">(</span><em>self</em>, <em>path='/'</em>, <em>value=None</em>, <em>flat=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#StateVisitor.flatten"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.StateVisitor.flatten" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns a dict version of the store whose keys are paths.
+Note that list and dict entries will always end in '/', allowing
+disambiquation in dump_rules.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.StateVisitor.store">
+<code class="descname">store</code><span class="sig-paren">(</span><em>self</em>, <em>path</em>, <em>val</em>, <em>indices=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#StateVisitor.store"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.StateVisitor.store" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Stores a value at the path location.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xonsh.wizard.StateVisitor.visit">
+<code class="descname">visit</code><span class="sig-paren">(</span><em>self</em>, <em>node=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#StateVisitor.visit"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.StateVisitor.visit" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Walks over a node.  If no node is provided, the tree is used.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.StoreNonEmpty">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">StoreNonEmpty</code><span class="sig-paren">(</span><em>prompt='&gt;&gt;&gt; '</em>, <em>converter=None</em>, <em>show_conversion=False</em>, <em>confirm=False</em>, <em>retry=False</em>, <em>path=None</em>, <em>store_raw=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#StoreNonEmpty"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.StoreNonEmpty" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Stores the user input only if the input was not an empty string.
+This works by wrapping the converter function.</p>
+<dl class="attribute">
+<dt id="xonsh.wizard.StoreNonEmpty.attrs">
+<code class="descname">attrs</code><em class="property"> = ('prompt', 'converter', 'show_conversion', 'confirm', 'path')</em><a class="headerlink" href="#xonsh.wizard.StoreNonEmpty.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.TrueFalse">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">TrueFalse</code><span class="sig-paren">(</span><em>prompt='yes or no [default: no]? '</em>, <em>path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#TrueFalse"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.TrueFalse" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Input node the returns a True or False value.</p>
+<dl class="attribute">
+<dt id="xonsh.wizard.TrueFalse.attrs">
+<code class="descname">attrs</code><em class="property"> = ('prompt', 'converter', 'show_conversion', 'confirm', 'path')</em><a class="headerlink" href="#xonsh.wizard.TrueFalse.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.TrueFalseBreak">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">TrueFalseBreak</code><span class="sig-paren">(</span><em>prompt='yes</em>, <em>no</em>, <em>or break [default: no]? '</em>, <em>path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#TrueFalseBreak"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.TrueFalseBreak" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Input node the returns a True, False, or 'break' value.</p>
+<dl class="attribute">
+<dt id="xonsh.wizard.TrueFalseBreak.attrs">
+<code class="descname">attrs</code><em class="property"> = ('prompt', 'converter', 'show_conversion', 'confirm', 'path')</em><a class="headerlink" href="#xonsh.wizard.TrueFalseBreak.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.UnstorableType">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">UnstorableType</code><a class="reference internal" href="../_modules/xonsh/wizard.html#UnstorableType"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.UnstorableType" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Represents an unstorable return value for when no input was given
+or such input was skipped. Typically represented by the Unstorable
+singleton.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.Visitor">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">Visitor</code><span class="sig-paren">(</span><em>tree=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#Visitor"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.Visitor" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Super-class for all classes that should walk over a tree of nodes.
+This implements the visit() method.</p>
+<dl class="method">
+<dt id="xonsh.wizard.Visitor.visit">
+<code class="descname">visit</code><span class="sig-paren">(</span><em>self</em>, <em>node=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#Visitor.visit"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.Visitor.visit" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Walks over a node.  If no node is provided, the tree is used.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.While">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">While</code><span class="sig-paren">(</span><em>cond</em>, <em>body</em>, <em>idxname='idx'</em>, <em>beg=0</em>, <em>path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#While"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.While" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Computes a body while a condition function evaluates to true.</p>
+<p>The condition function has the form <code class="docutils literal notranslate"><span class="pre">cond(visitor=None,</span> <span class="pre">node=None)</span></code> and
+must return an object that responds to the Python magic method <code class="docutils literal notranslate"><span class="pre">__bool__</span></code>.
+The beg attribute specifies the number to start the loop iteration at.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cond</strong><span class="classifier">callable</span></dt><dd><p>Function that determines if the next loop iteration should
+be executed.</p>
+</dd>
+<dt><strong>body</strong><span class="classifier">sequence of nodes</span></dt><dd><p>A list of node to execute on each iteration. The condition function
+has the form <code class="docutils literal notranslate"><span class="pre">cond(visitor=None,</span> <span class="pre">node=None)</span></code> and must return an
+object that responds to the Python magic method <code class="docutils literal notranslate"><span class="pre">__bool__</span></code>.</p>
+</dd>
+<dt><strong>idxname</strong><span class="classifier">str, optional</span></dt><dd><p>The variable name for the index.</p>
+</dd>
+<dt><strong>beg</strong><span class="classifier">int, optional</span></dt><dd><p>The first index value when evaluating path format strings.</p>
+</dd>
+<dt><strong>path</strong><span class="classifier">str or sequence of str, optional</span></dt><dd><p>A path within the storage object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="xonsh.wizard.While.attrs">
+<code class="descname">attrs</code><em class="property"> = ('cond', 'body', 'idxname', 'beg', 'path')</em><a class="headerlink" href="#xonsh.wizard.While.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.Wizard">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">Wizard</code><span class="sig-paren">(</span><em>children</em>, <em>path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#Wizard"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.Wizard" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Top-level node in the tree.</p>
+<dl class="attribute">
+<dt id="xonsh.wizard.Wizard.attrs">
+<code class="descname">attrs</code><em class="property"> = ('children', 'path')</em><a class="headerlink" href="#xonsh.wizard.Wizard.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="xonsh.wizard.YesNo">
+<em class="property">class </em><code class="descclassname">xonsh.wizard.</code><code class="descname">YesNo</code><span class="sig-paren">(</span><em>question</em>, <em>yes</em>, <em>no</em>, <em>path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#YesNo"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.YesNo" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Represents a simple yes/no question.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>question</strong><span class="classifier">str</span></dt><dd><p>The question itself.</p>
+</dd>
+<dt><strong>yes</strong><span class="classifier">Node</span></dt><dd><p>Node to execute if the response is True.</p>
+</dd>
+<dt><strong>no</strong><span class="classifier">Node</span></dt><dd><p>Node to execute if the response is False.</p>
+</dd>
+<dt><strong>path</strong><span class="classifier">str or sequence of str, optional</span></dt><dd><p>A path within the storage object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="xonsh.wizard.YesNo.attrs">
+<code class="descname">attrs</code><em class="property"> = ('question', 'responses', 'converter', 'path')</em><a class="headerlink" href="#xonsh.wizard.YesNo.attrs" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.wizard.canon_path">
+<code class="descclassname">xonsh.wizard.</code><code class="descname">canon_path</code><span class="sig-paren">(</span><em>path</em>, <em>indices=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#canon_path"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.canon_path" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Returns the canonical form of a path, which is a tuple of str or ints.
+Indices may be optionally passed in.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.wizard.create_truefalse_cond">
+<code class="descclassname">xonsh.wizard.</code><code class="descname">create_truefalse_cond</code><span class="sig-paren">(</span><em>prompt='yes or no [default: no]? '</em>, <em>path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#create_truefalse_cond"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.create_truefalse_cond" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>This creates a basic condition function for use with nodes like While
+or other conditions. The condition function creates and visits a TrueFalse
+node and returns the result. This TrueFalse node takes the prompt and
+path that is passed in here.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xonsh.wizard.ensure_str_or_int">
+<code class="descclassname">xonsh.wizard.</code><code class="descname">ensure_str_or_int</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/wizard.html#ensure_str_or_int"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.wizard.ensure_str_or_int" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Creates a string or int.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../sidebar.html" title="sidebar">
+          <img class="logo" src="../_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="dumb_shell.html"
+                          title="Previous page">&larr; Dumb Shell (<code class="docutils literal notranslate"><span class="pre">xonsh.dumb_shell</span></code>)</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="xonfig.html"
+                          title="Next page">&rarr; Xonsh Configuration Utility (<code class="docutils literal notranslate"><span class="pre">xonsh.xonfig</span></code>)</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/wizard.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="xonfig.html" title="Xonsh Configuration Utility (xonsh.xonfig)"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="dumb_shell.html" title="Dumb Shell (xonsh.dumb_shell)"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="../sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Xonsh シェル</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Xonsh API</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

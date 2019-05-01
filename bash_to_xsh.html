@@ -1,0 +1,244 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bash to Xonsh Translation Guide &#8212; xonsh 0.8.12 ドキュメント</title>
+    <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="_static/cloud.base.js"></script>
+    <script type="text/javascript" src="_static/cloud.js"></script>
+    <link rel="shortcut icon" href="_static/magic_conch.ico"/>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="Subprocess Types Table" href="subproc_types.html" />
+    <link rel="prev" title="Tutorial: prompt_toolkit custom keybindings" href="tutorial_ptk.html" />
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://xon.sh/bash_to_xsh.html"/>
+
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="subproc_types.html" title="Subprocess Types Table"
+             accesskey="N">次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_ptk.html" title="Tutorial: prompt_toolkit custom keybindings"
+             accesskey="P">前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Xonsh シェル</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bash-to-xonsh-translation-guide">
+<h1>Bash to Xonsh Translation Guide<a class="headerlink" href="#bash-to-xonsh-translation-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>As you have probably figured out by now, xonsh is not <code class="docutils literal notranslate"><span class="pre">sh</span></code>-lang compliant.
+If your muscles have memorized all of the Bash prestidigitations, this page
+will help you put a finger on how to do the equivalent task in xonsh.</p>
+<p>For shell scripts, the recommended file extension is <code class="docutils literal notranslate"><span class="pre">xsh</span></code>, and shebang
+line is <code class="docutils literal notranslate"><span class="pre">#!/usr/bin/env</span> <span class="pre">xonsh</span></code>.</p>
+<table class="colwidths-given docutils align-center">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Bash</p></th>
+<th class="head"><p>Xonsh</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">$NAME</span></code> or <code class="docutils literal notranslate"><span class="pre">${NAME}</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$NAME</span></code></p></td>
+<td><p>Look up an environment variable by name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">NAME=Peter</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$NAME</span> <span class="pre">=</span> <span class="pre">'Peter'</span></code></p></td>
+<td><p>Setting an environment variable.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">unset</span> <span class="pre">NAME</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">$NAME</span></code></p></td>
+<td><p>Unsetting/deleting an environment variable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;$HOME/hello&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;$HOME/hello&quot;</span></code></p></td>
+<td><p>Construct an argument using an environment variable.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">something/$SOME_VAR/$(some_command)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;('something/'</span> <span class="pre">+</span> <span class="pre">$SOME_VAR</span> <span class="pre">+</span> <span class="pre">$(some_command).strip())</span></code></p></td>
+<td><p>Concatenate a variable or text with the result of running a command.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">${!VAR}</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">${var</span> <span class="pre">or</span> <span class="pre">expr}</span></code></p></td>
+<td><p>Look up an environment variable via another variable name. In xonsh,
+this may be any valid expression.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">$(cmd</span> <span class="pre">args)</span></code> or <code class="docutils literal notranslate"><span class="pre">`cmd</span> <span class="pre">args`</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;$(cmd</span> <span class="pre">args)</span></code></p></td>
+<td><p>Command substitution (allow the output of a command to replace the
+command itself).  Tokenizes and executes the output of a subprocess
+command as another subprocess.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-e</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$RAISE_SUBPROC_ERROR</span> <span class="pre">=</span> <span class="pre">True</span></code></p></td>
+<td><p>Cause a failure after a non-zero return code. Xonsh will raise a
+<code class="docutils literal notranslate"><span class="pre">supbrocess.CalledProcessError</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-x</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">trace</span> <span class="pre">on</span></code></p></td>
+<td><p>Turns on tracing of source code lines during execution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">and</span></code> or <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code></p></td>
+<td><p>Logical-and operator for subprocesses.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">||</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">or</span></code> as well as <code class="docutils literal notranslate"><span class="pre">||</span></code></p></td>
+<td><p>Logical-or operator for subprocesses.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">$?</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_.rtn</span></code></p></td>
+<td><p>Returns the exit code, or status, of the previous command.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">N=V</span> <span class="pre">command</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">${...}.swap(N=V):</span> <span class="pre">command</span></code></p></td>
+<td><p>Set temporary environment variable(s) and execute for command.
+Use an indented block to execute many commands in the same context.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">!$</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">__xonsh__.history[-1,</span> <span class="pre">-1]</span></code></p></td>
+<td><p>Get the last argument of the last command</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">$&lt;n&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$ARG&lt;n&gt;</span></code></p></td>
+<td><p>Command line argument at index <code class="docutils literal notranslate"><span class="pre">n</span></code>,
+so <code class="docutils literal notranslate"><span class="pre">$ARG1</span></code> is the equivalent of <code class="docutils literal notranslate"><span class="pre">$1</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">$&#64;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$ARGS</span></code></p></td>
+<td><p>List of all command line argument and parameter strings.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="sidebar.html" title="sidebar">
+          <img class="logo" src="_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
+        </a></p>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="tutorial_ptk.html"
+                          title="Previous page">&larr; Tutorial: <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> custom keybindings</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="subproc_types.html"
+                          title="Next page">&rarr; Subprocess Types Table</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/bash_to_xsh.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="subproc_types.html" title="Subprocess Types Table"
+             >次へ</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="tutorial_ptk.html" title="Tutorial: prompt_toolkit custom keybindings"
+             >前へ</a> &nbsp; &nbsp;</li>
+    <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Xonsh シェル</a> &#187;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2015, Anthony Scopatz.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
