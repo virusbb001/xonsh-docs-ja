@@ -105,7 +105,7 @@
 
     <span class="c1"># If there&#39;s no space following an END_PROC_TOKEN, insert one</span>
     <span class="k">if</span> <span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">END_PROC_TOKENS</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">==</span> <span class="n">skip_part_num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">comp_func</span> <span class="o">=</span> <span class="n">complete_command</span>
