@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta charset="utf-8" />
-    <title>Windows Guide &#8212; xonsh 0.8.12 ドキュメント</title>
+    <title>Windowsガイド &#8212; xonsh 0.8.12 ドキュメント</title>
     <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -49,7 +49,7 @@
              accesskey="P">前へ</a> &nbsp; &nbsp;</li>
     <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">the xonsh shell</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Xonsh シェル</a> &#187;</li> 
       </ul>
     </div>
     </div>
@@ -61,44 +61,41 @@
           <div class="body" role="main">
             
   <div class="section" id="windows-guide">
-<h1>Windows Guide<a class="headerlink" href="#windows-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>Windowsガイド<a class="headerlink" href="#windows-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>インストール<a class="headerlink" href="#installation" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="the-easy-way">
-<h3>The easy way<a class="headerlink" href="#the-easy-way" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>The easiest way to install xonsh on windows is through the <a class="reference external" href="https://www.anaconda.com/download/">Anaconda Python
-Distribution</a> and the conda package manager.</p>
+<h3>簡単な方法<a class="headerlink" href="#the-easy-way" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>XonshをWindowsにインストールする最も簡単な方法は <a class="reference external" href="https://www.anaconda.com/download/">Anaconda Python ディストリビューション</a> と conda パッケージ マネージャーを通す方法です。</p>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
-<p>Xonsh is not supported on legacy Python (2.7).</p>
+<p>Xonshは古いPython(2.7)をサポートしていません。</p>
 </div>
-<p>Install xonsh with the following command:</p>
+<p>以下のコマンドでXonshをインストールします。</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> conda config --add channels conda-forge
 <span class="p">&gt;</span> conda install xonsh
 </pre></div>
 </div>
-<p>This will install xonsh and all the recommended dependencies. Next, run xonsh:</p>
+<p>これでxonshと推奨される依存パッケージをインストールします。次に、xonshを実行します。</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> xonsh
 snail@home ~ $
 </pre></div>
 </div>
 </div>
 <div class="section" id="install-from-source">
-<h3>Install from source<a class="headerlink" href="#install-from-source" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>To install xonsh from source on Windows, first install <a class="reference external" href="https://www.python.org/downloads/windows/">Python v3.4+</a> from
-<a class="reference external" href="http://python.org">http://python.org</a>. Remember to select &quot;Add python to PATH&quot; during installation.</p>
-<p>Next, install the prompt_toolkit dependency via <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<h3>ソースからインストール<a class="headerlink" href="#install-from-source" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Windows上でXonshをソースからインストールするには、まず <a class="reference external" href="https://www.python.org/downloads/windows/">Python v3.4+</a> をhttp://python.org からインストールします。 インストール中に &quot;Add python to PATH&quot; を選択することをおすすめします。</p>
+<p>次に、prompt_toolkit 依存を <code class="docutils literal notranslate"><span class="pre">pip</span></code> でインストールします:</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> pip install prompt-toolkit
 </pre></div>
 </div>
-<p>Download the latest <a class="reference external" href="https://github.com/xonsh/xonsh/archive/master.zip">xonsh-master.zip</a> from github and unzip it
-to <code class="docutils literal notranslate"><span class="pre">xonsh-master</span></code>.</p>
-<p>Now install xonsh:</p>
+<p>Githubから最新の <a class="reference external" href="https://github.com/xonsh/xonsh/archive/master.zip">xonsh-master.zip</a> をダウンロードして <code class="docutils literal notranslate"><span class="pre">xonsh-master</span></code> に解凍します。</p>
+<p>Xonshをインストールします:</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> cd xonsh-master
 <span class="p">&gt;</span> python setup.py install
 </pre></div>
 </div>
-<p>Next, run xonsh:</p>
+<p>次に、xonshを実行します:</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> xonsh
 snail@home ~ $
 </pre></div>
@@ -106,56 +103,39 @@ snail@home ~ $
 </div>
 </div>
 <div class="section" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>使い方<a class="headerlink" href="#usage" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="color-style">
-<h3>Color style<a class="headerlink" href="#color-style" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>The dark red and blue colors are completely unreadable in Windows' default
-terminal.</p>
+<h3>カラースタイル<a class="headerlink" href="#color-style" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Windowsのデフォルトの端末では暗い赤と青は全く読めません。</p>
 <a class="reference internal image-reference" href="_images/intensify-colors-on-win-false.png"><img alt="intensify-colors-win-false" class="align-center" src="_images/intensify-colors-on-win-false.png" style="width: 396px;" /></a>
-<p>There are ways to configure the colors (see below), but to give new users the
-best experience Xonsh has some tricks to fix colors. This is controlled by the
-<a class="reference internal" href="envvars.html#intensify-colors-on-win"><span class="std std-ref">$INTENSIFY_COLORS_ON_WIN</span></a>
-environment variable which is <code class="docutils literal notranslate"><span class="pre">True</span></code> by default.</p>
-<p><strong>On Windows 10</strong></p>
-<p>Windows 10 supports true color in the terminal, so on Win 10 Xonsh will use
-a style with hard coded colors instead of the terminal colors.</p>
+<p>色を設定する方法はありますが（下記参照）、新しいユーザーに最高の体験を提供するために、Xonshには色を修正するためのいくつかのトリックがあります。これは <a class="reference internal" href="envvars.html#intensify-colors-on-win"><span class="std std-ref">$INTENSIFY_COLORS_ON_WIN</span></a> 環境変数によって制御されます。これはデフォルトで <code class="docutils literal notranslate"><span class="pre">True</span></code> です。</p>
+<p><strong>Windows 10の場合</strong></p>
+<p>Windows 10は端末でトゥルーカラーをサポートしています。なので、Windows 10 のXonshは端末の色の代わりにハードコードされたスタイルを使用します。</p>
 <a class="reference internal image-reference" href="_images/better_colors_windows.png"><img alt="better_colors_windows" class="align-center" src="_images/better_colors_windows.png" style="width: 600px;" /></a>
-<p><strong>On older Windows</strong></p>
-<p>On older windows installations Xonsh takes an other
-approach and replaces some of the unreadable dark colors with more readable
-alternatives (e.g. blue becomes cyan).</p>
-<p><strong>Configure the terminal colors</strong></p>
-<p>It is possible to configure the Windows console with readable default colors,
-but it is tedious to do manually. The Microsoft console team has made a <a class="reference external" href="https://blogs.msdn.microsoft.com/commandline/2017/08/11/introducing-the-windows-console-colortool/">handy tool
-to configure colors</a> in the terminal</p>
+<p><strong>古いWindowsの場合</strong></p>
+<p>古いWindowsではXonshは他のアプローチを取り、読みにくい暗い色のいくつかを読みやすいものに置き換えます。(例えば青はシアンになります)</p>
+<p><strong>端末の色の設定</strong></p>
+<p>Windowsコンソールを読みやすいデフォルトの色で設定することは可能ですが、手動で行うのは面倒です。 Microsoftのコンソールチームは、<a class="reference external" href="https://blogs.msdn.microsoft.com/commandline/2017/08/11/introducing-the-windows-console-colortool/">端末の色を設定するための便利なツール</a> を作りました。</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/Microsoft/console/tree/master/tools/ColorTool">Download Colortool</a> from from GitHub</p></li>
+<li><p>GitHubから <a class="reference external" href="https://github.com/Microsoft/console/tree/master/tools/ColorTool">Colortoolをダウンロード</a></p></li>
 </ul>
-<p>With better colors configured, <code class="docutils literal notranslate"><span class="pre">$INTENSIFY_COLORS_ON_WIN</span></code> should be set to
-<code class="docutils literal notranslate"><span class="pre">False</span></code> to allow the console to control the colors.
-You can do this by adding the following to the xonsh run control file <code class="docutils literal notranslate"><span class="pre">.xonshrc</span></code>:</p>
+<p>より良い色が設定されている場合は、コンソールで色を制御できるように <code class="docutils literal notranslate"><span class="pre">$INTENSIFY_COLORS_ON_WIN</span></code> を <code class="docutils literal notranslate"><span class="pre">False</span></code> に設定する必要があります。 これを行うには、Xonsh実行制御ファイル <code class="docutils literal notranslate"><span class="pre">.xonshrc</span></code> に以下を追加します。</p>
 <div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="nv">$INTENSIFY_COLORS_ON_WIN</span> <span class="o">=</span> <span class="bp">False</span><span class="go"></span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="avoid-locking-the-working-directory">
-<h3>Avoid locking the working directory<a class="headerlink" href="#avoid-locking-the-working-directory" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>Python (like other processes on Windows) locks the current working directory so
-it can't be deleted or renamed. <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> has this behaviour as well, but it
-is quite annoying for a shell.</p>
-<p>The <a class="reference internal" href="xontribs.html#free-cwd"><span class="std std-ref">free_cwd</span></a> xontrib (add-on) for xonsh solves some of this problem. It
-works by hooking the prompt to reset the current working directory to the root
-drive folder whenever the shell is idle. It only works with the prompt-toolkit
-back-end. To enable that behaviour run the following:</p>
-<p>Add this line to your <code class="docutils literal notranslate"><span class="pre">~/.xonshrc</span></code> file to have it always enabled.</p>
+<h3>作業ディレクトリをロックしない<a class="headerlink" href="#avoid-locking-the-working-directory" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Pythonは(Windows上の他のプロセスと同様に)現在の作業ディレクトリをロックするので、削除したり名前を変更したりすることはできません。 <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> にもこのような動作がありますが、シェルにとっては非常に面倒です。</p>
+<p>xonshの <a class="reference internal" href="xontribs.html#free-cwd"><span class="std std-ref">free_cwd</span></a> xontrib（アドオン）はこの問題のいくつかを解決します。 シェルがアイドル状態のときはいつでも、プロンプトをフックして現在の作業ディレクトリをルートドライブフォルダにリセットします。 これはprompt-toolkitバックエンドでのみ機能します。その動作を有効にするには、次のコマンドを実行します。</p>
+<p>この行を <code class="docutils literal notranslate"><span class="pre">~/.xonshrc</span></code> に追記することで常に有効にできます。</p>
 <div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xontrib</span> <span class="n">load</span> <span class="n">free_cwd</span><span class="go"></span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="name-space-conflicts">
-<h3>Name space conflicts<a class="headerlink" href="#name-space-conflicts" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>Due to ambiguity with the Python <code class="docutils literal notranslate"><span class="pre">dir</span></code> builtin, to list the current directory
-via the <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> builtin you must explicitly request the <code class="docutils literal notranslate"><span class="pre">.</span></code>, like this:</p>
+<h3>名前空間の競合<a class="headerlink" href="#name-space-conflicts" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Pythonの <code class="docutils literal notranslate"><span class="pre">dir</span></code> ビルトインとのあいまいさのため、<code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> ビルトインを介して現在のディレクトリを一覧表示するには、次のように明示的に <code class="docutils literal notranslate"><span class="pre">.</span></code> を要求しなければなりません。</p>
 <div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span> <span class="o">.</span><span class="go"></span>
 <span class="go"> Volume in drive C is Windows</span>
 <span class="go"> Volume Serial Number is 30E8-8B86</span>
@@ -169,22 +149,20 @@ via the <code class="docutils literal notranslate"><span class="pre">cmd.exe</sp
 <span class="go">               3 Dir(s)  11,008,000,000 bytes free</span>
 </pre></div>
 </div>
-<p>Many people create a <code class="docutils literal notranslate"><span class="pre">d</span></code> alias for the <code class="docutils literal notranslate"><span class="pre">dir</span></code> command to save
-typing and avoid the ambiguity altogether:</p>
+<p>多くの人が <code class="docutils literal notranslate"><span class="pre">dir</span></code> コマンドのために <code class="docutils literal notranslate"><span class="pre">d</span></code> エイリアスを作成して入力を節約し、あいまいさを完全に避けます。</p>
 <div class="highlight-xonshcon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aliases</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cmd&#39;</span><span class="p">,</span> <span class="s1">&#39;/c&#39;</span><span class="p">,</span> <span class="s1">&#39;dir&#39;</span><span class="p">]</span><span class="go"></span>
 </pre></div>
 </div>
-<p>You can add aliases to your <code class="docutils literal notranslate"><span class="pre">~/.xonshrc</span></code> to have it always
-available when xonsh starts.</p>
+<p><code class="docutils literal notranslate"><span class="pre">~/.xonshrc</span></code> にエイリアスを追加して、 <code class="docutils literal notranslate"><span class="pre">xonsh</span></code> の起動時にエイリアスを常に使用可能にすることができます。</p>
 </div>
 <div class="section" id="unicode-support-for-windows">
-<h3>Unicode support for Windows<a class="headerlink" href="#unicode-support-for-windows" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>Python's utf-8 unicode is not compatible with the default shell 'cmd.exe' on Windows. The package <code class="docutils literal notranslate"><span class="pre">win_unicode_console</span></code> fixes this. Xonsh will use <code class="docutils literal notranslate"><span class="pre">win_unicode_console</span></code> if it is installed. This can be disabled/enabled with the <a class="reference internal" href="envvars.html#win-unicode-console"><span class="std std-ref">$WIN_UNICODE_CONSOLE</span></a> environment variable.</p>
+<h3>WindowsのUnicodeサポート<a class="headerlink" href="#unicode-support-for-windows" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Pythonのutf-8 Unicodeは、Windows上のデフォルトのシェル 'cmd.exe'と互換性がありません。 パッケージ <code class="docutils literal notranslate"><span class="pre">win_unicode_console</span></code> はこれを修正します。 Xonshがインストールされている場合、Xonshは <code class="docutils literal notranslate"><span class="pre">win_unicode_console</span></code> を使用します。 これは <a class="reference internal" href="envvars.html#win-unicode-console"><span class="std std-ref">$WIN_UNICODE_CONSOLE</span></a> 環境変数で無効/有効にできます。</p>
 <div class="admonition note">
 <p class="admonition-title">注釈</p>
-<p>Even with unicode support enabled the symbols available will depend on the font used in cmd.exe.</p>
+<p>Unicodeサポートが有効になっていても、利用可能なシンボルはcmd.exeで使用されているフォントによって異なります。</p>
 </div>
-<p>The packages <code class="docutils literal notranslate"><span class="pre">win_unicode_console</span></code> can be installed along with xonsh by using the package name <code class="docutils literal notranslate"><span class="pre">xonsh[win]</span></code> or separately using pip or conda.</p>
+<p>パッケージ <code class="docutils literal notranslate"><span class="pre">win_unicode_console</span></code> は、パッケージ名 <code class="docutils literal notranslate"><span class="pre">xonsh[win]</span></code> を使用するか、またはpipまたはcondaを使用してxonshと一緒にインストールできます。</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> pip install win_unicode_console
 </pre></div>
 </div>
@@ -206,17 +184,17 @@ available when xonsh starts.</p>
         </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="sidebar.html">Page contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Windows Guide</a><ul>
-<li><a class="reference internal" href="#installation">Installation</a><ul>
-<li><a class="reference internal" href="#the-easy-way">The easy way</a></li>
-<li><a class="reference internal" href="#install-from-source">Install from source</a></li>
+<li><a class="reference internal" href="#">Windowsガイド</a><ul>
+<li><a class="reference internal" href="#installation">インストール</a><ul>
+<li><a class="reference internal" href="#the-easy-way">簡単な方法</a></li>
+<li><a class="reference internal" href="#install-from-source">ソースからインストール</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#usage">Usage</a><ul>
-<li><a class="reference internal" href="#color-style">Color style</a></li>
-<li><a class="reference internal" href="#avoid-locking-the-working-directory">Avoid locking the working directory</a></li>
-<li><a class="reference internal" href="#name-space-conflicts">Name space conflicts</a></li>
-<li><a class="reference internal" href="#unicode-support-for-windows">Unicode support for Windows</a></li>
+<li><a class="reference internal" href="#usage">使い方</a><ul>
+<li><a class="reference internal" href="#color-style">カラースタイル</a></li>
+<li><a class="reference internal" href="#avoid-locking-the-working-directory">作業ディレクトリをロックしない</a></li>
+<li><a class="reference internal" href="#name-space-conflicts">名前空間の競合</a></li>
+<li><a class="reference internal" href="#unicode-support-for-windows">WindowsのUnicodeサポート</a></li>
 </ul>
 </li>
 </ul>
@@ -291,7 +269,7 @@ available when xonsh starts.</p>
              >前へ</a> &nbsp; &nbsp;</li>
     <li><a href="sidebar.html">xonsh 0.8.12 ドキュメント</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="index.html" >the xonsh shell</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" >Xonsh シェル</a> &#187;</li> 
       </ul>
     </div>
     </div>

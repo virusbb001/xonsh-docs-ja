@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta charset="utf-8" />
-    <title>the xonsh shell &#8212; xonsh 0.8.12 ドキュメント</title>
+    <title>Xonsh シェル &#8212; xonsh 0.8.12 ドキュメント</title>
     <link rel="stylesheet" href="_static/numpy_friendly.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -60,7 +60,7 @@
           <div class="body" role="main">
             
   <div class="section" id="the-xonsh-shell">
-<h1>the xonsh shell<a class="headerlink" href="#the-xonsh-shell" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>Xonsh シェル<a class="headerlink" href="#the-xonsh-shell" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p style="text-align:center;">
 <span style="font-family:Times;font-size:28px;font-style:normal;font-weight:normal;text-decoration:none;text-transform:none;font-variant:small-caps;color:000000;">
 ~
@@ -110,22 +110,15 @@ document.write(taglines[Math.floor(Math.random() * taglines.length)]);
 <br />
 <br />
 </span>
-</p><p>Xonsh is a Python-powered, cross-platform, Unix-gazing shell language and
-command prompt. The language is a superset of Python 3.4+ with additional
-shell primitives that you are used to from Bash and IPython. It works on
-all major systems including Linux, Mac OSX, and Windows. Xonsh is meant
-for the daily use of experts and novices alike.</p>
+</p><p>XonshはPythonで動く、クロスプラットフォームのUnix-gazingなシェル言語とコマンドプロンプトです。この言語は、BashとIPythonから慣れ親しんだ追加のシェルプリミティブを持つPython 3.4+のスーパーセットです。これは、Linux、Mac OSX、およびWindowsを含むすべての主要なシステムで動作します。Xonshは専門家と初心者の毎日の使用のために作られています</p>
 </div>
 <div class="section" id="try-it-now">
-<h1>Try It Now!<a class="headerlink" href="#try-it-now" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>Try out xonsh right here in the browser. Just press the triangle play button in
-the bottom right of the <a class="reference external" href="https://repl.it">Repl.it</a> frame below.
-<strong>Note:</strong> this is not a fully featured xonsh instance due to repl.it limitations.</p>
+<h1>今すぐ試す!<a class="headerlink" href="#try-it-now" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ブラウザーでxonshを試してみてください。下の <a class="reference external" href="https://repl.it">Repl.it</a> フレームの右下にある三角再生ボタンを押すだけです。 注意： repl.itの制限により、完全に機能するxonshインスタンスではありません。</p>
 <iframe height="400px" width="100%" src="https://repl.it/@scopatz/xonsh?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe></div>
 <div class="section" id="comparison">
-<h1>Comparison<a class="headerlink" href="#comparison" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>Xonsh is significantly different from most other shells or shell tools. The following
-table lists features and capabilities that various tools may or may not share.</p>
+<h1>比較<a class="headerlink" href="#comparison" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Xonshは、他のほとんどのシェルやシェルツールと大きく異なります。次の表に、さまざまなツールが共有する機能と不可能な機能の一覧を示します。</p>
 <table class="colwidths-given docutils align-center">
 <colgroup>
 <col style="width: 33%" />
@@ -147,7 +140,7 @@ table lists features and capabilities that various tools may or may not share.</
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><th class="stub"><p>Sane language</p></th>
+<tr class="row-even"><th class="stub"><p>真っ当な言語</p></th>
 <td></td>
 <td></td>
 <td><p>✓</p></td>
@@ -155,7 +148,7 @@ table lists features and capabilities that various tools may or may not share.</
 <td><p>✓</p></td>
 <td><p>✓</p></td>
 </tr>
-<tr class="row-odd"><th class="stub"><p>Easily scriptable</p></th>
+<tr class="row-odd"><th class="stub"><p>記述が簡単</p></th>
 <td><p>✓</p></td>
 <td><p>✓</p></td>
 <td><p>✓</p></td>
@@ -163,7 +156,7 @@ table lists features and capabilities that various tools may or may not share.</
 <td></td>
 <td><p>✓</p></td>
 </tr>
-<tr class="row-even"><th class="stub"><p>Native cross-platform support</p></th>
+<tr class="row-even"><th class="stub"><p>標準のクロスプラットフォームサポート</p></th>
 <td></td>
 <td></td>
 <td><p>✓</p></td>
@@ -171,7 +164,7 @@ table lists features and capabilities that various tools may or may not share.</
 <td><p>✓</p></td>
 <td><p>✓</p></td>
 </tr>
-<tr class="row-odd"><th class="stub"><p>Meant as a shell</p></th>
+<tr class="row-odd"><th class="stub"><p>シェルのつもりであった</p></th>
 <td><p>✓</p></td>
 <td><p>✓</p></td>
 <td></td>
@@ -179,7 +172,7 @@ table lists features and capabilities that various tools may or may not share.</
 <td></td>
 <td><p>✓</p></td>
 </tr>
-<tr class="row-even"><th class="stub"><p>Tab completion</p></th>
+<tr class="row-even"><th class="stub"><p>Tab保管</p></th>
 <td><p>✓</p></td>
 <td><p>✓</p></td>
 <td></td>
@@ -187,7 +180,7 @@ table lists features and capabilities that various tools may or may not share.</
 <td><p>✓</p></td>
 <td><p>✓</p></td>
 </tr>
-<tr class="row-odd"><th class="stub"><p>Man-page completion</p></th>
+<tr class="row-odd"><th class="stub"><p>Manページ保管</p></th>
 <td></td>
 <td></td>
 <td></td>
@@ -195,7 +188,7 @@ table lists features and capabilities that various tools may or may not share.</
 <td></td>
 <td><p>✓</p></td>
 </tr>
-<tr class="row-even"><th class="stub"><p>Large standard library</p></th>
+<tr class="row-even"><th class="stub"><p>巨大な標準ライブラリ</p></th>
 <td></td>
 <td><p>✓</p></td>
 <td></td>
@@ -203,7 +196,7 @@ table lists features and capabilities that various tools may or may not share.</
 <td><p>✓</p></td>
 <td><p>✓</p></td>
 </tr>
-<tr class="row-odd"><th class="stub"><p>Typed variables</p></th>
+<tr class="row-odd"><th class="stub"><p>型付きの変数</p></th>
 <td></td>
 <td></td>
 <td><p>✓</p></td>
@@ -211,15 +204,15 @@ table lists features and capabilities that various tools may or may not share.</
 <td><p>✓</p></td>
 <td><p>✓</p></td>
 </tr>
-<tr class="row-even"><th class="stub"><p>Syntax highlighting</p></th>
+<tr class="row-even"><th class="stub"><p>シンタックスハイライト</p></th>
 <td></td>
 <td></td>
 <td></td>
 <td><p>✓</p></td>
-<td><p>in notebook</p></td>
-<td><p>w/ prompt-toolkit</p></td>
+<td><p>Notebook内で</p></td>
+<td><p>prompt-toolkit付きで</p></td>
 </tr>
-<tr class="row-odd"><th class="stub"><p>Pun in name</p></th>
+<tr class="row-odd"><th class="stub"><p>名前の洒落</p></th>
 <td><p>✓</p></td>
 <td></td>
 <td><p>✓</p></td>
@@ -227,7 +220,7 @@ table lists features and capabilities that various tools may or may not share.</
 <td></td>
 <td><p>✓</p></td>
 </tr>
-<tr class="row-even"><th class="stub"><p>Rich history</p></th>
+<tr class="row-even"><th class="stub"><p>豊富な保管</p></th>
 <td></td>
 <td></td>
 <td></td>
@@ -241,48 +234,46 @@ table lists features and capabilities that various tools may or may not share.</
 <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Xonsh currently has the following external dependencies,</p>
-<p><em>Run Time:</em></p>
+<h2>依存関係<a class="headerlink" href="#dependencies" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Xonshは現在、以下の外部依存関係を持っています。</p>
+<p><em>実行環境:</em></p>
 <blockquote>
 <div><ol class="arabic simple">
 <li><p>Python v3.4+</p></li>
 </ol>
 </div></blockquote>
-<p>Pip supports &quot;extra&quot; dependencies in the form of <code class="docutils literal notranslate"><span class="pre">xonsh[ptk,linux]</span></code>, where
-the list in the brackets identify the optional features</p>
-<p>Xonsh currently has the following extras</p>
+<p>Pipは <code class="docutils literal notranslate"><span class="pre">xonsh[ptk,linux]</span></code> のような&quot;追加の&quot;依存関係をサポートしており、括弧内のリストでオプション機能が識別されます。</p>
+<p>Xonshは現在以下の追加依存関係を持っています</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ptk</span></code>: prompt-toolkit:
-<em>advanced readline library, line-editing</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pygments&gt;=2.2</span></code>: <em>syntax-highlighting</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">proctitle</span></code>: setproctitle: <em>change the title of terminal to reflect the current subprocess</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">linux</span></code>: distro: <em>linux specific platform information</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mac</span></code>: gnureadline: <em>GNU's featureful version of readline</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: win_unicode_console: <em>enables the use of Unicode in windows consoles</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ptk</span></code>: prompt-toolkit: <em>高度な readline ライブラリ, 行変数</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pygments&gt;=2.2</span></code>: <em>シンタックスハイライト</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">proctitle</span></code>: setproctitle: <em>ターミナルのタイトルを現在のサブプロセスを反映するために変更</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux</span></code>: distro: <em>Linux固有のプラットフォーム情報</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mac</span></code>: gnureadline: <em>readlineのGNUの機能方法なバージョン</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">win</span></code>: win_unicode_console: <em>Windowsコンソール内でUnicodeを有効化</em></p></li>
 </ol>
 </div></blockquote>
-<p>In addition, xonsh integrates with Jupyter, an in-browser REPL, enabling the use of xonsh in jupyter notebooks</p>
+<p>さらに、Xonshはブラウザー内のREPLであるJupyterと統合され、Jupyter NotebookでXonshを使用できるようにします</p>
 </div>
 <div class="section" id="development-dependencies">
-<h2>Development Dependencies<a class="headerlink" href="#development-dependencies" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>If you want to develop xonsh, it is extremely recommended to install the dependencies listed in <a class="reference external" href="https://github.com/xonsh/xonsh/blob/master/requirements-docs.txt">requirements-docs.txt</a> (to generate documentation) and <a class="reference external" href="https://github.com/xonsh/xonsh/blob/master/requirements-tests.txt">requirements-tests.txt</a> (to run the test suite).</p>
+<h2>開発用依存関係<a class="headerlink" href="#development-dependencies" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>xonshを開発したい場合は、<a class="reference external" href="https://github.com/xonsh/xonsh/blob/master/requirements-docs.txt">requires-docs.txt</a> （ドキュメンテーションを生成するため）および <a class="reference external" href="https://github.com/xonsh/xonsh/blob/master/requirements-tests.txt">requirements-tests.txt</a> （テストスイートを実行するため）にリストされている依存関係をインストールすることを強くお勧めします。</p>
 </div>
 <div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>インストール<a class="headerlink" href="#installation" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="linux.html">Linux Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="osx.html">OSX Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="windows.html">Windows Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Windowsガイド</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customization.html">Updating and customizing xonsh</a></li>
 </ul>
 </div>
 </div>
 </div>
 <div class="section" id="news-media">
-<h1>News &amp; Media<a class="headerlink" href="#news-media" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>ニュース &amp; メディア<a class="headerlink" href="#news-media" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="talks_and_articles.html">Talks &amp; Articles</a></li>
@@ -291,7 +282,7 @@ the list in the brackets identify the optional features</p>
 </div>
 </div>
 <div class="section" id="guides">
-<h1>Guides<a class="headerlink" href="#guides" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>ガイド<a class="headerlink" href="#guides" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
@@ -310,7 +301,7 @@ the list in the brackets identify the optional features</p>
 </div>
 </div>
 <div class="section" id="config-files-and-settings">
-<h1>Config Files and Settings<a class="headerlink" href="#config-files-and-settings" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>設定ファイルと設定<a class="headerlink" href="#config-files-and-settings" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="xonshrc.html">Run Control File</a></li>
@@ -323,28 +314,22 @@ the list in the brackets identify the optional features</p>
 </div>
 </div>
 <div class="section" id="contributing">
-<h1>Contributing<a class="headerlink" href="#contributing" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>We highly encourage contributions to xonsh!  If you would like to contribute,
-it is as easy as forking the repository on GitHub, making your changes, and
-issuing a pull request.  If you have any questions about this process don't
-hesitate to ask the mailing list (<a class="reference external" href="mailto:xonsh&#37;&#52;&#48;googlegroups&#46;com">xonsh<span>&#64;</span>googlegroups<span>&#46;</span>com</a>) or the <a class="reference external" href="https://gitter.im/xonsh/xonsh">Gitter</a> channel.</p>
-<p>See the <a class="reference external" href="devguide.html">Developer's Guide</a> for more information about contributing.</p>
+<h1>貢献<a class="headerlink" href="#contributing" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>xonshへの貢献を強くお勧めします！あなたが貢献したいのであれば、GitHubでリポジトリをフォークし、変更を加え、プルリクエストを発行するのと同じくらい簡単です。このプロセスについてご質問がある場合はお気軽に メーリングリスト (<a class="reference external" href="mailto:xonsh&#37;&#52;&#48;googlegroups&#46;com">xonsh<span>&#64;</span>googlegroups<span>&#46;</span>com</a>)もしくは <a class="reference external" href="https://gitter.im/xonsh/xonsh">Gitter</a> チャンネルへお問い合わせください。(訳注: この問い合わせ先はおそらく英語のみの受付です。)</p>
+<p>貢献についてのより多くの情報は <a class="reference external" href="devguide.html">開発者ガイド</a> をご覧ください。</p>
 </div>
 <div class="section" id="contact-us">
 <h1>Contact Us<a class="headerlink" href="#contact-us" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>If you have questions or comments, please send them to the mailing list
-<a class="reference external" href="mailto:xonsh&#37;&#52;&#48;googlegroups&#46;com">xonsh<span>&#64;</span>googlegroups<span>&#46;</span>com</a>, page us on IRC, contact the author directly, or
-open an issue on GitHub.
-<a class="reference external" href="https://groups.google.com/forum/#!forum/xonsh">Join the mailing list here!</a></p>
+<p>ご質問やご意見がありましたら、<a class="reference external" href="mailto:xonsh&#37;&#52;&#48;googlegroups&#46;com">xonsh<span>&#64;</span>googlegroups<span>&#46;</span>com</a> メーリングリストに送信したり、IRCで私達を呼び出したり、直接著者に連絡したり、GitHubでissueを開いてください。 <a class="reference external" href="https://groups.google.com/forum/#!forum/xonsh">ここからメーリングリストに参加してください！</a> (訳注: おそらく英語のみの受付です。)</p>
 </div>
 <div class="section" id="helpful-links">
-<h1>Helpful Links<a class="headerlink" href="#helpful-links" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>役立つリンク集<a class="headerlink" href="#helpful-links" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="http://xon.sh">Documentation</a></p></li>
+<li><p><a class="reference external" href="http://xon.sh">ドキュメント</a></p></li>
 <li><p><a class="reference external" href="https://gitter.im/xonsh/xonsh">Gitter</a></p></li>
-<li><p><a class="reference external" href="https://groups.google.com/forum/#!forum/xonsh">Mailing list</a></p></li>
-<li><p><a class="reference external" href="http://www.oftc.net/">IRC: channel #xonsh on OFTC</a></p></li>
-<li><p><a class="reference external" href="https://github.com/xonsh/xonsh">GitHub Repository</a></p></li>
+<li><p><a class="reference external" href="https://groups.google.com/forum/#!forum/xonsh">メーリングリスト</a></p></li>
+<li><p><a class="reference external" href="http://www.oftc.net/">IRC: OFTC 内 #xonsh チャンネル</a></p></li>
+<li><p><a class="reference external" href="https://github.com/xonsh/xonsh">GitHub リポジトリ</a></p></li>
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">索引</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">モジュール索引</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">検索ページ</span></a></p></li>
@@ -410,7 +395,7 @@ open an issue on GitHub.
 
 </style></div>
 <div class="section" id="development-spiral">
-<h1>Development Spiral<a class="headerlink" href="#development-spiral" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>開発の螺旋<a class="headerlink" href="#development-spiral" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">Xonsh API</a><ul>
@@ -490,22 +475,22 @@ open an issue on GitHub.
         </a></p><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="sidebar.html">Page contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">the xonsh shell</a></li>
-<li><a class="reference internal" href="#try-it-now">Try It Now!</a></li>
-<li><a class="reference internal" href="#comparison">Comparison</a></li>
+<li><a class="reference internal" href="#">Xonsh シェル</a></li>
+<li><a class="reference internal" href="#try-it-now">今すぐ試す!</a></li>
+<li><a class="reference internal" href="#comparison">比較</a></li>
 <li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
-<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
-<li><a class="reference internal" href="#development-dependencies">Development Dependencies</a></li>
-<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#dependencies">依存関係</a></li>
+<li><a class="reference internal" href="#development-dependencies">開発用依存関係</a></li>
+<li><a class="reference internal" href="#installation">インストール</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#news-media">News &amp; Media</a></li>
-<li><a class="reference internal" href="#guides">Guides</a></li>
-<li><a class="reference internal" href="#config-files-and-settings">Config Files and Settings</a></li>
-<li><a class="reference internal" href="#contributing">Contributing</a></li>
+<li><a class="reference internal" href="#news-media">ニュース &amp; メディア</a></li>
+<li><a class="reference internal" href="#guides">ガイド</a></li>
+<li><a class="reference internal" href="#config-files-and-settings">設定ファイルと設定</a></li>
+<li><a class="reference internal" href="#contributing">貢献</a></li>
 <li><a class="reference internal" href="#contact-us">Contact Us</a></li>
-<li><a class="reference internal" href="#helpful-links">Helpful Links</a></li>
-<li><a class="reference internal" href="#development-spiral">Development Spiral</a></li>
+<li><a class="reference internal" href="#helpful-links">役立つリンク集</a></li>
+<li><a class="reference internal" href="#development-spiral">開発の螺旋</a></li>
 </ul>
 
   </div>
