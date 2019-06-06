@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta charset="utf-8" />
-    <title>xonsh.commands_cache &#8212; xonsh 0.9.0 ドキュメント</title>
+    <title>xonsh.commands_cache &#8212; xonsh 0.9.5 ドキュメント</title>
     <link rel="stylesheet" href="../../_static/numpy_friendly.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
@@ -39,7 +39,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Pythonモジュール索引"
              >モジュール</a> &nbsp; &nbsp;</li>
-    <li><a href="../../sidebar.html">xonsh 0.9.0 ドキュメント</a> &#187;</li>
+    <li><a href="../../sidebar.html">xonsh 0.9.5 ドキュメント</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">モジュールコード</a> &#187;</li> 
       </ul>
@@ -272,14 +272,21 @@
         <span class="sd">&quot;&quot;&quot;Predicts whether a command list is able to be run on a background</span>
 <span class="sd">        thread, rather than the main thread.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached_name</span><span class="p">(</span><span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">predictor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_predictor_threadable</span><span class="p">(</span><span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">predictor</span><span class="p">(</span><span class="n">cmd</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span></div>
+
+<div class="viewcode-block" id="CommandsCache.get_predictor_threadable"><a class="viewcode-back" href="../../api/commands_cache.html#xonsh.commands_cache.CommandsCache.get_predictor_threadable">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">get_predictor_threadable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the predictor whether a command list is able to be run on a</span>
+<span class="sd">        background thread, rather than the main thread.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached_name</span><span class="p">(</span><span class="n">cmd0</span><span class="p">)</span>
         <span class="n">predictors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">threadable_predictors</span>
         <span class="k">if</span> <span class="n">ON_WINDOWS</span><span class="p">:</span>
             <span class="c1"># On all names (keys) are stored in upper case so instead</span>
             <span class="c1"># we get the original cmd or alias name</span>
             <span class="n">path</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lazyget</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
             <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">True</span>
+                <span class="k">return</span> <span class="n">predict_true</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">name</span> <span class="o">=</span> <span class="n">pathbasename</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">predictors</span><span class="p">:</span>
@@ -287,21 +294,56 @@
                 <span class="k">if</span> <span class="n">pre</span> <span class="ow">in</span> <span class="n">predictors</span><span class="p">:</span>
                     <span class="n">predictors</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">predictors</span><span class="p">[</span><span class="n">pre</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">predictors</span><span class="p">:</span>
-            <span class="n">predictors</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_predictor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">predictors</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_predictor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">cmd0</span><span class="p">)</span>
         <span class="n">predictor</span> <span class="o">=</span> <span class="n">predictors</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">predictor</span><span class="p">(</span><span class="n">cmd</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span></div>
+        <span class="k">return</span> <span class="n">predictor</span></div>
 
     <span class="c1">#</span>
     <span class="c1"># Background Predictors (as methods)</span>
     <span class="c1">#</span>
 
 <div class="viewcode-block" id="CommandsCache.default_predictor"><a class="viewcode-back" href="../../api/commands_cache.html#xonsh.commands_cache.CommandsCache.default_predictor">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">default_predictor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">cmd0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Default predictor, using predictor from original command if the</span>
+<span class="sd">        command is an alias, elseif build a predictor based on binary analysis</span>
+<span class="sd">        on POSIX, else return predict_true.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># alias stuff</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isabs</span><span class="p">(</span><span class="n">cmd0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cmd0</span><span class="p">:</span>
+            <span class="n">alss</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">builtins</span><span class="p">,</span> <span class="s2">&quot;aliases&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">cmd0</span> <span class="ow">in</span> <span class="n">alss</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_predictor_alias</span><span class="p">(</span><span class="n">cmd0</span><span class="p">)</span>
+
+        <span class="c1"># other default stuff</span>
         <span class="k">if</span> <span class="n">ON_POSIX</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_predictor_readbin</span><span class="p">(</span>
                 <span class="n">name</span><span class="p">,</span> <span class="n">cmd0</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">failure</span><span class="o">=</span><span class="n">predict_true</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">predict_true</span></div>
+
+<div class="viewcode-block" id="CommandsCache.default_predictor_alias"><a class="viewcode-back" href="../../api/commands_cache.html#xonsh.commands_cache.CommandsCache.default_predictor_alias">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">default_predictor_alias</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd0</span><span class="p">):</span>
+        <span class="n">alias_recursion_limit</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mi">10</span>
+        <span class="p">)</span>  <span class="c1"># this limit is se to handle infinite loops in aliases definition</span>
+        <span class="n">first_args</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># contains in reverse order args passed to the aliased command</span>
+        <span class="n">alss</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">builtins</span><span class="p">,</span> <span class="s2">&quot;aliases&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+        <span class="k">while</span> <span class="n">cmd0</span> <span class="ow">in</span> <span class="n">alss</span><span class="p">:</span>
+            <span class="n">alias_name</span> <span class="o">=</span> <span class="n">alss</span><span class="p">[</span><span class="n">cmd0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">alias_name</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">))</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
+                <span class="n">alias_name</span><span class="p">,</span> <span class="n">cabc</span><span class="o">.</span><span class="n">Sequence</span>
+            <span class="p">):</span>
+                <span class="k">return</span> <span class="n">predict_true</span>
+            <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">alias_name</span><span class="p">[:</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">first_args</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">cmd0</span> <span class="o">==</span> <span class="n">alias_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="c1"># it is a self-alias stop recursion immediatly</span>
+                <span class="k">return</span> <span class="n">predict_true</span>
+            <span class="n">cmd0</span> <span class="o">=</span> <span class="n">alias_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">alias_recursion_limit</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">alias_recursion_limit</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">predict_true</span>
+        <span class="n">predictor_cmd0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_predictor_threadable</span><span class="p">(</span><span class="n">cmd0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">lambda</span> <span class="n">cmd1</span><span class="p">:</span> <span class="n">predictor_cmd0</span><span class="p">(</span><span class="n">first_args</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">cmd1</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CommandsCache.default_predictor_readbin"><a class="viewcode-back" href="../../api/commands_cache.html#xonsh.commands_cache.CommandsCache.default_predictor_readbin">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">default_predictor_readbin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">cmd0</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">failure</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Make a default predictor by</span>
@@ -393,9 +435,9 @@
 <span class="nd">@lazyobject</span>
 <span class="k">def</span> <span class="nf">HELP_VER_PREDICTOR_PARSER</span><span class="p">():</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="s2">&quot;cmd&quot;</span><span class="p">,</span> <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">p</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-h&quot;</span><span class="p">,</span> <span class="s2">&quot;--help&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-h&quot;</span><span class="p">,</span> <span class="s2">&quot;--help&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">p</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;-V&quot;</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span>
+        <span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;-V&quot;</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">p</span>
 
@@ -435,6 +477,19 @@
         <span class="k">return</span> <span class="ow">not</span> <span class="n">ns</span><span class="o">.</span><span class="n">interactive</span></div>
 
 
+<div class="viewcode-block" id="predict_env"><a class="viewcode-back" href="../../api/commands_cache.html#xonsh.commands_cache.predict_env">[ドキュメント]</a><span class="k">def</span> <span class="nf">predict_env</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Predict if env is launching a threadable command or not.</span>
+<span class="sd">    The launched command is extracted from env args, and the predictor of</span>
+<span class="sd">    lauched command is used.&quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">and</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;-&quot;</span> <span class="ow">and</span> <span class="s2">&quot;=&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="c1"># args[i] is the command and the following is its arguments</span>
+            <span class="c1"># so args[i:] is used to predict if the command is threadable</span>
+            <span class="k">return</span> <span class="n">builtins</span><span class="o">.</span><span class="n">__xonsh__</span><span class="o">.</span><span class="n">commands_cache</span><span class="o">.</span><span class="n">predict_threadable</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">:])</span>
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+
 <div class="viewcode-block" id="default_threadable_predictors"><a class="viewcode-back" href="../../api/commands_cache.html#xonsh.commands_cache.default_threadable_predictors">[ドキュメント]</a><span class="k">def</span> <span class="nf">default_threadable_predictors</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Generates a new defaultdict for known threadable predictors.</span>
 <span class="sd">    The default is to predict true.</span>
@@ -450,6 +505,7 @@
         <span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="n">predict_shell</span><span class="p">,</span>
         <span class="s2">&quot;cryptop&quot;</span><span class="p">:</span> <span class="n">predict_false</span><span class="p">,</span>
         <span class="s2">&quot;curl&quot;</span><span class="p">:</span> <span class="n">predict_true</span><span class="p">,</span>
+        <span class="s2">&quot;env&quot;</span><span class="p">:</span> <span class="n">predict_env</span><span class="p">,</span>
         <span class="s2">&quot;ex&quot;</span><span class="p">:</span> <span class="n">predict_false</span><span class="p">,</span>
         <span class="s2">&quot;emacsclient&quot;</span><span class="p">:</span> <span class="n">predict_false</span><span class="p">,</span>
         <span class="s2">&quot;fish&quot;</span><span class="p">:</span> <span class="n">predict_shell</span><span class="p">,</span>
@@ -480,6 +536,7 @@
         <span class="s2">&quot;ssh&quot;</span><span class="p">:</span> <span class="n">predict_false</span><span class="p">,</span>
         <span class="s2">&quot;startx&quot;</span><span class="p">:</span> <span class="n">predict_false</span><span class="p">,</span>
         <span class="s2">&quot;sudo&quot;</span><span class="p">:</span> <span class="n">predict_help_ver</span><span class="p">,</span>
+        <span class="s2">&quot;sudoedit&quot;</span><span class="p">:</span> <span class="n">predict_help_ver</span><span class="p">,</span>
         <span class="s2">&quot;tcsh&quot;</span><span class="p">:</span> <span class="n">predict_shell</span><span class="p">,</span>
         <span class="s2">&quot;telnet&quot;</span><span class="p">:</span> <span class="n">predict_false</span><span class="p">,</span>
         <span class="s2">&quot;tput&quot;</span><span class="p">:</span> <span class="n">predict_false</span><span class="p">,</span>
@@ -507,10 +564,10 @@
           <img class="logo" src="../../_static/ascii_conch_part_transparent_tight.png" alt="Logo"/>
         </a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>クイック検索</h3>
+  <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="検索" />
     </form>
     </div>
@@ -548,7 +605,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Pythonモジュール索引"
              >モジュール</a> &nbsp; &nbsp;</li>
-    <li><a href="../../sidebar.html">xonsh 0.9.0 ドキュメント</a> &#187;</li>
+    <li><a href="../../sidebar.html">xonsh 0.9.5 ドキュメント</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" >モジュールコード</a> &#187;</li> 
       </ul>
@@ -557,7 +614,7 @@
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2015, Anthony Scopatz.
-      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0 で生成しました。
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

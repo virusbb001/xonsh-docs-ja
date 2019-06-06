@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta charset="utf-8" />
-    <title>First Command Completer (xonsh.completers.commands) &#8212; xonsh 0.9.0 ドキュメント</title>
+    <title>First Command Completer (xonsh.completers.commands) &#8212; xonsh 0.9.5 ドキュメント</title>
     <link rel="stylesheet" href="../../_static/numpy_friendly.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="bash.html" title="Bash Completers (xonsh.completers.bash)"
              accesskey="P">前へ</a> &nbsp; &nbsp;</li>
-    <li><a href="../../sidebar.html">xonsh 0.9.0 ドキュメント</a> &#187;</li>
+    <li><a href="../../sidebar.html">xonsh 0.9.5 ドキュメント</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li>
@@ -66,16 +66,26 @@
 <span id="first-command-completer-xonsh-completers-commands"></span><span id="xonsh-completers-commands"></span><h1>First Command Completer (<code class="docutils literal notranslate"><span class="pre">xonsh.completers.commands</span></code>)<a class="headerlink" href="#module-xonsh.completers.commands" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <dl class="function">
 <dt id="xonsh.completers.commands.complete_command">
-<code class="descclassname">xonsh.completers.commands.</code><code class="descname">complete_command</code><span class="sig-paren">(</span><em>cmd</em>, <em>line</em>, <em>start</em>, <em>end</em>, <em>ctx</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/commands.html#complete_command"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.commands.complete_command" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.completers.commands.</code><code class="sig-name descname">complete_command</code><span class="sig-paren">(</span><em class="sig-param">cmd</em>, <em class="sig-param">line</em>, <em class="sig-param">start</em>, <em class="sig-param">end</em>, <em class="sig-param">ctx</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/commands.html#complete_command"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.commands.complete_command" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Returns a list of valid commands starting with the first argument</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="xonsh.completers.commands.complete_skipper">
-<code class="descclassname">xonsh.completers.commands.</code><code class="descname">complete_skipper</code><span class="sig-paren">(</span><em>cmd</em>, <em>line</em>, <em>start</em>, <em>end</em>, <em>ctx</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/commands.html#complete_skipper"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.commands.complete_skipper" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.completers.commands.</code><code class="sig-name descname">complete_skipper</code><span class="sig-paren">(</span><em class="sig-param">cmd</em>, <em class="sig-param">line</em>, <em class="sig-param">start</em>, <em class="sig-param">end</em>, <em class="sig-param">ctx</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/commands.html#complete_skipper"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.commands.complete_skipper" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Skip over several tokens (e.g., sudo) and complete based on the rest of the
 line.</p>
 </dd></dl>
+
+<dl class="data">
+<dt id="xonsh.completers.commands.END_PROC_TOKENS">
+<code class="sig-prename descclassname">xonsh.completers.commands.</code><code class="sig-name descname">END_PROC_TOKENS</code><em class="property"> = {'&amp;&amp;', 'and', 'or', '|', '||'}</em><a class="headerlink" href="#xonsh.completers.commands.END_PROC_TOKENS" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="xonsh.completers.commands.SKIP_TOKENS">
+<code class="sig-prename descclassname">xonsh.completers.commands.</code><code class="sig-name descname">SKIP_TOKENS</code><em class="property"> = {'man', 'showcmd', 'sudo', 'time', 'timeit', 'which'}</em><a class="headerlink" href="#xonsh.completers.commands.SKIP_TOKENS" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 
@@ -106,10 +116,10 @@ line.</p>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>クイック検索</h3>
+  <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="検索" />
     </form>
     </div>
@@ -153,7 +163,7 @@ line.</p>
         <li class="right" >
           <a href="bash.html" title="Bash Completers (xonsh.completers.bash)"
              >前へ</a> &nbsp; &nbsp;</li>
-    <li><a href="../../sidebar.html">xonsh 0.9.0 ドキュメント</a> &#187;</li>
+    <li><a href="../../sidebar.html">xonsh 0.9.5 ドキュメント</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li>
@@ -164,7 +174,7 @@ line.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2015, Anthony Scopatz.
-      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0 で生成しました。
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

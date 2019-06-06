@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta charset="utf-8" />
-    <title>Open Python Files (xonsh.openpy) &#8212; xonsh 0.9.0 ドキュメント</title>
+    <title>Open Python Files (xonsh.openpy) &#8212; xonsh 0.9.5 ドキュメント</title>
     <link rel="stylesheet" href="../_static/numpy_friendly.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="lazyasd.html" title="Lazy &amp; Self-destructive Objects (xonsh.lazyasd)"
              accesskey="P">前へ</a> &nbsp; &nbsp;</li>
-    <li><a href="../sidebar.html">xonsh 0.9.0 ドキュメント</a> &#187;</li>
+    <li><a href="../sidebar.html">xonsh 0.9.5 ドキュメント</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" >Xonsh シェル</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Xonsh API</a> &#187;</li> 
@@ -75,7 +75,7 @@
 </ul>
 <dl class="function">
 <dt id="xonsh.openpy.read_py_file">
-<code class="descclassname">xonsh.openpy.</code><code class="descname">read_py_file</code><span class="sig-paren">(</span><em>filename</em>, <em>skip_encoding_cookie=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/openpy.html#read_py_file"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.openpy.read_py_file" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.openpy.</code><code class="sig-name descname">read_py_file</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">skip_encoding_cookie=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/openpy.html#read_py_file"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.openpy.read_py_file" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Read a Python file, using the encoding declared inside the file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -98,7 +98,7 @@ unicode string with an encoding declaration is a SyntaxError in Python 2.</p>
 
 <dl class="function">
 <dt id="xonsh.openpy.read_py_url">
-<code class="descclassname">xonsh.openpy.</code><code class="descname">read_py_url</code><span class="sig-paren">(</span><em>url</em>, <em>errors='replace'</em>, <em>skip_encoding_cookie=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/openpy.html#read_py_url"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.openpy.read_py_url" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.openpy.</code><code class="sig-name descname">read_py_url</code><span class="sig-paren">(</span><em class="sig-param">url</em>, <em class="sig-param">errors='replace'</em>, <em class="sig-param">skip_encoding_cookie=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/openpy.html#read_py_url"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.openpy.read_py_url" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Read a Python file from a URL, using the encoding declared inside the file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -124,7 +124,7 @@ unicode string with an encoding declaration is a SyntaxError in Python 2.</p>
 
 <dl class="function">
 <dt id="xonsh.openpy.source_to_unicode">
-<code class="descclassname">xonsh.openpy.</code><code class="descname">source_to_unicode</code><span class="sig-paren">(</span><em>txt</em>, <em>errors='replace'</em>, <em>skip_encoding_cookie=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/openpy.html#source_to_unicode"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.openpy.source_to_unicode" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.openpy.</code><code class="sig-name descname">source_to_unicode</code><span class="sig-paren">(</span><em class="sig-param">txt</em>, <em class="sig-param">errors='replace'</em>, <em class="sig-param">skip_encoding_cookie=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/openpy.html#source_to_unicode"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.openpy.source_to_unicode" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Converts a bytes string with python source code to unicode.</p>
 <p>Unicode strings are passed through unchanged. Byte strings are checked
 for the python source file encoding cookie to determine encoding.
@@ -134,10 +134,15 @@ code.</p>
 
 <dl class="function">
 <dt id="xonsh.openpy.strip_encoding_cookie">
-<code class="descclassname">xonsh.openpy.</code><code class="descname">strip_encoding_cookie</code><span class="sig-paren">(</span><em>filelike</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/openpy.html#strip_encoding_cookie"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.openpy.strip_encoding_cookie" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.openpy.</code><code class="sig-name descname">strip_encoding_cookie</code><span class="sig-paren">(</span><em class="sig-param">filelike</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xonsh/openpy.html#strip_encoding_cookie"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.openpy.strip_encoding_cookie" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Generator to pull lines from a text-mode file, skipping the encoding
 cookie if it is found in the first two lines.</p>
 </dd></dl>
+
+<dl class="data">
+<dt id="xonsh.openpy.cookie_comment_re">
+<code class="sig-prename descclassname">xonsh.openpy.</code><code class="sig-name descname">cookie_comment_re</code><em class="property"> = re.compile('^\\s*#.*coding[:=]\\s*([-\\w.]+)')</em><a class="headerlink" href="#xonsh.openpy.cookie_comment_re" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 
@@ -168,10 +173,10 @@ cookie if it is found in the first two lines.</p>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>クイック検索</h3>
+  <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="検索" />
     </form>
     </div>
@@ -215,7 +220,7 @@ cookie if it is found in the first two lines.</p>
         <li class="right" >
           <a href="lazyasd.html" title="Lazy &amp; Self-destructive Objects (xonsh.lazyasd)"
              >前へ</a> &nbsp; &nbsp;</li>
-    <li><a href="../sidebar.html">xonsh 0.9.0 ドキュメント</a> &#187;</li>
+    <li><a href="../sidebar.html">xonsh 0.9.5 ドキュメント</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../index.html" >Xonsh シェル</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="index.html" >Xonsh API</a> &#187;</li> 
@@ -225,7 +230,7 @@ cookie if it is found in the first two lines.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2015, Anthony Scopatz.
-      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0 で生成しました。
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

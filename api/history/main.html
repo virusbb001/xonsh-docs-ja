@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta charset="utf-8" />
-    <title>History Main Entry Points -- xonsh.history.main &#8212; xonsh 0.9.0 ドキュメント</title>
+    <title>History Main Entry Points -- xonsh.history.main &#8212; xonsh 0.9.5 ドキュメント</title>
     <link rel="stylesheet" href="../../_static/numpy_friendly.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="base.html" title="History Base Class -- xonsh.history.base"
              accesskey="P">前へ</a> &nbsp; &nbsp;</li>
-    <li><a href="../../sidebar.html">xonsh 0.9.0 ドキュメント</a> &#187;</li>
+    <li><a href="../../sidebar.html">xonsh 0.9.5 ドキュメント</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li>
@@ -67,15 +67,20 @@
 <p>Main entry points of the xonsh history.</p>
 <dl class="function">
 <dt id="xonsh.history.main.construct_history">
-<code class="descclassname">xonsh.history.main.</code><code class="descname">construct_history</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/history/main.html#construct_history"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.history.main.construct_history" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.history.main.</code><code class="sig-name descname">construct_history</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/history/main.html#construct_history"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.history.main.construct_history" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Construct the history backend object.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="xonsh.history.main.history_main">
-<code class="descclassname">xonsh.history.main.</code><code class="descname">history_main</code><span class="sig-paren">(</span><em>args=None</em>, <em>stdin=None</em>, <em>stdout=None</em>, <em>stderr=None</em>, <em>spec=None</em>, <em>stack=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/history/main.html#history_main"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.history.main.history_main" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.history.main.</code><code class="sig-name descname">history_main</code><span class="sig-paren">(</span><em class="sig-param">args=None</em>, <em class="sig-param">stdin=None</em>, <em class="sig-param">stdout=None</em>, <em class="sig-param">stderr=None</em>, <em class="sig-param">spec=None</em>, <em class="sig-param">stack=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/history/main.html#history_main"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.history.main.history_main" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>This is the history command entry point.</p>
 </dd></dl>
+
+<dl class="data">
+<dt id="xonsh.history.main.HISTORY_BACKENDS">
+<code class="sig-prename descclassname">xonsh.history.main.</code><code class="sig-name descname">HISTORY_BACKENDS</code><em class="property"> = {'dummy': &lt;class 'xonsh.history.dummy.DummyHistory'&gt;, 'json': &lt;class 'xonsh.history.json.JsonHistory'&gt;, 'sqlite': &lt;class 'xonsh.history.sqlite.SqliteHistory'&gt;}</em><a class="headerlink" href="#xonsh.history.main.HISTORY_BACKENDS" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 
@@ -106,10 +111,10 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>クイック検索</h3>
+  <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="検索" />
     </form>
     </div>
@@ -153,7 +158,7 @@
         <li class="right" >
           <a href="base.html" title="History Base Class -- xonsh.history.base"
              >前へ</a> &nbsp; &nbsp;</li>
-    <li><a href="../../sidebar.html">xonsh 0.9.0 ドキュメント</a> &#187;</li>
+    <li><a href="../../sidebar.html">xonsh 0.9.5 ドキュメント</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li>
@@ -164,7 +169,7 @@
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2015, Anthony Scopatz.
-      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0 で生成しました。
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

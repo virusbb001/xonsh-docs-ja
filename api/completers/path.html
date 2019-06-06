@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta charset="utf-8" />
-    <title>File System Path Completer (xonsh.completers.path) &#8212; xonsh 0.9.0 ドキュメント</title>
+    <title>File System Path Completer (xonsh.completers.path) &#8212; xonsh 0.9.5 ドキュメント</title>
     <link rel="stylesheet" href="../../_static/numpy_friendly.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="man.html" title="Manual Page Based Completers (xonsh.completers.man)"
              accesskey="P">前へ</a> &nbsp; &nbsp;</li>
-    <li><a href="../../sidebar.html">xonsh 0.9.0 ドキュメント</a> &#187;</li>
+    <li><a href="../../sidebar.html">xonsh 0.9.5 ドキュメント</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li>
@@ -66,24 +66,24 @@
 <span id="file-system-path-completer-xonsh-completers-path"></span><span id="xonsh-completers-path"></span><h1>File System Path Completer (<code class="docutils literal notranslate"><span class="pre">xonsh.completers.path</span></code>)<a class="headerlink" href="#module-xonsh.completers.path" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <dl class="function">
 <dt id="xonsh.completers.path.cd_in_command">
-<code class="descclassname">xonsh.completers.path.</code><code class="descname">cd_in_command</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/path.html#cd_in_command"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.path.cd_in_command" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.completers.path.</code><code class="sig-name descname">cd_in_command</code><span class="sig-paren">(</span><em class="sig-param">line</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/path.html#cd_in_command"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.path.cd_in_command" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Returns True if &quot;cd&quot; is a token in the line, False otherwise.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="xonsh.completers.path.complete_dir">
-<code class="descclassname">xonsh.completers.path.</code><code class="descname">complete_dir</code><span class="sig-paren">(</span><em>prefix</em>, <em>line</em>, <em>start</em>, <em>end</em>, <em>ctx</em>, <em>cdpath=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/path.html#complete_dir"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.path.complete_dir" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.completers.path.</code><code class="sig-name descname">complete_dir</code><span class="sig-paren">(</span><em class="sig-param">prefix</em>, <em class="sig-param">line</em>, <em class="sig-param">start</em>, <em class="sig-param">end</em>, <em class="sig-param">ctx</em>, <em class="sig-param">cdpath=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/path.html#complete_dir"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.path.complete_dir" title="この定義へのパーマリンク">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="xonsh.completers.path.complete_path">
-<code class="descclassname">xonsh.completers.path.</code><code class="descname">complete_path</code><span class="sig-paren">(</span><em>prefix</em>, <em>line</em>, <em>start</em>, <em>end</em>, <em>ctx</em>, <em>cdpath=True</em>, <em>filtfunc=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/path.html#complete_path"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.path.complete_path" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.completers.path.</code><code class="sig-name descname">complete_path</code><span class="sig-paren">(</span><em class="sig-param">prefix</em>, <em class="sig-param">line</em>, <em class="sig-param">start</em>, <em class="sig-param">end</em>, <em class="sig-param">ctx</em>, <em class="sig-param">cdpath=True</em>, <em class="sig-param">filtfunc=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/path.html#complete_path"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.path.complete_path" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Completes based on a path name.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="xonsh.completers.path.subsequence_match">
-<code class="descclassname">xonsh.completers.path.</code><code class="descname">subsequence_match</code><span class="sig-paren">(</span><em>ref</em>, <em>typed</em>, <em>csc</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/path.html#subsequence_match"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.path.subsequence_match" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.completers.path.</code><code class="sig-name descname">subsequence_match</code><span class="sig-paren">(</span><em class="sig-param">ref</em>, <em class="sig-param">typed</em>, <em class="sig-param">csc</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/completers/path.html#subsequence_match"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.completers.path.subsequence_match" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Detects whether typed is a subsequence of ref.</p>
 <p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the characters in <code class="docutils literal notranslate"><span class="pre">typed</span></code> appear (in order) in
 <code class="docutils literal notranslate"><span class="pre">ref</span></code>, regardless of exactly where in <code class="docutils literal notranslate"><span class="pre">ref</span></code> they occur.  If <code class="docutils literal notranslate"><span class="pre">csc</span></code> is
@@ -91,6 +91,11 @@
 <p>Used in &quot;subsequence&quot; path completion (e.g., <code class="docutils literal notranslate"><span class="pre">~/u/ro</span></code> expands to
 <code class="docutils literal notranslate"><span class="pre">~/lou/carcohl</span></code>)</p>
 </dd></dl>
+
+<dl class="data">
+<dt id="xonsh.completers.path.PATTERN_NEED_QUOTES">
+<code class="sig-prename descclassname">xonsh.completers.path.</code><code class="sig-name descname">PATTERN_NEED_QUOTES</code><em class="property"> = re.compile('[\\s`\\$\\{\\}\\,\\*\\(\\)&quot;\\\'\\?&amp;#]|\\band\\b|\\bor\\b')</em><a class="headerlink" href="#xonsh.completers.path.PATTERN_NEED_QUOTES" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 
@@ -121,10 +126,10 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>クイック検索</h3>
+  <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="検索" />
     </form>
     </div>
@@ -168,7 +173,7 @@
         <li class="right" >
           <a href="man.html" title="Manual Page Based Completers (xonsh.completers.man)"
              >前へ</a> &nbsp; &nbsp;</li>
-    <li><a href="../../sidebar.html">xonsh 0.9.0 ドキュメント</a> &#187;</li>
+    <li><a href="../../sidebar.html">xonsh 0.9.5 ドキュメント</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li>
@@ -179,7 +184,7 @@
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2015, Anthony Scopatz.
-      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0 で生成しました。
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

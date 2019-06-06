@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta charset="utf-8" />
-    <title>Version control branch info prompt formatter (xonsh.prompt.vc) &#8212; xonsh 0.9.0 ドキュメント</title>
+    <title>Version control branch info prompt formatter (xonsh.prompt.vc) &#8212; xonsh 0.9.5 ドキュメント</title>
     <link rel="stylesheet" href="../../_static/numpy_friendly.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="job.html" title="Jobs prompt formatter (xonsh.prompt.job)"
              accesskey="P">前へ</a> &nbsp; &nbsp;</li>
-    <li><a href="../../sidebar.html">xonsh 0.9.0 ドキュメント</a> &#187;</li>
+    <li><a href="../../sidebar.html">xonsh 0.9.5 ドキュメント</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li>
@@ -67,14 +67,14 @@
 <p>Prompt formatter for simple version control branches</p>
 <dl class="function">
 <dt id="xonsh.prompt.vc.branch_bg_color">
-<code class="descclassname">xonsh.prompt.vc.</code><code class="descname">branch_bg_color</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#branch_bg_color"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.branch_bg_color" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.prompt.vc.</code><code class="sig-name descname">branch_bg_color</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#branch_bg_color"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.branch_bg_color" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Return red if the current branch is dirty, yellow if the dirtiness can
 not be determined, and green if it clean. These are background colors.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="xonsh.prompt.vc.branch_color">
-<code class="descclassname">xonsh.prompt.vc.</code><code class="descname">branch_color</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#branch_color"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.branch_color" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.prompt.vc.</code><code class="sig-name descname">branch_color</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#branch_color"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.branch_color" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Return red if the current branch is dirty, yellow if the dirtiness can
 not be determined, and green if it clean. These are bold, intense colors
 for the foreground.</p>
@@ -82,7 +82,7 @@ for the foreground.</p>
 
 <dl class="function">
 <dt id="xonsh.prompt.vc.current_branch">
-<code class="descclassname">xonsh.prompt.vc.</code><code class="descname">current_branch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#current_branch"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.current_branch" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.prompt.vc.</code><code class="sig-name descname">current_branch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#current_branch"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.current_branch" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Gets the branch for a current working directory. Returns an empty string
 if the cwd is not a repository.  This currently only works for git and hg
 and should be extended in the future.  If a timeout occurred, the string
@@ -91,7 +91,7 @@ and should be extended in the future.  If a timeout occurred, the string
 
 <dl class="function">
 <dt id="xonsh.prompt.vc.dirty_working_directory">
-<code class="descclassname">xonsh.prompt.vc.</code><code class="descname">dirty_working_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#dirty_working_directory"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.dirty_working_directory" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.prompt.vc.</code><code class="sig-name descname">dirty_working_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#dirty_working_directory"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.dirty_working_directory" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Returns a boolean as to whether there are uncommitted files in version
 control repository we are inside. If this cannot be determined, returns
 None. Currently supports git and hg.</p>
@@ -99,28 +99,28 @@ None. Currently supports git and hg.</p>
 
 <dl class="function">
 <dt id="xonsh.prompt.vc.get_git_branch">
-<code class="descclassname">xonsh.prompt.vc.</code><code class="descname">get_git_branch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#get_git_branch"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.get_git_branch" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.prompt.vc.</code><code class="sig-name descname">get_git_branch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#get_git_branch"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.get_git_branch" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Attempts to find the current git branch. If this could not
 be determined (timeout, not in a git repo, etc.) then this returns None.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="xonsh.prompt.vc.get_hg_branch">
-<code class="descclassname">xonsh.prompt.vc.</code><code class="descname">get_hg_branch</code><span class="sig-paren">(</span><em>root=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#get_hg_branch"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.get_hg_branch" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.prompt.vc.</code><code class="sig-name descname">get_hg_branch</code><span class="sig-paren">(</span><em class="sig-param">root=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#get_hg_branch"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.get_hg_branch" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Try to get the mercurial branch of the current directory,
 return None if not in a repo or subprocess.TimeoutExpired if timed out.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="xonsh.prompt.vc.git_dirty_working_directory">
-<code class="descclassname">xonsh.prompt.vc.</code><code class="descname">git_dirty_working_directory</code><span class="sig-paren">(</span><em>include_untracked=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#git_dirty_working_directory"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.git_dirty_working_directory" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.prompt.vc.</code><code class="sig-name descname">git_dirty_working_directory</code><span class="sig-paren">(</span><em class="sig-param">include_untracked=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#git_dirty_working_directory"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.git_dirty_working_directory" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Returns whether or not the git directory is dirty. If this could not
 be determined (timeout, file not found, etc.) then this returns None.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="xonsh.prompt.vc.hg_dirty_working_directory">
-<code class="descclassname">xonsh.prompt.vc.</code><code class="descname">hg_dirty_working_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#hg_dirty_working_directory"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.hg_dirty_working_directory" title="この定義へのパーマリンク">¶</a></dt>
+<code class="sig-prename descclassname">xonsh.prompt.vc.</code><code class="sig-name descname">hg_dirty_working_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/xonsh/prompt/vc.html#hg_dirty_working_directory"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#xonsh.prompt.vc.hg_dirty_working_directory" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Computes whether or not the mercurial working directory is dirty or not.
 If this cannot be determined, None is returned.</p>
 </dd></dl>
@@ -154,10 +154,10 @@ If this cannot be determined, None is returned.</p>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>クイック検索</h3>
+  <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="検索" />
     </form>
     </div>
@@ -201,7 +201,7 @@ If this cannot be determined, None is returned.</p>
         <li class="right" >
           <a href="job.html" title="Jobs prompt formatter (xonsh.prompt.job)"
              >前へ</a> &nbsp; &nbsp;</li>
-    <li><a href="../../sidebar.html">xonsh 0.9.0 ドキュメント</a> &#187;</li>
+    <li><a href="../../sidebar.html">xonsh 0.9.5 ドキュメント</a> &#187;</li>
 
           <li class="nav-item nav-item-1"><a href="../../index.html" >Xonsh シェル</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../index.html" >Xonsh API</a> &#187;</li>
@@ -212,7 +212,7 @@ If this cannot be determined, None is returned.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2015, Anthony Scopatz.
-      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1 で生成しました。
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0 で生成しました。
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>
